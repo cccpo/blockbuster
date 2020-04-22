@@ -2,6 +2,7 @@
 #include <thread>
 #include <chrono>
 
+//テストメソッド
 //int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpszCmdLine, int nCmdShow){
 //    TCHAR szAppName[] = TEXT("first contact");
 //    WNDCLASS wc;

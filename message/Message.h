@@ -5,6 +5,7 @@
 
 using namespace::std;
 
+//メッセージのやり取りを行うクラス
 class Message
 {
 
