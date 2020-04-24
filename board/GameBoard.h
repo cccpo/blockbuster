@@ -3,6 +3,10 @@
 
 typedef unsigned char byte;
 
+const int cGbWidth = { 10 };
+const int cGbHeight = { 20 };
+
+
 
 
 class GameBoard
@@ -11,26 +15,28 @@ class GameBoard
 
 
 	public:
-	const int cGbWidth= { 10 };
-	const int cGbHeight = { 20 };
-	const static int WALL = 0xff;
+	byte gBoard[cGbWidth + 2][cGbHeight + 2];	//	ŠO˜g‚ðŠÜ‚ß‚½”Õ–Ê
+	const static int OuterFrame = 0xff;
 
-	byte gBoard[12][22];	//	ŠO˜g‚ðŠÜ‚ß‚½”Õ–Ê
-	
 
-	GameBoard() {}
-	~GameBoard() {}
+	const static int cGameBoardPosX = 45; //
+	const static int cGameBoardPosY = 5;
 
-	void init_board();
+	void InitGameBoard();
+	void DrawStage();
+
+	int GetcEmpty();
 
 	int GetcGbWidth();
-	void SetcGbWidth(int w);
+	//void SetcGbWidth(int w);
 
 	int GetcGbHeight();
-	void SetcGbHeight(int h);
+	//void SetcGbHeight(int h);
 
-	byte *GetgBoard();
+	/*byte GetgBoard(int );*/
 
+	GameBoard() {};
+	~GameBoard() {};
 };
 
 
