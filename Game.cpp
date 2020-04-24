@@ -27,22 +27,22 @@ void StartGame() {
 //main
 int main() {
 	Message me;
-	window wi;
+	//window wi;
 	Score st;
 	GameBoard gb;
 	DrawGameBoard dgb;
 
-	ゲーム開始
+	//ゲーム開始
 	
 	StartGame();
 	gb.InitGameBoard();
 	dgb.DrawBoard();
-	gb.DrawStage();
+	//gb.DrawStage();
 	dgb.DrawScore();
 
-	一時停止
+	//一時停止
 	_getch();
-	cout << st.GetScore() << endl;
+	//cout << st.GetScore() << endl;
 
 	return 0;
 }

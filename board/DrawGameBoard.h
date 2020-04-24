@@ -4,7 +4,7 @@
 class DrawGameBoard
 {
 private:
-#define		COL_BLACK = 0x00;
+#define		COL_BLACK  0x00
 #define		COL_DARK_BLUE		0x01
 #define		COL_DARK_GREEN	0x02
 #define		COL_DARK_CYAN		0x03
@@ -25,11 +25,15 @@ private:
 #define		COL_GREEN_MASK	0x02
 #define		COL_BLUE_MASK	0x01
 
-	const static int		BD_ORG_X = 2;			//	ゲームボード描画位置
-	const static int		BD_ORG_Y = 1;
+	
 
 public:
+	const int cGameBoardPosX = 45;			//	ゲームボード描画位置
+	const int cGameBoardPosY = 5;
+
 	void DrawBoard();
+	//void DrawStage();
+	void DrawScore();
 
 	void SetColor(int fg, int bg );
 	void SetCursorPos(int x, int y);

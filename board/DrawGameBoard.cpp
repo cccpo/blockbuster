@@ -1,29 +1,48 @@
 #include "DrawGameBoard.h"
 #include "GameBoard.h"
+#include "../State/Score.h"
+
+using std::cout;
+using std::endl;
 
 void DrawGameBoard::DrawBoard() {
-	DrawGameBoard dgb;
 	GameBoard gb;
 	
 	//色設定
-	dgb.SetColor(COL_BLUE, COL_BLUE);
-    SetCursorPos(BD_ORG_X, BD_ORG_Y);
+	SetColor(COL_YELLOW, COL_YELLOW);
+
+    SetCursorPos(cGameBoardPosX, cGameBoardPosY);
 	for (int x = { 0 }; x < gb.GetcGbWidth() + 2; ++x) {
-        std::cout << "  "; 
+        cout << "  "; 
     }
 
-    SetCursorPos(BD_ORG_X, BD_ORG_Y + gb.GetcGbHeight() + 1);
+    SetCursorPos(cGameBoardPosX, cGameBoardPosY + gb.GetcGbHeight() + 1);
 	for (int x = { 0 }; x < gb.GetcGbWidth() + 2; ++x) {
-        std::cout << "  ";
+        cout << "  ";
     }
-    for (int y = BD_ORG_Y + 1; y < BD_ORG_Y + gb.GetcGbHeight() + 1; ++y) {
-        SetCursorPos(BD_ORG_X, y);
-        std::cout << "  ";  
-        SetCursorPos(BD_ORG_X + (gb.GetcGbWidth() + 1) * 2, y);
-        std::cout << "  ";    
+    for (int y = cGameBoardPosY + 1; y < cGameBoardPosY + gb.GetcGbHeight() + 1; ++y) {
+        SetCursorPos(cGameBoardPosX, y);
+        cout << "  ";  
+        SetCursorPos(cGameBoardPosX + (gb.GetcGbWidth() + 1) * 2, y);
+        cout << "  ";    
     }
 }
 
+
+//スコア表示
+void DrawGameBoard::DrawScore() {
+	GameBoard gb;
+	Score sc;
+
+	const int cScorePosX = (cGameBoardPosX + (gb.GetcGbWidth() + 2) * 3 + 4);
+	const int cScorePosY = cGameBoardPosY;
+	
+	SetCursorPos(cScorePosX,cScorePosY);
+	SetColor(COL_GRAY, COL_BLACK);
+	cout << "SCORE:";
+	cout.width(8);     
+	cout << sc.GetScore();
+}
 //
 //	fg 
 //  bg 背景色
@@ -59,4 +78,3 @@ void DrawGameBoard::SetCursorPos(int x, int y) {
 	SetConsoleCursorPosition(hCons, pos);
 }
 
-//DrawGameBoard(){}
