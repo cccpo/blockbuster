@@ -11,11 +11,11 @@ class GameBoard
 
 
 	public:
-	const int cGbWidth = { 10 };
+	const int cGbWidth= { 10 };
 	const int cGbHeight = { 20 };
 	const static int WALL = 0xff;
 
-	byte g_board[10 + 2][20 + 2];	//	ŠO˜g‚ðŠÜ‚ß‚½”Õ–Ê
+	byte gBoard[12][22];	//	ŠO˜g‚ðŠÜ‚ß‚½”Õ–Ê
 	
 
 	GameBoard() {}
@@ -28,6 +28,9 @@ class GameBoard
 
 	int GetcGbHeight();
 	void SetcGbHeight(int h);
+
+	byte *GetgBoard();
+
 };
 
 
