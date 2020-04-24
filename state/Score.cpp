@@ -1,9 +1,12 @@
 #include "Score.h"
 
-void Score::getScore() {
 
+
+int Score::GetScore() {
+	return cScore;
 };
 
-int Score::setScore(int sScore) {
-
-};
+//void Score::setScore(int mScore) {
+//	
+//	this->gScore;
+//};

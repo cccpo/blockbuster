@@ -1,12 +1,21 @@
 #pragma once
-//スコアを管理する
+
+
+
+//スコア管理クラス
 class Score
 {
-	int score = 0;
+	
 
  public:
-	void getScore();
-	int setScore(int sScore);
+	 
+	 const int cScore = { 0 };
+	
 
+	int GetScore();
+	
+
+	Score() {};
+	~Score() {};
 };
 
