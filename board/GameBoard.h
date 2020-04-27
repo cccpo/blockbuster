@@ -11,10 +11,9 @@ const int cGbHeight = { 20 };
 
 class GameBoard
 {	
+	public:
 	const int cEmpty = { 0 };
 
-
-	public:
 	byte gBoard[cGbWidth + 2][cGbHeight + 2];	//	ŠO˜g‚ðŠÜ‚ß‚½”Õ–Ê
 	const static int OuterFrame = 0xff;
 
@@ -24,6 +23,10 @@ class GameBoard
 
 	void InitGameBoard();
 	void DrawStage();
+	void DrawBoard();
+
+	void SetColor(int fg, int bg);
+	void SetCursorPos(int x, int y);
 
 	int GetcEmpty();
 

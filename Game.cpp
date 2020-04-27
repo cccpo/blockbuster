@@ -35,10 +35,11 @@ int main() {
 	//ゲーム開始
 	
 	StartGame();
-	gb.InitGameBoard();
-	dgb.DrawBoard();
-	//gb.DrawStage();
-	dgb.DrawScore();
+	gb.InitGameBoard();//ゲームボード初期化
+	gb.DrawBoard();//ゲームボード外枠の描画(ToDo)
+	gb.DrawStage();//ゲームボード内部の描画(ToDo)
+	dgb.DrawScore();//スコア表示(ToDO)
+	getchar();
 
 	//一時停止
 	_getch();
