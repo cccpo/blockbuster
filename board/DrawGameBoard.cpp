@@ -2,47 +2,48 @@
 #include "GameBoard.h"
 #include "../State/Score.h"
 
+
 using std::cout;
 using std::endl;
 
-void DrawGameBoard::DrawBoard() {
-	GameBoard gb;
-	
-	//色設定
-	SetColor(COL_YELLOW, COL_YELLOW);
-
-    SetCursorPos(cGameBoardPosX, cGameBoardPosY);
-	for (int x = { 0 }; x < gb.GetcGbWidth() + 2; ++x) {
-        cout << "  "; 
-    }
-
-    SetCursorPos(cGameBoardPosX, cGameBoardPosY + gb.GetcGbHeight() + 1);
-	for (int x = { 0 }; x < gb.GetcGbWidth() + 2; ++x) {
-        cout << "  ";
-    }
-    for (int y = cGameBoardPosY + 1; y < cGameBoardPosY + gb.GetcGbHeight() + 1; ++y) {
-        SetCursorPos(cGameBoardPosX, y);
-        cout << "  ";  
-        SetCursorPos(cGameBoardPosX + (gb.GetcGbWidth() + 1) * 2, y);
-        cout << "  ";    
-    }
-}
+//void DrawGameBoard::DrawBoard() {
+//	GameBoard gb;
+//	
+//	//色設定
+//	SetColor(COL_YELLOW, COL_YELLOW);
+//
+//    SetCursorPos(cGameBoardPosX, cGameBoardPosY);
+//	for (int x = { 0 }; x < gGbWidth + 2; ++x) {
+//        cout << "  "; 
+//    }
+//
+//    SetCursorPos(cGameBoardPosX, cGameBoardPosY + gGbHeight + 1);
+//	for (int x = { 0 }; x < gGbWidth + 2; ++x) {
+//        cout << "  ";
+//    }
+//    for (int y = cGameBoardPosY + 1; y < cGameBoardPosY + gGbHeight + 1; ++y) {
+//        SetCursorPos(cGameBoardPosX, y);
+//        cout << "  ";  
+//        SetCursorPos(cGameBoardPosX + (gGbWidth + 1) * 2, y);
+//        cout << "  ";    
+//    }
+//}
 
 
 //スコア表示
-void DrawGameBoard::DrawScore() {
-	GameBoard gb;
-	Score sc;
-
-	const int cScorePosX = (cGameBoardPosX + (gb.GetcGbWidth() + 2) * 3 + 4);
-	const int cScorePosY = cGameBoardPosY;
-	
-	SetCursorPos(cScorePosX,cScorePosY);
-	SetColor(COL_GRAY, COL_BLACK);
-	cout << "SCORE:";
-	cout.width(8);     
-	cout << sc.GetScore();
-}
+//void DrawGameBoard::DrawScore() {
+//	GameBoard gb;
+//	Score sc;
+//	
+//	const int cScorePosX = (cGameBoardPosX + (gGbWidth + 2) * 3 + 4);
+//	const int cScorePosY = cGameBoardPosY;
+//	
+//	SetCursorPos(cScorePosX,cScorePosY);
+//	SetColor(COL_GRAY, COL_BLACK);
+//	cout << "SCORE:";
+//	cout.width(8);     
+//	cout << gScore;
+//}
 //
 //	fg 
 //  bg 背景色

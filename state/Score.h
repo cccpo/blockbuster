@@ -9,10 +9,9 @@ class Score
 
  public:
 	 
-	 const int cScore = { 0 };
 	
 
-	int GetScore();
+	//int GetScore();
 	
 
 	Score() {};

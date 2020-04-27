@@ -2,9 +2,10 @@
 
 
 
-int Score::GetScore() {
-	return cScore;
-};
+
+//int Score::GetScore() {
+//	return cScore;
+//};
 
 //void Score::setScore(int mScore) {
 //	
