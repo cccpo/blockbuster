@@ -60,9 +60,9 @@ void GameBoard::DrawStage() {
     int cGbHeight = gb.GetcGbHeight();
 
     //gBoard[4][5] = 1;
-    for (int i = 0; i < cGbWidth; ++i) {
+ /*   for (int i = 0; i < cGbWidth; ++i) {
         gBoard[i][20] = 1;
-    }
+    }*/
 
     for (int y = 1; y <= cGbHeight; ++y) {
         SetCursorPos(cGameBoardPosX + 2, y + cGameBoardPosY);

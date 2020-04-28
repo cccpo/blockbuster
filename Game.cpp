@@ -32,6 +32,14 @@ void StartGame() {
 	dgb.DrawScore();//スコア表示(ToDO)
 	bp.SetTertimino();
 	bp.DrawTetrimino();
+	int bpy = bp.GetgTetriminoPosY();
+	while (bpy < gb.GetcGbHeight()) {       // 落下テトリスが盤面下端に来るまでループ
+		Sleep(100);       // 0.1秒ウェイト
+		++bpy;             // 落下テトリスを1行落下
+		bp.SetgTeriminoPosY(bpy);
+		gb.DrawStage();//ゲームボード内部の描画(ToDo)
+		bp.DrawTetrimino();
+	}
 
 
 }
