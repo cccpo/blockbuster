@@ -29,11 +29,12 @@ private:
 	public:
 	const int cEmpty = { 0 };
 
+
 	byte gBoard[cGbWidth + 2][cGbHeight + 2]; 
 
 	enum class Color
 	{
-		Black, DarkBlue, DarkGreen, DarkCyan, DarlRed, DarkViolet, DarkYellow, Gray, LightGray, Blue,
+		Black=0x00, DarkBlue, DarkGreen, DarkCyan, DarlRed, DarkViolet, DarkYellow, Gray, LightGray, Blue,
 		Green, Cyan, Red, Violet, Yellow, White
 
 	};
@@ -46,6 +47,8 @@ private:
 	void InitGameBoard();	
 	void DrawBoard();//ƒQ[ƒ€ƒ{[ƒhŠO˜g‚Ì•`‰æ(ToDO DrawGameBoard‚ÉˆÚA—\’è)
 	void DrawStage();//ƒQ[ƒ€ƒ{[ƒh“à•”‚Ì•`‰æ(ToDO DrawGameBoard‚ÉˆÚA—\’è)
+
+	bool MoveDown();
 
 	void SetColor(int fg, int bg);
 	void SetCursorPos(int x, int y);

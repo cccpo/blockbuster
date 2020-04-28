@@ -10,6 +10,8 @@ using namespace std;
 using std::cout;
 using std::endl;
 
+//ToDO　現行は7種類のテトリミノに90度ずつずらした4パターンを準備
+//後々回転はポインタを用いて実装する
 byte trData[][4][4][4] = {
 	{	//	I
 		{
@@ -199,7 +201,7 @@ byte trData[][4][4][4] = {
 void BlockPiece::SetTertimino(int type, int rx) {
         for (int y = 0; y < cTetriminoHeight; ++y) {
             for (int x = 0; x < cTetriminoWidth; ++x) {
-                g_tetris[x][y] = trData[type][rx][y][x];
+                gTetrimino[x][y] = trData[type][rx][y][x];
             }
         }
     }
@@ -215,9 +217,6 @@ void BlockPiece::SetTertimino() {
 	int gbw = gb.GetcGbWidth();
 	
 	gTetriminoPosX = ((gbw - cTetriminoWidth) / 2);
-	
-	//OutputDebugString(debug);
-	//gTetriminoPosX = { (gb.GetcGbWidth() - cTetriminoWidth) / 2 };
 	gTetriminoPosY = 0;
 	gTetriminoType = (type(mt));
     SetTertimino(gTetriminoType, sRotIX = 0);
@@ -236,7 +235,7 @@ void BlockPiece::DrawTetrimino()
         for (int k = 0; k < cTetriminoWidth; ++k) {
             int x = gTetriminoPosX + k;
             if (x < 0 || x >= gb.GetcGbWidth()) continue;
-            if (g_tetris[k][i]) {
+            if (gTetrimino[k][i]) {
                 gb.SetCursorPos(gb.GetcGameBoardPosX() + (x + 1) * 2, gb.GetcGameBoardPosY() + y + 1);
                 cout << "  ";
             }
@@ -244,14 +243,9 @@ void BlockPiece::DrawTetrimino()
     }
 }
 
-//bool BlockPiece::MoveDown() {
-//	for(int x = 0;x<cTetriminoWidth;++x)
-//		for (int y = cTetriminoHeight; --y >= 0;) {
-//			if (g_board[x +  + 1][y +  + 1 + 1] != 0)
-//				return false;              //  すぐ下に壁 or 固定ブロックがある
-//			break;
-//		}
-//}
+int BlockPiece::GetgTetriminoPosX() {
+	return gTetriminoPosX;
+}
 
 void BlockPiece::SetgTeriminoPosX(int tpx) {
 	this->gTetriminoPosX = tpx;
@@ -269,6 +263,17 @@ void BlockPiece::SetgTeriminoPosY(int tpy) {
 void BlockPiece::SetgTeriminoType(int ttype) {
 	this->gTetriminoType = ttype;
 }
+
+//byte* BlockPiece::GetTetrimino() {
+//	return *gTetrimino;
+//}
+
+//BlockPiece::BlockPiece(byte* p, int tw, int th) {
+//	top = p;
+//	= tw;
+//
+//}
+
 
 
 

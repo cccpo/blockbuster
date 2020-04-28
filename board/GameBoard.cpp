@@ -1,6 +1,8 @@
 #include <iostream>
 
 #include "GameBoard.h"
+#include "../agent/BlockPiece.h"
+
 //#include "DrawGameBoard.h"
 typedef unsigned char byte;
 
@@ -75,6 +77,24 @@ void GameBoard::DrawStage() {
         }
     }
 }
+//
+//bool GameBoard::MoveDown() {
+//    BlockPiece bp;
+//
+//    int tpx = bp.GetgTetriminoPosX();
+//    int tpy = bp.GetgTetriminoPosY();
+//
+//    byte* ter = bp.GetTetrimino();
+//
+//    for (int x = 0; x < cTetriminoWidth; ++x)
+//        for (int y = cTetriminoHeight; --y >= 0;) {
+//            if (ter[x][y] != 0) {
+//                if (gBoard[x + tpx + 1][y + tpy + 1 + 1] != cEmpty)
+//                    return false;              //  Ç∑ÇÆâ∫Ç…ï« or å≈íËÉuÉçÉbÉNÇ™Ç†ÇÈ
+//                break;
+//            }
+//        }
+//}
 
 void GameBoard::SetColor(int fg, int bg) {
     HANDLE hCons = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -106,6 +126,8 @@ void GameBoard::SetCursorPos(int x, int y) {
     pos.Y = y;
     SetConsoleCursorPosition(hCons, pos);
 }
+
+
 
 int GameBoard::GetcEmpty() {
     return cEmpty;

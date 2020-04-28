@@ -19,7 +19,7 @@ public:
 
 	int gTetriminoPosX;//ゲームボード左上からの相対的な位置
 	int gTetriminoPosY;
-	int gTetriminoType;
+	int gTetriminoType;//テトリミノのタイプ
 
 
 	
@@ -27,7 +27,12 @@ public:
 	const int cTetrimino = 7;
 	int sRotIX;
 
-	byte g_tetris[cTetriminoWidth][cTetriminoHeight];
+	byte gTetrimino[cTetriminoWidth][cTetriminoHeight];
+	byte* top;
+
+	//BlockPiece(byte* p, int tw, int th);
+
+
 	
 	bool MoveDown();
 		
@@ -39,11 +44,15 @@ public:
 
 	//int GetTetorimonoType();
 
+	int GetgTetriminoPosX();
 	void SetgTeriminoPosX(int tpx);
+
 	int GetgTetriminoPosY();
 	void SetgTeriminoPosY(int tpy);
 
 	void SetgTeriminoType(int ttype);
+
+	byte*  GetTetrimino();
 	
 	/*BlockPiece() {}
 	~BlockPiece() {}*/

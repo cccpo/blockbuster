@@ -5,7 +5,7 @@
 #include <memory>
 #include <conio.h>
 
-//#include "Game.h"
+#include "Game.h"
 //#include "message/Message.h"
 //#include "window/window.h"
 //#include "state/Score.h"
@@ -20,7 +20,7 @@ using std::endl;
 
 //game
 void StartGame() {
-	
+
 	GameBoard gb;
 	DrawGameBoard dgb;
 	BlockPiece bp;
@@ -33,6 +33,7 @@ void StartGame() {
 	bp.SetTertimino();
 	bp.DrawTetrimino();
 	int bpy = bp.GetgTetriminoPosY();
+
 	while (bpy < gb.GetcGbHeight()) {       // 落下テトリスが盤面下端に来るまでループ
 		Sleep(100);       // 0.1秒ウェイト
 		++bpy;             // 落下テトリスを1行落下
