@@ -9,9 +9,11 @@ class Score
 
  public:
 	 
+	 int gScore = 0;
 	
 
-	//int GetScore();
+	int GetScore();
+	void SetScore(int sc);
 	
 
 	Score() {};
