@@ -3,11 +3,10 @@
 
 
 
-//int Score::GetScore() {
-//	return cScore;
-//};
+int Score::GetScore() {
+	return gScore;
+};
 
-//void Score::setScore(int mScore) {
-//	
-//	this->gScore;
-//};
+void Score::SetScore(int sc) {
+	this->gScore = gScore;
+};
