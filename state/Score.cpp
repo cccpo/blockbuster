@@ -4,9 +4,9 @@
 
 
 int Score::GetScore() {
-	return gScore;
+	return mScore;
 };
 
 void Score::SetScore(int sc) {
-	this->gScore = gScore;
+	this->mScore = mScore;
 };
