@@ -21,10 +21,10 @@ void GameBoard::InitGameBoard() {
   
     //ゲームボード外枠の初期化
     for (int x = 0; x <= cGbWidth + 1; ++x) {
-        gBoard[x][0] = gBoard[x][cGbHeight + 1] = cOuterFrame;
+        gBoard[x][0] = gBoard[x][cGbHeight + 1] = mOuterFrame;
     }
     for (int y = 0; y <= cGbHeight + 1; ++y) {
-        gBoard[0][y] = gBoard[cGbWidth + 1][y] = cOuterFrame;
+        gBoard[0][y] = gBoard[cGbWidth + 1][y] = mOuterFrame;
     }
 
 };
@@ -61,11 +61,6 @@ void GameBoard::DrawStage() {
     int cGbWidth = gb.GetcGbWidth();
     int cGbHeight = gb.GetcGbHeight();
 
-    //gBoard[4][5] = 1;
- /*   for (int i = 0; i < cGbWidth; ++i) {
-        gBoard[i][20] = 1;
-    }*/
-
     for (int y = 1; y <= cGbHeight; ++y) {
         SetCursorPos(cGameBoardPosX + 2, y + cGameBoardPosY);
         for (int x = 1; x <= gb.GetcGbWidth(); ++x) {
@@ -81,20 +76,24 @@ void GameBoard::DrawStage() {
 //bool GameBoard::MoveDown() {
 //    BlockPiece bp;
 //
-//    int tpx = bp.GetgTetriminoPosX();
+//    int tpx = gTeriminoPosX;
 //    int tpy = bp.GetgTetriminoPosY();
 //
-//    byte* ter = bp.GetTetrimino();
-//
-//    for (int x = 0; x < cTetriminoWidth; ++x)
-//        for (int y = cTetriminoHeight; --y >= 0;) {
-//            if (ter[x][y] != 0) {
-//                if (gBoard[x + tpx + 1][y + tpy + 1 + 1] != cEmpty)
+//    for (int x = 0; x < gTetriminoWidth; ++x)
+//        for (int y = gTetriminoHeight; --y >= 0;) {
+//            if (bp.SetTeriminoValue(x,y) != 0) {
+//                if (gBoard[x + tpx + 1][y + tpy + 1 + 1] != 0)
 //                    return false;              //  すぐ下に壁 or 固定ブロックがある
 //                break;
 //            }
 //        }
+//    return false;
 //}
+
+int GameBoard::SetTeriminoValue(int x, int y) {
+    int s = gBoard[x][y];
+    return s;
+}
 
 void GameBoard::SetColor(int fg, int bg) {
     HANDLE hCons = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -127,7 +126,9 @@ void GameBoard::SetCursorPos(int x, int y) {
     SetConsoleCursorPosition(hCons, pos);
 }
 
-
+//int* GameBoard::GetbBoard() {
+//    return *gBoard[][cGbHeight + 2];
+//}
 
 int GameBoard::GetcEmpty() {
     return cEmpty;
@@ -150,11 +151,27 @@ int GameBoard::GetcGameBoardPosY() {
     return cGameBoardPosY;
 }
 
+//byte(GameBoard::* getAry())[cGbHeight + 2]{
+//    return GameBoard::gBoard;
+//}
+
+/*te GameBoard::(&f())[100]{
+    return &gBoard;
+}*/
 
 //byte GameBoard::GetgBoard() {
 //    return gBoard[][];
 //}
 
+//GameBoard::GameBoard() {
+//    for (int i = 0; i < cGbWidth + 2; ++i)
+//    {
+//        for (int jj = 0; jj < cGbHeight + 2; ++jj)
+//        {
+//            gBoard[i][jj] = (i + 1) * jj;
+//        }
+//    }
+//}
 
 
 

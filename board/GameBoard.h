@@ -7,34 +7,36 @@ typedef unsigned char byte;
 const int cGbWidth = 10;
 const int cGbHeight = 20;
 
-
+static int gBoard[cGbWidth + 2][cGbHeight + 2];
 
 enum class Mask {
 	
 };
 
 class GameBoard
-{	
+{
 
 private:
-	const static int cOuterFrame = 0xff;
+	const static int mOuterFrame = 0xff;
 
 
+	
 
 	enum Mask {
-		Intensity=8,RedMask=4,GreenMask=2,BlueMask=1
+		Intensity = 8, RedMask = 4, GreenMask = 2, BlueMask = 1
 	};
 
 
-	public:
+public:
 	const int cEmpty = { 0 };
 
+	
 
-	byte gBoard[cGbWidth + 2][cGbHeight + 2]; 
+	/*byte gBoard[cGbWidth + 2][cGbHeight + 2];*/
 
 	enum class Color
 	{
-		Black=0x00, DarkBlue, DarkGreen, DarkCyan, DarlRed, DarkViolet, DarkYellow, Gray, LightGray, Blue,
+		Black = 0x00, DarkBlue, DarkGreen, DarkCyan, DarlRed, DarkViolet, DarkYellow, Gray, LightGray, Blue,
 		Green, Cyan, Red, Violet, Yellow, White
 
 	};
@@ -44,7 +46,7 @@ private:
 
 
 
-	void InitGameBoard();	
+	void InitGameBoard();
 	void DrawBoard();//ƒQ[ƒ€ƒ{[ƒhŠO˜g‚Ì•`‰æ(ToDO DrawGameBoard‚ÉˆÚA—\’è)
 	void DrawStage();//ƒQ[ƒ€ƒ{[ƒh“à•”‚Ì•`‰æ(ToDO DrawGameBoard‚ÉˆÚA—\’è)
 
@@ -62,13 +64,14 @@ private:
 	int GetcGameBoardPosX();
 
 	int GetcGameBoardPosY();
-	
 
-	/*byte GetgBoard(int );*/
+	int SetTeriminoValue(int x, int y);
 
+	//byte(*getAry())[cGbHeight + 2];
+	//int* GetbBoard();
 
-	//GameBoard() {}
-	//~GameBoard() {}
+	//GameBoard();
+	//~GameBoard();
 };
 
 
