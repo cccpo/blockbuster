@@ -2,12 +2,15 @@
 
 #include "GameBoard.h"
 #include "../agent/BlockPiece.h"
+#include "../state/Score.h"
 
 //#include "DrawGameBoard.h"
 typedef unsigned char byte;
 
 using std::cout;
 using std::endl;
+
+int gBoard[cGbWidth + 2][cGbHeight + 2];
 
 // ゲームボード初期化
 void GameBoard::InitGameBoard() {
@@ -56,7 +59,6 @@ void GameBoard::DrawBoard() {
 //ゲームボード内部の描画(ToDO DrawGameBoardに移植予定)
 void GameBoard::DrawStage() {
     GameBoard gb;
-  
 
     int cGbWidth = gb.GetcGbWidth();
     int cGbHeight = gb.GetcGbHeight();
@@ -72,27 +74,14 @@ void GameBoard::DrawStage() {
         }
     }
 }
-//
-//bool GameBoard::MoveDown() {
-//    BlockPiece bp;
-//
-//    int tpx = gTeriminoPosX;
-//    int tpy = bp.GetgTetriminoPosY();
-//
-//    for (int x = 0; x < gTetriminoWidth; ++x)
-//        for (int y = gTetriminoHeight; --y >= 0;) {
-//            if (bp.SetTeriminoValue(x,y) != 0) {
-//                if (gBoard[x + tpx + 1][y + tpy + 1 + 1] != 0)
-//                    return false;              //  すぐ下に壁 or 固定ブロックがある
-//                break;
-//            }
-//        }
-//    return false;
-//}
 
-int GameBoard::SetTeriminoValue(int x, int y) {
+int GameBoard::GetTeriminoValue(int x, int y) {
     int s = gBoard[x][y];
     return s;
+}
+
+void GameBoard::SetTerimonoValue(int x,int y,int val) {
+    gBoard[x][y] = val;
 }
 
 void GameBoard::SetColor(int fg, int bg) {
@@ -126,9 +115,18 @@ void GameBoard::SetCursorPos(int x, int y) {
     SetConsoleCursorPosition(hCons, pos);
 }
 
-//int* GameBoard::GetbBoard() {
-//    return *gBoard[][cGbHeight + 2];
-//}
+void GameBoard::Down(int y) {
+
+    while (y > 1) {
+        for (int x = 1; x <= cGbWidth; ++x)
+            gBoard[x][y] = gBoard[x][y - 1];     // １行下に移動
+        --y;      //  上の行に
+    }
+    for (int x = 1; x <= cGbWidth; ++x)
+        gBoard[x][1] = 0;     // 最上行は空に
+}
+
+
 
 int GameBoard::GetcEmpty() {
     return cEmpty;

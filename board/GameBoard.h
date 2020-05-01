@@ -7,8 +7,6 @@ typedef unsigned char byte;
 const int cGbWidth = 10;
 const int cGbHeight = 20;
 
-static int gBoard[cGbWidth + 2][cGbHeight + 2];
-
 enum class Mask {
 	
 };
@@ -30,7 +28,6 @@ private:
 public:
 	const int cEmpty = { 0 };
 
-	
 
 	/*byte gBoard[cGbWidth + 2][cGbHeight + 2];*/
 
@@ -50,7 +47,6 @@ public:
 	void DrawBoard();//ƒQ[ƒ€ƒ{[ƒhŠO˜g‚Ì•`‰æ(ToDO DrawGameBoard‚ÉˆÚA—\’è)
 	void DrawStage();//ƒQ[ƒ€ƒ{[ƒh“à•”‚Ì•`‰æ(ToDO DrawGameBoard‚ÉˆÚA—\’è)
 
-	bool MoveDown();
 
 	void SetColor(int fg, int bg);
 	void SetCursorPos(int x, int y);
@@ -65,13 +61,13 @@ public:
 
 	int GetcGameBoardPosY();
 
-	int SetTeriminoValue(int x, int y);
+	int GetTeriminoValue(int x, int y);
+	void SetTerimonoValue(int x, int y, int val);
 
-	//byte(*getAry())[cGbHeight + 2];
-	//int* GetbBoard();
+	void Down(int y);
 
-	//GameBoard();
-	//~GameBoard();
+	GameBoard();
+	~GameBoard();
 };
 
 

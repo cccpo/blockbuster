@@ -5,5 +5,8 @@ class KeyInput
 {
 	public:
 		bool IsKeyPressed(int vKey);
+
+		KeyInput();
+		~KeyInput();
 };
 

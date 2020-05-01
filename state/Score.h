@@ -11,7 +11,10 @@ class Score
 
 	
 	int GetScore();
+	
 	void SetScore(int sc);
+
+	void AddScore(int a);
 	
 
 	Score() {};
