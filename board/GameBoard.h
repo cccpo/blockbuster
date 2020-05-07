@@ -58,7 +58,7 @@ public:
 
 	int GetmGameBoardPosY() const;
 
-	int GetTeriminoValue(int x, int y);
+	int GetGameBoardValue(int x, int y);
 	void SetTerimonoValue(int x, int y, int val);
 
 	void Down(int y);

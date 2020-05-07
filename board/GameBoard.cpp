@@ -72,7 +72,7 @@ void GameBoard::DrawStage() {
     }
 }
 
-int GameBoard::GetTeriminoValue(int x, int y) {
+int GameBoard::GetGameBoardValue(int x, int y) {
     int s = gBoard[x][y];
     return s;
 }
