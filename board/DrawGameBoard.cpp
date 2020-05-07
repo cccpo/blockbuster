@@ -16,12 +16,12 @@ void DrawGameBoard::DrawScore() {
 	GameBoard gb;
 	Score sc;
 	
-	const int cScorePosX = (gb.GetcGameBoardPosX() + (gb.GetcGbWidth() + 2) * 3 + 4);
-	const int cScorePosY = gb.GetcGameBoardPosY();
+	int ScorePosX = (gb.GetmGameBoardPosX() + (gb.GetcGbWidth() + 2) * 3 + 4);
+	int ScorePosY = gb.GetmGameBoardPosY();
 	
-	int score = sc.GetScore();
+	int score = sc.GetScore();//ƒXƒRƒAŽæ“¾
 
-	gb.SetCursorPos(cScorePosX,cScorePosY);
+	gb.SetCursorPos(ScorePosX,ScorePosY);
 	gb.SetColor(static_cast<int>(GameBoard::Color::Gray), static_cast<int>(GameBoard::Color::Black));
 	cout << "score:";
 	cout.width(8);     

@@ -17,7 +17,7 @@ public:
 	void SetColor(int fg, int bg );
 	void SetCursorPos(int x, int y);
 
-	DrawGameBoard(){}
-	~DrawGameBoard(){}
+	//DrawGameBoard(){}
+	//~DrawGameBoard(){}
 };
 
