@@ -2,10 +2,11 @@
 
 
 
-
-int Score::GetScore() {
+//scoreŽæ“¾
+int Score::GetScore() const{
 	return mScore;
 };
+
 
 void Score::SetScore(int sc) {
 	mScore = sc;
@@ -14,10 +15,10 @@ void Score::SetScore(int sc) {
 void Score::AddScore(int a) {
 	
 	switch (a) {
-	case 1: mScore += 10; break;
-	case 2: mScore += 40; break;
-	case 3: mScore += 90; break;
-	case 4: mScore += 160; break;
+	case 1: mScore += 50; break;
+	case 2: mScore += 100; break;
+	case 3: mScore += 160; break;
+	case 4: mScore += 250; break;
 	}
 	SetScore(mScore);
 }
