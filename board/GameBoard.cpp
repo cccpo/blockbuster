@@ -18,7 +18,7 @@ void GameBoard::InitGameBoard() {
     //ÉQÅ[ÉÄÉ{Å[Éhì‡ïîÇÃèâä˙âª
     for (int x = 1; x < cGbWidth + 1; ++x) {
         for (int y = 1; y < cGbHeight + 1; ++y) {
-            gBoard[x][y] = cEmpty;    
+            gBoard[x][y] = GetmEmpty();    
         }
     }
   
@@ -34,42 +34,39 @@ void GameBoard::InitGameBoard() {
 
 //ÉQÅ[ÉÄÉ{Å[ÉhäOògÇÃï`âÊ(ToDO DrawGameBoardÇ…à⁄êAó\íË)
 void GameBoard::DrawBoard() {
-    GameBoard gb;
+    int gbpx = GetmGameBoardPosX();
+    int gbpy = GetmGameBoardPosY();
 
     //êFê›íË
     SetColor(static_cast<int>(GameBoard::Color::Gray), static_cast<int>(GameBoard::Color::Blue));
 
-    SetCursorPos(cGameBoardPosX, cGameBoardPosY);
-    for (int x = 0; x < gb.GetcGbWidth() + 2; ++x) {
+    SetCursorPos(gbpx, gbpy);
+    for (int x = 0; x < GetcGbWidth() + 2; ++x) {
         cout << "  ";
     }
 
-    SetCursorPos(cGameBoardPosX, cGameBoardPosY + gb.GetcGbHeight() + 1);
-    for (int x = 0; x < gb.GetcGbWidth() + 2; ++x) {
+    SetCursorPos(gbpx, gbpy + GetcGbHeight() + 1);
+    for (int x = 0; x < GetcGbWidth() + 2; ++x) {
         cout << "  ";
     }
-    for (int y = cGameBoardPosY + 1; y < cGameBoardPosY + gb.GetcGbHeight() + 1; ++y) {
-        SetCursorPos(cGameBoardPosX, y);
+    for (int y = gbpy + 1; y < gbpy + GetcGbHeight() + 1; ++y) {
+        SetCursorPos(gbpx, y);
         cout << "  ";
-        SetCursorPos(cGameBoardPosX + (gb.GetcGbWidth() + 1) * 2, y);
+        SetCursorPos(gbpx + (GetcGbWidth() + 1) * 2, y);
         cout << "  ";
     }
 }
 
 //ÉQÅ[ÉÄÉ{Å[Éhì‡ïîÇÃï`âÊ(ToDO DrawGameBoardÇ…à⁄êAó\íË)
 void GameBoard::DrawStage() {
-    GameBoard gb;
-
-    int cGbWidth = gb.GetcGbWidth();
-    int cGbHeight = gb.GetcGbHeight();
 
     for (int y = 1; y <= cGbHeight; ++y) {
-        SetCursorPos(cGameBoardPosX + 2, y + cGameBoardPosY);
-        for (int x = 1; x <= gb.GetcGbWidth(); ++x) {
-            if (gBoard[x][y] != gb.GetcEmpty())
-                gb.SetColor(static_cast<int>(GameBoard::Color::Gray), static_cast<int>(GameBoard::Color::Green));
+        SetCursorPos(GetmGameBoardPosX() + 2, y + GetmGameBoardPosY());
+        for (int x = 1; x <= GetcGbWidth(); ++x) {
+            if (gBoard[x][y] != GetmEmpty())
+                SetColor(static_cast<int>(GameBoard::Color::Gray), static_cast<int>(GameBoard::Color::Green));
             else
-                gb.SetColor(static_cast<int>(GameBoard::Color::Gray), static_cast<int>(GameBoard::Color::Black));
+                SetColor(static_cast<int>(GameBoard::Color::Gray), static_cast<int>(GameBoard::Color::Black));
             cout << "  ";
         }
     }
@@ -128,25 +125,25 @@ void GameBoard::Down(int y) {
 
 
 
-int GameBoard::GetcEmpty() {
-    return cEmpty;
+int GameBoard::GetmEmpty() const{
+    return mEmpty;
 }
 
-int GameBoard::GetcGbWidth() {
+int GameBoard::GetcGbWidth() const{
     return cGbWidth;
 };
 
 
-int GameBoard::GetcGbHeight() {
+int GameBoard::GetcGbHeight() const{
     return cGbHeight;
 };
 
-int GameBoard::GetcGameBoardPosX() {
-    return cGameBoardPosX;
+int GameBoard::GetmGameBoardPosX() const{
+    return mGameBoardPosX;
 }
 
-int GameBoard::GetcGameBoardPosY() {
-    return cGameBoardPosY;
+int GameBoard::GetmGameBoardPosY() const{
+    return mGameBoardPosY;
 }
 
 //byte(GameBoard::* getAry())[cGbHeight + 2]{
