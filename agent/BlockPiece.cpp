@@ -13,7 +13,6 @@ using std::cout;
 using std::endl;
 
 //ToDO　現行は7種類のテトリミノに90度ずつずらした4パターンを準備
-//後々回転はポインタを用いて実装する
 int trData[][4][4][4] = {
 	{	//	I
 		{
@@ -200,6 +199,7 @@ int trData[][4][4][4] = {
 	},
 };
 
+//テトリミノのゲームボードへの配置
 void BlockPiece::SetTertimino(int type, int rx) {
         for (int y = 0; y < gTetriminoHeight; ++y) {
             for (int x = 0; x < gTetriminoWidth; ++x) {
@@ -208,7 +208,8 @@ void BlockPiece::SetTertimino(int type, int rx) {
         }
     }
 
-void BlockPiece::SetTertimino() {
+//テトリミノの追加　ToDo 関数名の変更
+void BlockPiece::AddTertimino() {
 	GameBoard gb;
 	string debug;
 
@@ -218,45 +219,45 @@ void BlockPiece::SetTertimino() {
 
 	int gbw = gb.GetcGbWidth();
 	
-	//gTeriminoPosX = (gbw - gTetriminoWidth) / 2;
-	SetgTeriminoPosX(((gbw - gTetriminoWidth) / 2));
-	 //gTeriminoPosX = GetgTetriminoPosX();
+	SetTeriminoPosX(((gbw - gTetriminoWidth) / 2));
 	SetgTeriminoPosY(0);
-	gTeriminoPosY = 0;
+
 	SetgTeriminoType(type(mt));
+
     SetTertimino(mTetriminoType, sRotIX = 0);
     }
 
 void BlockPiece::DrawTetrimino()
 {
     GameBoard gb;
-    //DrawGameBoard dgb;
 
+	//テトリミノの色を設定
 	gb.SetColor(static_cast<int>(GameBoard::Color::Red), static_cast<int>(GameBoard::Color::Red));
    
+
 	for (int i = 0; i < gTetriminoWidth; ++i) {
         int y = mTetriminoPosY + i;
         if (y < 0 || y >= gb.GetcGbHeight()) continue;
-        for (int k = 0; k < gTetriminoWidth; ++k) {
-            int x = mTetriminoPosX + k;
+			for (int k = 0; k < gTetriminoWidth; ++k) {
+				int x = mTetriminoPosX + k;
             if (x < 0 || x >= gb.GetcGbWidth()) continue;
-            if (mTetrimino[k][i]) {
-                gb.SetCursorPos(gb.GetcGameBoardPosX() + (x + 1) * 2, gb.GetcGameBoardPosY() + y + 1);
-                cout << "  ";
-            }
-        }
+				if (mTetrimino[k][i]) {
+					gb.SetCursorPos(gb.GetmGameBoardPosX() + (x + 1) * 2, gb.GetmGameBoardPosY() + y + 1);
+					cout << "  ";
+				}
+			}
     }
 }
 
 //接触判定
-bool BlockPiece::MoveDown() {
+bool BlockPiece::IsMoveDown() {
 	GameBoard gb;
 
 	
 	for (int x = 0; x < gTetriminoWidth; ++x) {
 		for (int y = gTetriminoHeight; --y >= 0;) {
 			if (mTetrimino[x][y] != 0) {
-				if (gb.GetTeriminoValue(x + mTetriminoPosX + 1, y + mTetriminoPosY + 2) != 0)
+				if (gb.GetGameBoardValue(x + mTetriminoPosX + 1, y + mTetriminoPosY + 2) != 0)
 					return false; 
 				break;
 			}
@@ -266,13 +267,13 @@ bool BlockPiece::MoveDown() {
 }
 
 //左に移動する
-bool BlockPiece::MoveLeft() {
+bool BlockPiece::IsMoveLeft() {
 	GameBoard gb;
 
 	for (int y = 0; y < gTetriminoHeight; ++y) {
 		for (int x = 0; x < gTetriminoWidth; ++x) {
 			if (mTetrimino[x][y] != 0) {     
-				if(gb.GetTeriminoValue(x + mTetriminoPosX + 1 - 1, y + mTetriminoPosY + 1) != 0)
+				if(gb.GetGameBoardValue(x + mTetriminoPosX + 1 - 1, y + mTetriminoPosY + 1) != 0)
 					return false; 
 				break;  
 			}
@@ -282,14 +283,14 @@ bool BlockPiece::MoveLeft() {
 }
 
 //右に移動する
-bool BlockPiece::MoveRight() {
+bool BlockPiece::IsMoveRight() {
 	GameBoard gb;
 
 
 	for (int y = 0; y < gTetriminoHeight; ++y) {
 		for (int x = gTetriminoWidth; --x >= 0; ) {
 			if (mTetrimino[x][y] != 0) {     
-				if (gb.GetTeriminoValue(x + mTetriminoPosX + 1 + 1,y + mTetriminoPosY + 1) != 0)
+				if (gb.GetGameBoardValue(x + mTetriminoPosX + 1 + 1,y + mTetriminoPosY + 1) != 0)
 					return false;           
 				break;    
 			}
@@ -298,14 +299,14 @@ bool BlockPiece::MoveRight() {
 	return true;
 }
 
-//
+//テトリミノが固定
 bool BlockPiece::IsOverLaped() {
 	GameBoard gb;
 
 
 	for (int y = 0; y < gTetriminoHeight; ++y) {
 		for (int x = 0; x < gTetriminoWidth; ++x) {
-			if (mTetrimino[x][y] != 0 && gb.GetTeriminoValue(x + mTetriminoPosX + 1, y + mTetriminoPosY + 1) != 0)
+			if (mTetrimino[x][y] != 0 && gb.GetGameBoardValue(x + mTetriminoPosX + 1, y + mTetriminoPosY + 1) != 0)
 				return true;
 		}
 	}
@@ -337,11 +338,11 @@ void BlockPiece::DeleteLine()
 
 	int nClear = 0;       // 消去したライン数(これに応じてポイント数が上昇)
 	for (int ty = 0; ty < gTetriminoHeight; ++ty) {
-		int y = ty + GetgTetriminoPosY() + 1;
+		int y = ty + GetTetriminoPosY() + 1;
 		if (y > cGbHeight) break;
 		int cnt = 0;
 		for (int x = 1; x <= cGbWidth; ++x) {
-			if (SetTeriminoValue(x,y) != 0)
+			if (gb.GetGameBoardValue(x,y) != 0)
 				++cnt;
 		}
 
@@ -359,11 +360,11 @@ int BlockPiece::GetgTetriminoPosX() {
 	return mTetriminoPosX;
 }
 
-void BlockPiece::SetgTeriminoPosX(int tpx) {
+void BlockPiece::SetTeriminoPosX(int tpx) {
 	mTetriminoPosX = tpx;
 }
 
-int BlockPiece::GetgTetriminoPosY() {
+int BlockPiece::GetTetriminoPosY() {
 	return mTetriminoPosY;
 }
 
@@ -383,7 +384,7 @@ void BlockPiece::SetgTeriminoType(int ttype) {
 //	return gTetrimino;
 //}
 
-int BlockPiece::SetTeriminoValue(int x,int y) {
+int BlockPiece::GetTeriminoValue(int x,int y) {
 	int s = mTetrimino[x][y];
 	return s;
 }
