@@ -4,13 +4,15 @@
 //スコア管理クラス
 class Score
 {
-	
+private:
+	int mScore = 0;
+
 
  public:
-	 int mScore = 0;
+
 
 	
-	int GetScore();
+	int GetScore() const;//score取得
 	
 	void SetScore(int sc);
 
