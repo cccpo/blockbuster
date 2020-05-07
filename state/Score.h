@@ -5,11 +5,10 @@
 class Score
 {
 private:
-	int mScore = 0;
+	
 
 
  public:
-
 
 	
 	int GetScore() const;//scoreŽæ“¾

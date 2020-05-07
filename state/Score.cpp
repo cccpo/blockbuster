@@ -1,6 +1,6 @@
 #include "Score.h"
 
-
+int mScore = 0;
 
 //scoreŽæ“¾
 int Score::GetScore() const{
@@ -20,5 +20,6 @@ void Score::AddScore(int a) {
 	case 3: mScore += 160; break;
 	case 4: mScore += 250; break;
 	}
+	
 	SetScore(mScore);
 }
