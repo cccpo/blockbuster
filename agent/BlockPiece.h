@@ -1,7 +1,8 @@
 #pragma once
-#include <iostream>
 #include <Windows.h>
 #include <vector>
+#include <random>
+#include <stdlib.h>
 
 typedef unsigned char byte;
 
@@ -17,7 +18,7 @@ private:
 	int mTetriminoPosY;
 	int mTetriminoType;//テトリミノのタイプ
 
-	int sRotIX;
+	
 public:
 
 
@@ -36,6 +37,7 @@ public:
 	bool IsOverLaped();
 		
 	
+	int GetRot();
 
 	void SetTertimino(int type, int rx);
 	void AddTertimino();
@@ -53,7 +55,7 @@ public:
 
 	void DeleteLine();
 
-	int GetRot();
+	//int GetRot();
 	void SetRot(int r);
 	
 	int GetgTeriminoType();

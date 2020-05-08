@@ -1,6 +1,3 @@
-#include <stdlib.h>
-#include <random>
-
 #include "../Game.h"
 #include "../state/Score.h"
 #include "../board/DrawGameBoard.h"
@@ -199,6 +196,8 @@ int trData[][4][4][4] = {
 	},
 };
 
+int mRotIX = 0;
+
 //テトリミノのゲームボードへの配置
 void BlockPiece::SetTertimino(int type, int rx) {
         for (int y = 0; y < gTetriminoHeight; ++y) {
@@ -210,21 +209,20 @@ void BlockPiece::SetTertimino(int type, int rx) {
 
 //テトリミノの追加　ToDo 関数名の変更
 void BlockPiece::AddTertimino() {
-	GameBoard gb;
 	string debug;
 
 	std::random_device rnd;
 	std::mt19937 mt(rnd());
 	std::uniform_int_distribution<int> type(0,6);
 
-	int gbw = gb.GetcGbWidth();
+	int gbw = GameBoard::mGbWidth;
 	
 	SetTeriminoPosX(((gbw - gTetriminoWidth) / 2));
 	SetgTeriminoPosY(0);
 
 	SetgTeriminoType(type(mt));
 
-    SetTertimino(mTetriminoType, sRotIX = 0);
+    SetTertimino(mTetriminoType, mRotIX = 0);
     }
 
 void BlockPiece::DrawTetrimino()
@@ -237,10 +235,10 @@ void BlockPiece::DrawTetrimino()
 
 	for (int i = 0; i < gTetriminoWidth; ++i) {
         int y = mTetriminoPosY + i;
-        if (y < 0 || y >= gb.GetcGbHeight()) continue;
+        if (y < 0 || y >= GameBoard::mGbHeight) continue;
 			for (int k = 0; k < gTetriminoWidth; ++k) {
 				int x = mTetriminoPosX + k;
-            if (x < 0 || x >= gb.GetcGbWidth()) continue;
+            if (x < 0 || x >= GameBoard::mGbWidth) continue;
 				if (mTetrimino[k][i]) {
 					gb.SetCursorPos(gb.GetmGameBoardPosX() + (x + 1) * 2, gb.GetmGameBoardPosY() + y + 1);
 					cout << "  ";
@@ -339,20 +337,24 @@ void BlockPiece::DeleteLine()
 	int nClear = 0;       // 消去したライン数(これに応じてポイント数が上昇)
 	for (int ty = 0; ty < gTetriminoHeight; ++ty) {
 		int y = ty + GetTetriminoPosY() + 1;
-		if (y > cGbHeight) break;
+		if (y > GameBoard::mGbHeight) break;
 		int cnt = 0;
-		for (int x = 1; x <= cGbWidth; ++x) {
+		for (int x = 1; x <= GameBoard::mGbWidth; ++x) {
 			if (gb.GetGameBoardValue(x,y) != 0)
 				++cnt;
 		}
 
-		if (cnt == cGbWidth) {
+		if (cnt == GameBoard::mGbWidth) {
 			gb.Down(y);
 			++nClear;
 		}
 	}
 	sc.AddScore(nClear);
 
+}
+
+int BlockPiece::GetRot() {
+	return mRotIX;
 }
 
 int BlockPiece::GetgTetriminoPosX() {
@@ -389,12 +391,12 @@ int BlockPiece::GetTeriminoValue(int x,int y) {
 	return s;
 }
 
-int BlockPiece::GetRot() {
-	return sRotIX;
-}
+//int BlockPiece::GetRot() {
+//	return mRotIX;
+//}
 
 void BlockPiece::SetRot(int r) {
-	sRotIX = r;
+	mRotIX = r;
 }
 
 //BlockPiece::BlockPiece(byte* p, int tw, int th) {

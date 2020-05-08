@@ -14,6 +14,8 @@ public:
 	//void DrawStage();
 	void DrawScore();
 
+	void DrawRotType();
+
 	void SetColor(int fg, int bg );
 	void SetCursorPos(int x, int y);
 

@@ -10,24 +10,24 @@ typedef unsigned char byte;
 using std::cout;
 using std::endl;
 
-int gBoard[cGbWidth + 2][cGbHeight + 2];
+int gBoard[GameBoard::mGbWidth + 2][GameBoard::mGbHeight + 2];
 
 // ゲームボード初期化
 void GameBoard::InitGameBoard() {
 
     //ゲームボード内部の初期化
-    for (int x = 1; x < cGbWidth + 1; ++x) {
-        for (int y = 1; y < cGbHeight + 1; ++y) {
+    for (int x = 1; x < mGbWidth + 1; ++x) {
+        for (int y = 1; y < mGbHeight + 1; ++y) {
             gBoard[x][y] = GetmEmpty();    
         }
     }
   
     //ゲームボード外枠の初期化
-    for (int x = 0; x <= cGbWidth + 1; ++x) {
-        gBoard[x][0] = gBoard[x][cGbHeight + 1] = mOuterFrame;
+    for (int x = 0; x <= mGbWidth + 1; ++x) {
+        gBoard[x][0] = gBoard[x][mGbHeight + 1] = mOuterFrame;
     }
-    for (int y = 0; y <= cGbHeight + 1; ++y) {
-        gBoard[0][y] = gBoard[cGbWidth + 1][y] = mOuterFrame;
+    for (int y = 0; y <= mGbHeight + 1; ++y) {
+        gBoard[0][y] = gBoard[mGbWidth + 1][y] = mOuterFrame;
     }
 
 };
@@ -41,18 +41,18 @@ void GameBoard::DrawBoard() {
     SetColor(static_cast<int>(GameBoard::Color::Gray), static_cast<int>(GameBoard::Color::Blue));
 
     SetCursorPos(gbpx, gbpy);
-    for (int x = 0; x < GetcGbWidth() + 2; ++x) {
+    for (int x = 0; x < mGbWidth + 2; ++x) {
         cout << "  ";
     }
 
-    SetCursorPos(gbpx, gbpy + GetcGbHeight() + 1);
-    for (int x = 0; x < GetcGbWidth() + 2; ++x) {
+    SetCursorPos(gbpx, gbpy + mGbHeight + 1);
+    for (int x = 0; x < mGbWidth + 2; ++x) {
         cout << "  ";
     }
-    for (int y = gbpy + 1; y < gbpy + GetcGbHeight() + 1; ++y) {
+    for (int y = gbpy + 1; y < gbpy + mGbHeight + 1; ++y) {
         SetCursorPos(gbpx, y);
         cout << "  ";
-        SetCursorPos(gbpx + (GetcGbWidth() + 1) * 2, y);
+        SetCursorPos(gbpx + ( mGbWidth + 1) * 2, y);
         cout << "  ";
     }
 }
@@ -60,9 +60,9 @@ void GameBoard::DrawBoard() {
 //ゲームボード内部の描画(ToDO DrawGameBoardに移植予定)
 void GameBoard::DrawStage() {
 
-    for (int y = 1; y <= cGbHeight; ++y) {
+    for (int y = 1; y <= mGbHeight; ++y) {
         SetCursorPos(GetmGameBoardPosX() + 2, y + GetmGameBoardPosY());
-        for (int x = 1; x <= GetcGbWidth(); ++x) {
+        for (int x = 1; x <= mGbWidth; ++x) {
             if (gBoard[x][y] != GetmEmpty())
                 SetColor(static_cast<int>(GameBoard::Color::Gray), static_cast<int>(GameBoard::Color::Green));
             else
@@ -115,11 +115,11 @@ void GameBoard::SetCursorPos(int x, int y) {
 void GameBoard::Down(int y) {
 
     while (y > 1) {
-        for (int x = 1; x <= cGbWidth; ++x)
+        for (int x = 1; x <= mGbWidth; ++x)
             gBoard[x][y] = gBoard[x][y - 1];     // １行下に移動
         --y;      //  上の行に
     }
-    for (int x = 1; x <= cGbWidth; ++x)
+    for (int x = 1; x <= mGbWidth; ++x)
         gBoard[x][1] = 0;     // 最上行は空に
 }
 
@@ -129,14 +129,7 @@ int GameBoard::GetmEmpty() const{
     return mEmpty;
 }
 
-int GameBoard::GetcGbWidth() const{
-    return cGbWidth;
-};
 
-
-int GameBoard::GetcGbHeight() const{
-    return cGbHeight;
-};
 
 int GameBoard::GetmGameBoardPosX() const{
     return mGameBoardPosX;

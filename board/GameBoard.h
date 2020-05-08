@@ -4,8 +4,8 @@
 
 typedef unsigned char byte;
 
-const int cGbWidth = 10;
-const int cGbHeight = 20;
+
+
 
 enum class Mask {
 	
@@ -15,6 +15,8 @@ class GameBoard
 {
 
 private:
+	
+	
 	int mOuterFrame = 0xff;
 
 	int mEmpty = { 0 };
@@ -28,6 +30,8 @@ private:
 
 
 public:
+	const static int mGbWidth = 10;
+	const static int mGbHeight = 20;
 
 	enum class Color
 	{
@@ -49,10 +53,6 @@ public:
 	void SetCursorPos(int x, int y);
 
 	int GetmEmpty() const;
-
-	int GetcGbWidth() const;
-
-	int GetcGbHeight() const;
 
 	int GetmGameBoardPosX() const;
 
