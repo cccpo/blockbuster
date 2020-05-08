@@ -6,6 +6,7 @@
 #include "../state/Score.h"
 #include "../agent/BlockPiece.h"
 
+
 using std::cout;
 using std::endl;
 
@@ -17,7 +18,7 @@ void DrawGameBoard::DrawScore() {
 	GameBoard gb;
 	Score sc;
 	
-	int ScorePosX = (gb.GetmGameBoardPosX() + GameBoard::cGbWidth + 2) * 3 + 4;
+	int ScorePosX = (gb.GetmGameBoardPosX() + GameBoard::mGbWidth + 2) * 3 + 4;
 	int ScorePosY = gb.GetmGameBoardPosY();
 	
 	int score = sc.GetScore();//ƒXƒRƒAŽæ“¾
@@ -35,7 +36,7 @@ void DrawGameBoard::DrawRotType() {
 	Score sc;
 	BlockPiece bp;
 
-	int RotPosX = (gb.GetmGameBoardPosX() + (GameBoard::cGbWidth + 2) * 3 + 4);
+	int RotPosX = (gb.GetmGameBoardPosX() + (GameBoard::mGbWidth + 2) * 3 + 4);
 	int RotePosY = gb.GetmGameBoardPosY() + 2;
 
 	int RotType = bp.GetRot();

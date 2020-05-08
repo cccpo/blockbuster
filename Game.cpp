@@ -9,11 +9,12 @@
 #include "Game.h"
 //#include "message/Message.h"
 //#include "window/window.h"
-//#include "state/Score.h"
+#include "state/Score.h"
 #include "board/GameBoard.h"
 #include "board/DrawGameBoard.h"
 #include "agent/BlockPiece.h"
 #include "Input/KeyInput.h"
+#include "Data/Data.h"
 
 using std::cout;
 using std::endl;
@@ -25,14 +26,18 @@ void StartGame() {
 	DrawGameBoard dgb;
 	BlockPiece bp;
 	KeyInput ki;
-	//Score sc;
+	Score sc;
+	Data d;
 
-	
+	int HiScore = d.HiScoreLoad();
+	sc.SetHighScore(HiScore);
 
 	gb.InitGameBoard();//ゲームボード初期化
 	gb.DrawBoard();//ゲームボード外枠の描画
 	gb.DrawStage();//ゲームボード内部の描画
+	sc.SetScore(0);
 	dgb.DrawScore();//スコア表示
+	//dgb.DrawRotType();//回転表示
 	bp.AddTertimino();//テトリミノの追加
 	bp.DrawTetrimino();//テトリミノの描画
 
@@ -67,7 +72,7 @@ void StartGame() {
 					bp.DrawTetrimino();
 					bpx = bp.GetgTetriminoPosX();//テトリミノx座標設定
 					bpy = bp.GetTetriminoPosY();//テトリミノy座標設定
-					if (bp.IsOverLaped()) 
+					if (bp.IsOverLaped())
 						return;
 					continue;
 				}
@@ -101,6 +106,7 @@ void StartGame() {
 
 					if (++tx >= 4) {
 						bp.SetRot(0);
+						tx = 0;
 					}
 					bp.SetTertimino(bp.GetgTeriminoType(), tx);
 					if (bp.IsOverLaped()) {    
@@ -116,6 +122,7 @@ void StartGame() {
 			if (update) {
 				gb.DrawStage();//ゲームボード内部の描画(ToDo)
 				bp.DrawTetrimino();
+				
 			}
 			if (!keyDown) {     // キー押下を受け付けていない場合
 				if (ki.IsKeyPressed(VK_LEFT)) {
@@ -159,6 +166,8 @@ int main() {
 	GameBoard gb;
 	KeyInput ki;
 	//cout << st.GetScore() << endl;
+	Score sc;
+	Data d;
 
 	for (;;) {
 		start = chrono::system_clock::now();
@@ -168,9 +177,16 @@ int main() {
 
 		end = chrono::system_clock::now();
 
+	
+
 		double time = static_cast<double>(chrono::duration_cast<chrono::microseconds>(end - start).count() / 1000.0);
-		gb.SetCursorPos(0, cGbHeight+5);
+		gb.SetCursorPos(0, GameBoard::mGbHeight+5);
 		gb.SetColor(static_cast<int>(GameBoard::Color::Gray), static_cast<int>(GameBoard::Color::Black));
+		if (sc.GetScore()>sc.GetHighScore()) {
+			std::cout << "HiScore";
+			d.HiScoreSave(sc.GetScore());
+		}
+		
 		std::cout << "GAME OVER. Replay? [Y/N] ";
 		
 		for (;;) {

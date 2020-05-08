@@ -1,6 +1,7 @@
 #include "Score.h"
 
 int mScore = 0;
+static int mHighScore;
 
 //scoreŽæ“¾
 int Score::GetScore() const{
@@ -22,4 +23,12 @@ void Score::AddScore(int a) {
 	}
 	
 	SetScore(mScore);
+}
+
+int Score::GetHighScore() const {
+	return mHighScore;
+}
+
+void Score::SetHighScore(int hs) {
+	mHighScore = hs;
 }

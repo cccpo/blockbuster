@@ -9,16 +9,18 @@ private:
 
 
  public:
-
+	
 	
 	int GetScore() const;//scoreŽæ“¾
-	
 	void SetScore(int sc);
 
 	void AddScore(int a);
 	
+	int GetHighScore() const;
+	void SetHighScore(int a);
 
-	Score() {};
-	~Score() {};
+
+	//Score() {};
+	//~Score() {};
 };
 
