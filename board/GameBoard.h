@@ -33,9 +33,13 @@ public:
 	const static int mGbWidth = 10;
 	const static int mGbHeight = 20;
 
+	//
+	//
+	//
+	//
 	enum class Color
 	{
-		Black = 0x00, DarkBlue, DarkGreen, DarkCyan, DarlRed, DarkViolet, DarkYellow, Gray, LightGray, Blue,
+		Black = 0x00, DarkBlue, DarkGreen, DarkCyan, DarkRed, DarkViolet, DarkYellow, Gray, LightGray, Blue,
 		Green, Cyan, Red, Violet, Yellow, White
 
 	};
