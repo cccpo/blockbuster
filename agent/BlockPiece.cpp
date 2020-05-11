@@ -11,7 +11,7 @@ using std::endl;
 
 //ToDO　現行は7種類のテトリミノに90度ずつずらした4パターンを準備
 int trData[][4][4][4] = {
-	{	//	I
+	{	
 		{
 			{0, 1, 0, 0},
 			{0, 1, 0, 0},
@@ -37,160 +37,160 @@ int trData[][4][4][4] = {
 			{0, 0, 0, 0},
 		},
 	},
-	{	//	o
+	{	
 		{
-			{1, 1, 0, 0},
-			{1, 1, 0, 0},
+			{2, 2, 0, 0},
+			{2, 2, 0, 0},
 			{0, 0, 0, 0},
 			{0, 0, 0, 0},
 		},
 		{
-			{1, 1, 0, 0},
-			{1, 1, 0, 0},
+			{2, 2, 0, 0},
+			{2, 2, 0, 0},
 			{0, 0, 0, 0},
 			{0, 0, 0, 0},
 		},
 		{
-			{1, 1, 0, 0},
-			{1, 1, 0, 0},
+			{2, 2, 0, 0},
+			{2, 2, 0, 0},
 			{0, 0, 0, 0},
 			{0, 0, 0, 0},
 		},
 		{
-			{1, 1, 0, 0},
-			{1, 1, 0, 0},
+			{2, 2, 0, 0},
+			{2, 2, 0, 0},
 			{0, 0, 0, 0},
-			{0, 0, 0, 0},
-		},
-	},
-	{	//	Z
-		{
-			{1, 1, 0, 0},
-			{0, 1, 1, 0},
-			{0, 0, 0, 0},
-			{0, 0, 0, 0},
-		},
-		{
-			{0, 1, 0, 0},
-			{1, 1, 0, 0},
-			{1, 0, 0, 0},
-			{0, 0, 0, 0},
-		},
-		{
-			{1, 1, 0, 0},
-			{0, 1, 1, 0},
-			{0, 0, 0, 0},
-			{0, 0, 0, 0},
-		},
-		{
-			{0, 1, 0, 0},
-			{1, 1, 0, 0},
-			{1, 0, 0, 0},
 			{0, 0, 0, 0},
 		},
 	},
-	{	//	S
+	{	
 		{
-			{0, 1, 1, 0},
-			{1, 1, 0, 0},
+			{3, 3, 0, 0},
+			{0, 3, 3, 0},
 			{0, 0, 0, 0},
 			{0, 0, 0, 0},
 		},
 		{
-			{1, 0, 0, 0},
-			{1, 1, 0, 0},
-			{0, 1, 0, 0},
+			{0, 3, 0, 0},
+			{3, 3, 0, 0},
+			{3, 0, 0, 0},
 			{0, 0, 0, 0},
 		},
 		{
-			{0, 1, 1, 0},
-			{1, 1, 0, 0},
+			{3, 3, 0, 0},
+			{0, 3, 3, 0},
 			{0, 0, 0, 0},
 			{0, 0, 0, 0},
 		},
 		{
-			{1, 0, 0, 0},
-			{1, 1, 0, 0},
-			{0, 1, 0, 0},
+			{0, 3, 0, 0},
+			{3, 3, 0, 0},
+			{3, 0, 0, 0},
 			{0, 0, 0, 0},
 		},
 	},
-	{	//	L
+	{
 		{
-			{0, 1, 0, 0},
-			{0, 1, 0, 0},
-			{0, 1, 1, 0},
-			{0, 0, 0, 0},
-		},
-		{
-			{0, 0, 1, 0},
-			{1, 1, 1, 0},
+			{0, 4, 4, 0},
+			{4, 4, 0, 0},
 			{0, 0, 0, 0},
 			{0, 0, 0, 0},
 		},
 		{
-			{1, 1, 0, 0},
-			{0, 1, 0, 0},
-			{0, 1, 0, 0},
+			{4, 0, 0, 0},
+			{4, 4, 0, 0},
+			{0, 4, 0, 0},
+			{0, 0, 0, 0},
+		},
+		{
+			{0, 4, 4, 0},
+			{4, 4, 0, 0},
+			{0, 0, 0, 0},
+			{0, 0, 0, 0},
+		},
+		{
+			{4, 0, 0, 0},
+			{4, 4, 0, 0},
+			{0, 4, 0, 0},
+			{0, 0, 0, 0},
+		},
+	},
+	{	
+		{
+			{0, 5, 0, 0},
+			{0, 5, 0, 0},
+			{0, 5, 5, 0},
+			{0, 0, 0, 0},
+		},
+		{
+			{0, 0, 5, 0},
+			{5, 5, 5, 0},
+			{0, 0, 0, 0},
+			{0, 0, 0, 0},
+		},
+		{
+			{5, 5, 0, 0},
+			{0, 5, 0, 0},
+			{0, 5, 0, 0},
 			{0, 0, 0, 0},
 		},
 		{
 			{0, 0, 0, 0},
-			{1, 1, 1, 0},
-			{1, 0, 0, 0},
+			{5, 5, 5, 0},
+			{5, 0, 0, 0},
 			{0, 0, 0, 0},
 		},
 	},
 
-			{	//	J
+			{	
 		{
-			{0, 1, 0, 0},
-			{0, 1, 0, 0},
-			{1, 1, 0, 0},
+			{0, 6, 0, 0},
+			{0, 6, 0, 0},
+			{6, 6, 0, 0},
 			{0, 0, 0, 0},
 		},
 		{
 			{0, 0, 0, 0},
-			{1, 1, 1, 0},
-			{0, 0, 1, 0},
+			{6, 6, 6, 0},
+			{0, 0, 6, 0},
 			{0, 0, 0, 0},
 		},
 		{
-			{0, 1, 1, 0},
-			{0, 1, 0, 0},
-			{0, 1, 0, 0},
+			{0, 6, 6, 0},
+			{0, 6, 0, 0},
+			{0, 6, 0, 0},
 			{0, 0, 0, 0},
 		},
 		{
-			{1, 0, 0, 0},
-			{1, 1, 1, 0},
+			{6, 0, 0, 0},
+			{6, 6, 6, 0},
 			{0, 0, 0, 0},
 			{0, 0, 0, 0},
 		},
 	},
-	{	//	T
+	{	
 		{
-			{0, 1, 0, 0},
-			{1, 1, 1, 0},
+			{0, 7, 0, 0},
+			{7, 7, 7, 0},
 			{0, 0, 0, 0},
 			{0, 0, 0, 0},
 		},
 		{
-			{0, 1, 0, 0},
-			{1, 1, 0, 0},
-			{0, 1, 0, 0},
+			{0, 7, 0, 0},
+			{7, 7, 0, 0},
+			{0, 7, 0, 0},
 			{0, 0, 0, 0},
 		},
 		{
 			{0, 0, 0, 0},
-			{1, 1, 1, 0},
-			{0, 1, 0, 0},
+			{7, 7, 7, 0},
+			{0, 7, 0, 0},
 			{0, 0, 0, 0},
 		},
 		{
-			{0, 1, 0, 0},
-			{0, 1, 1, 0},
-			{0, 1, 0, 0},
+			{0, 7, 0, 0},
+			{0, 7, 7, 0},
+			{0, 7, 0, 0},
 			{0, 0, 0, 0},
 		},
 	},
@@ -221,6 +221,7 @@ void BlockPiece::AddTertimino() {
 	SetgTeriminoPosY(0);
 
 	SetgTeriminoType(type(mt));
+	//ここで色も指定するか?
 
     SetTertimino(mTetriminoType, mRotIX = 0);
     }
@@ -229,8 +230,37 @@ void BlockPiece::DrawTetrimino()
 {
     GameBoard gb;
 
+	//GUIアプリとして移植する際にテトリミノを形状と色を持った構造体として定義することで描画を行う関数側から指定する必要をなくす
+	int BlockColor = BlockPiece::GetgTeriminoType();
+	switch (BlockColor)
+	{
+	case 0:
+		gb.SetColor(static_cast<int>(GameBoard::Color::Cyan), static_cast<int>(GameBoard::Color::Cyan));
+		break;
+	case 1:
+		gb.SetColor(static_cast<int>(GameBoard::Color::Yellow), static_cast<int>(GameBoard::Color::Yellow));
+		break;
+	case 2:
+		gb.SetColor(static_cast<int>(GameBoard::Color::Red), static_cast<int>(GameBoard::Color::Red));
+		break;
+	case 3:
+		gb.SetColor(static_cast<int>(GameBoard::Color::Green), static_cast<int>(GameBoard::Color::Green));
+		break;
+	case 4:
+		gb.SetColor(static_cast<int>(GameBoard::Color::Blue), static_cast<int>(GameBoard::Color::Blue));
+		break;
+	case 5:
+		gb.SetColor(static_cast<int>(GameBoard::Color::DarkRed), static_cast<int>(GameBoard::Color::DarkRed));
+		break;
+	case 6:
+		gb.SetColor(static_cast<int>(GameBoard::Color::Violet), static_cast<int>(GameBoard::Color::Violet));
+		break;
+	default:
+		break;
+	}
+
 	//テトリミノの色を設定
-	gb.SetColor(static_cast<int>(GameBoard::Color::Red), static_cast<int>(GameBoard::Color::Red));
+	//gb.SetColor(static_cast<int>(BlockColor), static_cast<int>(BlockColor));
    
 
 	for (int i = 0; i < gTetriminoWidth; ++i) {
@@ -320,7 +350,7 @@ void BlockPiece::ChangeBlock() {
 	for (int y = 0; y < gTetriminoHeight; ++y) {
 		for (int x = 0; x < gTetriminoWidth; ++x) {
 			if (mTetrimino[x][y] != 0)
-				gb.SetTerimonoValue(x + mTetriminoPosX + 1, y + mTetriminoPosY + 1, 1);
+				gb.SetTerimonoValue(x + mTetriminoPosX + 1, y + mTetriminoPosY + 1,BlockPiece::mTetriminoType + 1);
 		}
 	}
 
