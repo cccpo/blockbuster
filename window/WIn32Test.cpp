@@ -1,7 +1,6 @@
 #include <Windows.h>
 
-const int SCREEN_WIDTH = 10;    // Level width in cells
-const int SCREEN_HEIGHT = 20;   // Level height in cells 
+
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdLine, int nCmdShow){
 
@@ -10,20 +9,68 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdLi
 	HWND hwnd; //ウィンドウハンドル
 
 	//ウィンドウクラスの属性を設定
-	//wc.style
+	
+	//style:スタイルを指定する
 	//CS_HREDRAW:水平方向のサイズが変更された時再描画 
 	//CS_VREDRAW:垂直方向のサイズが変更されたとき再描画
 	wc.style = CS_HREDRAW | CS_VREDRAW;
+	//lpfnWndProc:ウィンドウプロシージャ:まだウィンドウプロシージャが完成していないので
+	//規定のDefWindoProcを宣言
+	wc.lpfnWndProc = DefWindowProc;
+	//wc.lpfnWndProc = WndProc;
+	//ウィンドウクラス構造体の後に確保する領域のバイト数
+	wc.cbClsExtra = 0;
+	//ウィンドウインスタンスの後に確保する領域のバイト数
+	wc.cbWndExtra = 0;
+	//
+	//IpfnWndProcで指定した関数が含まれるインスタンスへのハンドルを指定
+	wc.hInstance = hInstance;
+	//
+	//アイコンへのハンドルを指定
+	wc.hIcon = LoadIcon(NULL, IDI_APPLICATION);
+	//マウスカーソルへのハンドルを指定
+	//IDC_ARROW:矢印
+	wc.hCursor = LoadCursor(NULL, IDC_ARROW);
+	//
+	//ウィンドウの背景を描画するブラシへのハンドル
+	wc.hbrBackground = (HBRUSH)GetStockObject(GRAY_BRUSH);
+	//メニューのリソース名
+	wc.lpszMenuName = NULL;
+	//ウィンドウクラスに割り当てる名前
+	wc.lpszClassName = szAppName;
+	
+	//ウィンドウクラスの登録 登録失敗時に0を返却　」
+	//#ToDO 登録失敗時のエラーメッセージの作成
+	if (!RegisterClass(&wc)) return 0;
+
+	hwnd = CreateWindow(szAppName,
+						TEXT("BlcokBuster"),
+						WS_OVERLAPPEDWINDOW,
+	                    CW_USEDEFAULT, 
+                        CW_USEDEFAULT,
+                        CW_USEDEFAULT, 
+                        CW_USEDEFAULT,
+			            NULL, 
+                        NULL,hInstance, 
+	                    NULL);
+	
+	if(!hwnd)return 0;
+
+	//ウィンドウを表示
+	ShowWindow(hwnd, nCmdShow);
+
+	//ウィンドウを再描画
+	UpdateWindow(hwnd);
 
 	//メッセージボックス生成
 	MessageBox(NULL,
-		TEXT("HEllo,WOrd;"),
-		TEXT("TEst"),
+		TEXT("Create Window"),
+		TEXT("Test"),
 		MB_OK);
 
 	return 0;
 }
 
-LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam) {
-
-}
+//LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam) {
+//
+//}
