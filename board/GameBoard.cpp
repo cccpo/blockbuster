@@ -59,40 +59,19 @@ void GameBoard::DrawBoard() {
 
 //ゲームボード内部の描画(ToDO DrawGameBoardに移植予定)
 void GameBoard::DrawStage() {
+    BlockPiece bp;
 
     for (int y = 1; y <= mGbHeight; ++y) {
         SetCursorPos(GetmGameBoardPosX() + 2, y + GetmGameBoardPosY());
         for (int x = 1; x <= mGbWidth; ++x) {
             //空ではないブロックは緑で固定化→
             if (gBoard[x][y] != GetmEmpty()){
-                int BlockColor = GetGameBoardValue(x, y);
-                switch (BlockColor)
-                {
-                case 1:
-                    SetColor(static_cast<int>(GameBoard::Color::Cyan), static_cast<int>(GameBoard::Color::Cyan));
-                    break;
-                case 2:
-                    SetColor(static_cast<int>(GameBoard::Color::Yellow), static_cast<int>(GameBoard::Color::Yellow));
-                    break;
-                case 3:
-                    SetColor(static_cast<int>(GameBoard::Color::Red), static_cast<int>(GameBoard::Color::Red));
-                    break;
-                case 4:
-                    SetColor(static_cast<int>(GameBoard::Color::Green), static_cast<int>(GameBoard::Color::Green));
-                    break;
-                case 5:
-                    SetColor(static_cast<int>(GameBoard::Color::Blue), static_cast<int>(GameBoard::Color::Blue));
-                    break;
-                case 6:
-                    SetColor(static_cast<int>(GameBoard::Color::DarkRed), static_cast<int>(GameBoard::Color::DarkRed));
-                    break;
-                case 7:
-                    SetColor(static_cast<int>(GameBoard::Color::Violet), static_cast<int>(GameBoard::Color::Violet));
-                    break;
-                default:
-                    break;
-                }
-                //SetColor(static_cast<int>(GameBoard::Color::Gray), static_cast<int>(GameBoard::Color::Green));
+           
+                
+                int Color = bp.TetriminoTypeToColor(GetGameBoardValue(x, y) - 1);
+
+                //テトリミノの色を設定
+                SetColor(static_cast<int>(Color), static_cast<int>(Color));
             }else
                 SetColor(static_cast<int>(GameBoard::Color::Gray), static_cast<int>(GameBoard::Color::Black));
             cout << "  ";
