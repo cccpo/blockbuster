@@ -32,53 +32,6 @@ void GameBoard::InitGameBoard() {
 
 };
 
-////ゲームボード外枠の描画(ToDO DrawGameBoardに移植予定)
-//void GameBoard::DrawBoard() {
-//    int gbpx = GetmGameBoardPosX();
-//    int gbpy = GetmGameBoardPosY();
-//
-//    //色設定
-//    SetColor(static_cast<int>(GameBoard::Color::Gray), static_cast<int>(GameBoard::Color::Gray));
-//
-//    SetCursorPos(gbpx, gbpy);
-//    for (int x = 0; x < mGbWidth + 2; ++x) {
-//        cout << "  ";
-//    }
-//
-//    SetCursorPos(gbpx, gbpy + mGbHeight + 1);
-//    for (int x = 0; x < mGbWidth + 2; ++x) {
-//        cout << "  ";
-//    }
-//    for (int y = gbpy + 1; y < gbpy + mGbHeight + 1; ++y) {
-//        SetCursorPos(gbpx, y);
-//        cout << "  ";
-//        SetCursorPos(gbpx + ( mGbWidth + 1) * 2, y);
-//        cout << "  ";
-//    }
-//}
-
-//ゲームボード内部の描画(ToDO DrawGameBoardに移植予定)
-//void GameBoard::DrawStage() {
-//    BlockPiece bp;
-//
-//    for (int y = 1; y <= mGbHeight; ++y) {
-//        SetCursorPos(GetmGameBoardPosX() + 2, y + GetmGameBoardPosY());
-//        for (int x = 1; x <= mGbWidth; ++x) {
-//            //空ではないブロックは緑で固定化→
-//            if (gBoard[x][y] != GetmEmpty()){
-//           
-//                
-//                int Color = bp.TetriminoTypeToColor(GetGameBoardValue(x, y) - 1);
-//
-//                //テトリミノの色を設定
-//                SetColor(static_cast<int>(Color), static_cast<int>(Color));
-//            }else
-//                SetColor(static_cast<int>(GameBoard::Color::Gray), static_cast<int>(GameBoard::Color::Black));
-//            cout << "  ";
-//        }
-//    }
-//}
-
 int GameBoard::GetGameBoardValue(int x, int y) {
     int s = gBoard[x][y];
     return s;

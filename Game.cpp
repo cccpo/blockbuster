@@ -29,15 +29,14 @@ void StartGame() {
 	Score sc;
 	Data d;
 
-	int HiScore = d.HiScoreLoad();
-	sc.SetHighScore(HiScore);
+	int HiScore = d.HiScoreLoad();//ハイスコアを取得
+	sc.SetHighScore(HiScore);//ハイスコアをセットする
 
 	gb.InitGameBoard();//ゲームボード初期化
-	gb.DrawBoard();//ゲームボード外枠の描画
-	gb.DrawStage();//ゲームボード内部の描画
-	sc.SetScore(0);
+	dgb.DrawBoard();//ゲームボード外枠の描画
+	dgb.DrawStage();//ゲームボード内部の描画
+	sc.SetScore(0);//スコアの初期化
 	dgb.DrawScore();//スコア表示
-	//dgb.DrawRotType();//回転表示
 	bp.AddTertimino();//テトリミノの追加
 	bp.DrawTetrimino();//テトリミノの描画
 
@@ -68,7 +67,7 @@ void StartGame() {
 					bp.DeleteLine();//揃ったlineの消去
 					dgb.DrawScore();
 					bp.AddTertimino();
-					gb.DrawStage();//ゲームボード内部の描画(ToDo)
+					dgb.DrawStage();//ゲームボード内部の描画(ToDo)
 					bp.DrawTetrimino();
 					bpx = bp.GetgTetriminoPosX();//テトリミノx座標設定
 					bpy = bp.GetTetriminoPosY();//テトリミノy座標設定
@@ -120,7 +119,7 @@ void StartGame() {
 				}
 			}
 			if (update) {
-				gb.DrawStage();//ゲームボード内部の描画(ToDo)
+				dgb.DrawStage();//ゲームボード内部の描画(ToDo)
 				bp.DrawTetrimino();
 				
 			}
@@ -183,11 +182,11 @@ int main() {
 		gb.SetCursorPos(0, GameBoard::mGbHeight+5);
 		gb.SetColor(static_cast<int>(GameBoard::Color::Gray), static_cast<int>(GameBoard::Color::Black));
 		if (sc.GetScore()>sc.GetHighScore()) {
-			std::cout << "HiScore";
+			std::cout << "HiScore!!" << sc.GetScore() <<endl;
 			d.HiScoreSave(sc.GetScore());
 		}
 		
-		std::cout << "GAME OVER. Replay? [Y/N] ";
+		std::cout << "GAME OVER. Replay? [Y/N] "<< endl;
 		
 		for (;;) {
 			if (ki.IsKeyPressed('N'))
