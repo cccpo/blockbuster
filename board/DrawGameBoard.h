@@ -11,6 +11,7 @@ public:
 
 
 	void DrawBoard();
+
 	//void DrawStage();
 	void DrawScore();
 
