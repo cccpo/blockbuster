@@ -21,8 +21,11 @@ private:
 	
 public:
 
-
-
+	//テトリミノのタイプを列挙　#ToDO 名前は仮
+	enum class TetrimnoType
+	{
+		TypeA,TypeB,TypeC,TypeD,TypeE,TypeF,TypeG
+	};
 	
 
 	int mTetrimino[gTetriminoWidth][gTetriminoHeight];
@@ -63,7 +66,7 @@ public:
 
 	int GetTeriminoValue(int x, int y);
 	
-	
+	int TetriminoTypeToColor(int ttc);
 	//BlockPiece();
 	//~BlockPiece();
 };
