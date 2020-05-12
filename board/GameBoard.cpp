@@ -32,30 +32,30 @@ void GameBoard::InitGameBoard() {
 
 };
 
-//ƒQ[ƒ€ƒ{[ƒhŠO˜g‚Ì•`‰æ(ToDO DrawGameBoard‚ÉˆÚA—\’è)
-void GameBoard::DrawBoard() {
-    int gbpx = GetmGameBoardPosX();
-    int gbpy = GetmGameBoardPosY();
-
-    //Fİ’è
-    SetColor(static_cast<int>(GameBoard::Color::Gray), static_cast<int>(GameBoard::Color::Gray));
-
-    SetCursorPos(gbpx, gbpy);
-    for (int x = 0; x < mGbWidth + 2; ++x) {
-        cout << "  ";
-    }
-
-    SetCursorPos(gbpx, gbpy + mGbHeight + 1);
-    for (int x = 0; x < mGbWidth + 2; ++x) {
-        cout << "  ";
-    }
-    for (int y = gbpy + 1; y < gbpy + mGbHeight + 1; ++y) {
-        SetCursorPos(gbpx, y);
-        cout << "  ";
-        SetCursorPos(gbpx + ( mGbWidth + 1) * 2, y);
-        cout << "  ";
-    }
-}
+////ƒQ[ƒ€ƒ{[ƒhŠO˜g‚Ì•`‰æ(ToDO DrawGameBoard‚ÉˆÚA—\’è)
+//void GameBoard::DrawBoard() {
+//    int gbpx = GetmGameBoardPosX();
+//    int gbpy = GetmGameBoardPosY();
+//
+//    //Fİ’è
+//    SetColor(static_cast<int>(GameBoard::Color::Gray), static_cast<int>(GameBoard::Color::Gray));
+//
+//    SetCursorPos(gbpx, gbpy);
+//    for (int x = 0; x < mGbWidth + 2; ++x) {
+//        cout << "  ";
+//    }
+//
+//    SetCursorPos(gbpx, gbpy + mGbHeight + 1);
+//    for (int x = 0; x < mGbWidth + 2; ++x) {
+//        cout << "  ";
+//    }
+//    for (int y = gbpy + 1; y < gbpy + mGbHeight + 1; ++y) {
+//        SetCursorPos(gbpx, y);
+//        cout << "  ";
+//        SetCursorPos(gbpx + ( mGbWidth + 1) * 2, y);
+//        cout << "  ";
+//    }
+//}
 
 //ƒQ[ƒ€ƒ{[ƒh“à•”‚Ì•`‰æ(ToDO DrawGameBoard‚ÉˆÚA—\’è)
 void GameBoard::DrawStage() {

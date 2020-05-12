@@ -49,7 +49,7 @@ public:
 
 
 	void InitGameBoard();// ゲームボード初期化
-	void DrawBoard();//ゲームボード外枠の描画(ToDO DrawGameBoardに移植予定)
+	//void DrawBoard();//ゲームボード外枠の描画(ToDO DrawGameBoardに移植予定)
 	void DrawStage();//ゲームボード内部の描画(ToDO DrawGameBoardに移植予定)
 
 
