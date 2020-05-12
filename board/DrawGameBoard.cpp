@@ -37,6 +37,30 @@ void DrawGameBoard::DrawBoard() {
 	}
 }
 
+//ゲームボード内部の描画
+void DrawGameBoard::DrawStage() {
+	BlockPiece bp;
+	GameBoard gb;
+
+	for (int y = 1; y <= GameBoard::mGbHeight; ++y) {
+		gb.SetCursorPos(gb.GetmGameBoardPosX() + 2, y + gb.GetmGameBoardPosY());
+		for (int x = 1; x <= GameBoard::mGbWidth; ++x) {
+			//空ではないブロックは緑で固定化→
+			if (gb.GetGameBoardValue(x,y) != gb.GetmEmpty()) {
+
+
+				int Color = bp.TetriminoTypeToColor(gb.GetGameBoardValue(x, y) - 1);
+
+				//テトリミノの色を設定
+				gb.SetColor(static_cast<int>(Color), static_cast<int>(Color));
+			}
+			else
+				gb.SetColor(static_cast<int>(GameBoard::Color::Gray), static_cast<int>(GameBoard::Color::Black));
+			cout << "  ";
+		}
+	}
+}
+
 
 
 //スコア表示

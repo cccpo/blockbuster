@@ -1,6 +1,7 @@
 #pragma once
 #include <Windows.h>
 
+//　GameBoardの描画を行うクラス
 class DrawGameBoard
 {
 
@@ -10,10 +11,10 @@ class DrawGameBoard
 public:
 
 
-	void DrawBoard();
-
-	//void DrawStage();
-	void DrawScore();
+	void DrawBoard();//ゲームボード外枠の描画
+	void DrawStage();//ゲームボード内部の描画
+	
+	void DrawScore();//スコア表示
 
 	void DrawRotType();
 
