@@ -58,26 +58,26 @@ void GameBoard::InitGameBoard() {
 //}
 
 //ゲームボード内部の描画(ToDO DrawGameBoardに移植予定)
-void GameBoard::DrawStage() {
-    BlockPiece bp;
-
-    for (int y = 1; y <= mGbHeight; ++y) {
-        SetCursorPos(GetmGameBoardPosX() + 2, y + GetmGameBoardPosY());
-        for (int x = 1; x <= mGbWidth; ++x) {
-            //空ではないブロックは緑で固定化→
-            if (gBoard[x][y] != GetmEmpty()){
-           
-                
-                int Color = bp.TetriminoTypeToColor(GetGameBoardValue(x, y) - 1);
-
-                //テトリミノの色を設定
-                SetColor(static_cast<int>(Color), static_cast<int>(Color));
-            }else
-                SetColor(static_cast<int>(GameBoard::Color::Gray), static_cast<int>(GameBoard::Color::Black));
-            cout << "  ";
-        }
-    }
-}
+//void GameBoard::DrawStage() {
+//    BlockPiece bp;
+//
+//    for (int y = 1; y <= mGbHeight; ++y) {
+//        SetCursorPos(GetmGameBoardPosX() + 2, y + GetmGameBoardPosY());
+//        for (int x = 1; x <= mGbWidth; ++x) {
+//            //空ではないブロックは緑で固定化→
+//            if (gBoard[x][y] != GetmEmpty()){
+//           
+//                
+//                int Color = bp.TetriminoTypeToColor(GetGameBoardValue(x, y) - 1);
+//
+//                //テトリミノの色を設定
+//                SetColor(static_cast<int>(Color), static_cast<int>(Color));
+//            }else
+//                SetColor(static_cast<int>(GameBoard::Color::Gray), static_cast<int>(GameBoard::Color::Black));
+//            cout << "  ";
+//        }
+//    }
+//}
 
 int GameBoard::GetGameBoardValue(int x, int y) {
     int s = gBoard[x][y];
