@@ -34,6 +34,31 @@ void DrawGameBoard::DrawBoard(GameBoard gb) {
 	}
 }
 
+//ゲームボード外枠の描画(外枠色指定)
+void DrawGameBoard::DrawBoard(GameBoard gb, GameBoard::Color cl) {
+	gbpx = gb.GetmGameBoardPosX();
+	gbpy = gb.GetmGameBoardPosY();
+
+	//色設定
+	gb.SetColor(static_cast<int>(cl), static_cast<int>(cl));
+
+	gb.SetCursorPos(gbpx, gbpy);
+	for (int x = 0; x < GameBoard::mGbWidth + 2; ++x) {
+		cout << "  ";
+	}
+
+	gb.SetCursorPos(gbpx, gbpy + GameBoard::mGbHeight + 1);
+	for (int x = 0; x < GameBoard::mGbWidth + 2; ++x) {
+		cout << "  ";
+	}
+	for (int y = gbpy + 1; y < gbpy + GameBoard::mGbHeight + 1; ++y) {
+		gb.SetCursorPos(gbpx, y);
+		cout << "  ";
+		gb.SetCursorPos(gbpx + (GameBoard::mGbWidth + 1) * 2, y);
+		cout << "  ";
+	}
+}
+
 //ゲームボード内部の描画
 void DrawGameBoard::DrawStage() {
 	BlockPiece bp;
