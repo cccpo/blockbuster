@@ -2,7 +2,6 @@
 
 
 #include "DrawGameBoard.h"
-#include "GameBoard.h"
 #include "../state/Score.h"
 #include "../agent/BlockPiece.h"
 
@@ -11,11 +10,9 @@ using std::cout;
 using std::endl;
 
 //ゲームボード外枠の描画
-void DrawGameBoard::DrawBoard() {
-	GameBoard gb;
-	
-	int gbpx = gb.GetmGameBoardPosX();
-	int gbpy = gb.GetmGameBoardPosY();
+void DrawGameBoard::DrawBoard(GameBoard gb) {
+	gbpx = gb.GetmGameBoardPosX();
+	gbpy = gb.GetmGameBoardPosY();
 
 	//色設定
 	gb.SetColor(static_cast<int>(GameBoard::Color::Gray), static_cast<int>(GameBoard::Color::Gray));
