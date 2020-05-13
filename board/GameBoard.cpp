@@ -1,7 +1,7 @@
 #include <iostream>
 
 #include "GameBoard.h"
-#include "../agent/BlockPiece.h"
+
 #include "../state/Score.h"
 
 //#include "DrawGameBoard.h"
@@ -99,27 +99,14 @@ int GameBoard::GetmGameBoardPosY() const{
     return mGameBoardPosY;
 }
 
-//byte(GameBoard::* getAry())[cGbHeight + 2]{
-//    return GameBoard::gBoard;
-//}
+GameBoard::GameBoard() :mGameBoardPosX(1),mGameBoardPosY(2){
 
-/*te GameBoard::(&f())[100]{
-    return &gBoard;
-}*/
+}
 
-//byte GameBoard::GetgBoard() {
-//    return gBoard[][];
-//}
+//　ゲームボードを生成する座標及びを与える
+GameBoard::GameBoard(int x,int y) :mGameBoardPosX(x),mGameBoardPosY(y){
+}
 
-//GameBoard::GameBoard() {
-//    for (int i = 0; i < cGbWidth + 2; ++i)
-//    {
-//        for (int jj = 0; jj < cGbHeight + 2; ++jj)
-//        {
-//            gBoard[i][jj] = (i + 1) * jj;
-//        }
-//    }
-//}
 
 
 

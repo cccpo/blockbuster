@@ -22,10 +22,10 @@ using std::endl;
 
 //game
 void StartGame() {
-	static GameBoard *gb;
+	static GameBoard *gb,*gb1;
 
 	DrawGameBoard dgb;
-	BlockPiece bp;
+	static BlockPiece *bp;
 	KeyInput ki;
 	Score sc;
 	Data d;
@@ -33,21 +33,24 @@ void StartGame() {
 	int HiScore = d.HiScoreLoad();//ハイスコアを取得
 	sc.SetHighScore(HiScore);//ハイスコアをセットする
 
-	gb = new GameBoard(1,2);//動的に確保する必要があるか
-
+	gb = new GameBoard(1,2);//
+	gb1 = new GameBoard(30, 2);
 	gb->InitGameBoard();//ゲームボード初期化
-	dgb.DrawBoard(*gb);//ゲームボード外枠の描画
-
 	
+	dgb.DrawBoard(*gb);//ゲームボード外枠の描画
+	dgb.DrawBoard(*gb1,GameBoard::Color::Red);
 	dgb.DrawStage(*gb);//ゲームボード内部の描画
 
 	sc.SetScore(0);//スコアの初期化
 	dgb.DrawScore();//スコア表示
-	bp.AddTertimino();//テトリミノの追加
-	bp.DrawTetrimino();//テトリミノの描画
+	
+	bp = new BlockPiece();
 
-	int bpx = bp.GetgTetriminoPosX();//テトリミノx座標設定
-	int bpy = bp.GetTetriminoPosY();//テトリミノy座標設定
+	bp->AddTertimino();//テトリミノの追加
+	bp->DrawTetrimino();//テトリミノの描画
+
+	int bpx = bp->GetgTetriminoPosX();//テトリミノx座標設定
+	int bpy = bp->GetTetriminoPosY();//テトリミノy座標設定
 
 	
 	
@@ -59,46 +62,46 @@ void StartGame() {
 
 	
 	//テトリミノ生成時点で固定ブロックと接触するとループを抜ける
-	 while (!bp.IsOverLaped()) {
+	 while (!bp->IsOverLaped()) {
 	//for(int cnt =1;;++cnt){
 			bool update = false;
 
 			if (cnt % FallInterval == 0 || key == VK_DOWN){
 				//テトリミノが動かくなったら以下の処理
-				if (!bp.IsMoveDown()) {
+				if (!bp->IsMoveDown()) {
 					key = 0;
-					int FinalPosX = bp.GetgTetriminoPosX();
-					int FinalPosY = bp.GetTetriminoPosY();
-					bp.ChangeBlock();//ブロックの固定化
-					bp.DeleteLine();//揃ったlineの消去
+					int FinalPosX = bp->GetgTetriminoPosX();
+					int FinalPosY = bp->GetTetriminoPosY();
+					bp->ChangeBlock();//ブロックの固定化
+					bp->DeleteLine();//揃ったlineの消去
 					dgb.DrawScore();
-					bp.AddTertimino();
+					bp->AddTertimino();
 					dgb.DrawStage(*gb);//ゲームボード内部の描画(ToDo)
-					bp.DrawTetrimino();
-					bpx = bp.GetgTetriminoPosX();//テトリミノx座標設定
-					bpy = bp.GetTetriminoPosY();//テトリミノy座標設定
-					if (bp.IsOverLaped())
+					bp->DrawTetrimino();
+					bpx = bp->GetgTetriminoPosX();//テトリミノx座標設定
+					bpy = bp->GetTetriminoPosY();//テトリミノy座標設定
+					if (bp->IsOverLaped())
 						return;
 					continue;
 				}
 				++bpy;     // 落下中テトリスをひとつ下に移動
-				bp.SetgTeriminoPosY(bpy);
+				bp->SetgTeriminoPosY(bpy);
 				update = true;
 			}
 
 			if (cnt % MoveInterval == 0) {   
 				if (key == VK_LEFT) {
-					if (bp.IsMoveLeft()) {
+					if (bp->IsMoveLeft()) {
 						--bpx;  
-						bp.SetTeriminoPosX(bpx);
+						bp->SetTeriminoPosX(bpx);
 						update = true;
 					}
 					key = 0;
 				}
 				else if (key == VK_RIGHT) {
-					if (bp.IsMoveRight()) {
+					if (bp->IsMoveRight()) {
 						++bpx;  
-						bp.SetTeriminoPosX(bpx);
+						bp->SetTeriminoPosX(bpx);
 						update = true;
 					}
 					key = 0;
@@ -107,18 +110,18 @@ void StartGame() {
 
 			if (cnt % RotateInterval == 0) {       
 				if (key == VK_UP) {
-					int tx = bp.GetRot();
+					int tx = bp->GetRot();
 
 					if (++tx >= 4) {
-						bp.SetRot(0);
+						bp->SetRot(0);
 						tx = 0;
 					}
-					bp.SetTertimino(bp.GetgTeriminoType(), tx);
-					if (bp.IsOverLaped()) {    
-						bp.SetTertimino(bp.GetgTeriminoType(), bp.GetRot());
+					bp->SetTertimino(bp->GetgTeriminoType(), tx);
+					if (bp->IsOverLaped()) {    
+						bp->SetTertimino(bp->GetgTeriminoType(), bp->GetRot());
 					}
 					else {
-						bp.SetRot(tx);
+						bp->SetRot(tx);
 						update = true;
 					}
 					key = 0;
@@ -126,7 +129,7 @@ void StartGame() {
 			}
 			if (update) {
 				dgb.DrawStage(*gb);//ゲームボード内部の描画(ToDo)
-				bp.DrawTetrimino();
+				bp->DrawTetrimino();
 				
 			}
 			if (!keyDown) {     // キー押下を受け付けていない場合
@@ -184,8 +187,11 @@ int main() {
 	
 
 		double time = static_cast<double>(chrono::duration_cast<chrono::microseconds>(end - start).count() / 1000.0);
+		
+		//処理を変更する必要がある。
 		gb.SetCursorPos(0, GameBoard::mGbHeight+5);
 		gb.SetColor(static_cast<int>(GameBoard::Color::Gray), static_cast<int>(GameBoard::Color::Black));
+		
 		if (sc.GetScore()>sc.GetHighScore()) {
 			std::cout << "HiScore!!" << sc.GetScore() <<endl;
 			d.HiScoreSave(sc.GetScore());

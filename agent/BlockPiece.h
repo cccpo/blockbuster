@@ -4,6 +4,8 @@
 #include <random>
 #include <stdlib.h>
 
+#include "../board/GameBoard.h"
+
 typedef unsigned char byte;
 
 const int gTetriminoHeight = { 4 };
@@ -67,7 +69,11 @@ public:
 	int GetTeriminoValue(int x, int y);
 	
 	int TetriminoTypeToColor(int ttc);
-	//BlockPiece();
+
+	
+	BlockPiece();
 	//~BlockPiece();
+
+
 };
 

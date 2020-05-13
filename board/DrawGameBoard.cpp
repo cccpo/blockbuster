@@ -11,31 +11,32 @@ using std::endl;
 
 //ゲームボード外枠の描画
 void DrawGameBoard::DrawBoard(GameBoard gb) {
-	gbpx = gb.GetmGameBoardPosX();
+
 	gbpy = gb.GetmGameBoardPosY();
 
 	//色設定
-	gb.SetColor(static_cast<int>(GameBoard::Color::Gray), static_cast<int>(GameBoard::Color::Gray));
+	gb.SetColor((int)GameBoard::Color::Gray, (int)(GameBoard::Color::Gray));
 
-	gb.SetCursorPos(gbpx, gbpy);
+	gb.SetCursorPos(gb.mGameBoardPosX, gbpy);
 	for (int x = 0; x < GameBoard::mGbWidth + 2; ++x) {
 		cout << "  ";
 	}
 
-	gb.SetCursorPos(gbpx, gbpy + GameBoard::mGbHeight + 1);
+	gb.SetCursorPos(gb.mGameBoardPosX, gbpy + GameBoard::mGbHeight + 1);
 	for (int x = 0; x < GameBoard::mGbWidth + 2; ++x) {
 		cout << "  ";
 	}
 	for (int y = gbpy + 1; y < gbpy + GameBoard::mGbHeight + 1; ++y) {
-		gb.SetCursorPos(gbpx, y);
+		gb.SetCursorPos(gb.mGameBoardPosX, y);
 		cout << "  ";
-		gb.SetCursorPos(gbpx + (GameBoard::mGbWidth + 1) * 2, y);
+		gb.SetCursorPos(gb.mGameBoardPosX + (GameBoard::mGbWidth + 1) * 2, y);
 		cout << "  ";
 	}
 }
 
 //ゲームボード外枠の描画(外枠色指定)
-void DrawGameBoard::DrawBoard(GameBoard gb, GameBoard::Color cl) {
+void DrawGameBoard::DrawBoard(GameBoard gb, GameBoard::Color cl) 
+{
 	gbpx = gb.GetmGameBoardPosX();
 	gbpy = gb.GetmGameBoardPosY();
 
@@ -60,9 +61,8 @@ void DrawGameBoard::DrawBoard(GameBoard gb, GameBoard::Color cl) {
 }
 
 //ゲームボード内部の描画
-void DrawGameBoard::DrawStage() {
+void DrawGameBoard::DrawStage(GameBoard gb) {
 	BlockPiece bp;
-	GameBoard gb;
 
 	for (int y = 1; y <= GameBoard::mGbHeight; ++y) {
 		gb.SetCursorPos(gb.GetmGameBoardPosX() + 2, y + gb.GetmGameBoardPosY());

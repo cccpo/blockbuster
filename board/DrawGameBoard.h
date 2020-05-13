@@ -16,7 +16,7 @@ public:
 
 	void DrawBoard(GameBoard gb);//ゲームボード外枠の描画
 	void DrawBoard(GameBoard gb,GameBoard::Color cl);//ゲームボード外枠の描画
-	void DrawStage();//ゲームボード内部の描画
+	void DrawStage(GameBoard gb);//ゲームボード内部の描画
 	
 	void DrawScore();//スコア表示
 
@@ -29,7 +29,7 @@ public:
 	//~DrawGameBoard(){}
 
 protected:
-	//GameBoard gb;
+	GameBoard gb;
 
 
 };

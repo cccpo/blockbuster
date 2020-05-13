@@ -2,6 +2,8 @@
 #include <iostream>
 #include <Windows.h>
 
+#include "../agent/BlockPiece.h"
+
 typedef unsigned char byte;
 
 
@@ -21,8 +23,7 @@ private:
 
 	int mEmpty = { 0 };
 	
-	int mGameBoardPosX = 1;//ゲームボード位置のx座標
-	int mGameBoardPosY = 2;//ゲームボード位置のy座標
+
 
 	enum Mask {
 		Intensity = 8, RedMask = 4, GreenMask = 2, BlueMask = 1
@@ -33,11 +34,13 @@ public:
 	const static int mGbWidth = 10;
 	const static int mGbHeight = 20;
 
+	int mGameBoardPosX;//ゲームボード位置のx座標
+	int mGameBoardPosY;//ゲームボード位置のy座標
 	//
 	//
 	//
 	//
-	enum class Color
+	enum class Color: int
 	{
 		Black = 0x00, DarkBlue, DarkGreen, DarkCyan, DarkRed, DarkViolet, DarkYellow, Gray, LightGray, Blue,
 		Green, Cyan, Red, Violet, Yellow, White
@@ -64,7 +67,10 @@ public:
 
 	void Down(int y);
 
-	//GameBoard();
+	GameBoard();
+
+	GameBoard(int x, int y);
+
 	//~GameBoard();
 };
 
