@@ -19,10 +19,11 @@
 using std::cout;
 using std::endl;
 
+
 //game
 void StartGame() {
+	static GameBoard *gb;
 
-	//GameBoard gb;
 	DrawGameBoard dgb;
 	BlockPiece bp;
 	KeyInput ki;
@@ -32,13 +33,14 @@ void StartGame() {
 	int HiScore = d.HiScoreLoad();//ハイスコアを取得
 	sc.SetHighScore(HiScore);//ハイスコアをセットする
 
-	GameBoard gb(1, 2),gb1(60,2);
+	gb = new GameBoard(1,2);//動的に確保する必要があるか
 
-	gb.InitGameBoard();//ゲームボード初期化
-	gb1.InitGameBoard();
-	dgb.DrawBoard(gb);//ゲームボード外枠の描画
-	dgb.DrawBoard(gb1, GameBoard::Color::Red);//ゲームボード外枠の描画
-	dgb.DrawStage();//ゲームボード内部の描画
+	gb->InitGameBoard();//ゲームボード初期化
+	dgb.DrawBoard(*gb);//ゲームボード外枠の描画
+
+	
+	dgb.DrawStage(*gb);//ゲームボード内部の描画
+
 	sc.SetScore(0);//スコアの初期化
 	dgb.DrawScore();//スコア表示
 	bp.AddTertimino();//テトリミノの追加
@@ -71,7 +73,7 @@ void StartGame() {
 					bp.DeleteLine();//揃ったlineの消去
 					dgb.DrawScore();
 					bp.AddTertimino();
-					dgb.DrawStage();//ゲームボード内部の描画(ToDo)
+					dgb.DrawStage(*gb);//ゲームボード内部の描画(ToDo)
 					bp.DrawTetrimino();
 					bpx = bp.GetgTetriminoPosX();//テトリミノx座標設定
 					bpy = bp.GetTetriminoPosY();//テトリミノy座標設定
@@ -123,7 +125,7 @@ void StartGame() {
 				}
 			}
 			if (update) {
-				dgb.DrawStage();//ゲームボード内部の描画(ToDo)
+				dgb.DrawStage(*gb);//ゲームボード内部の描画(ToDo)
 				bp.DrawTetrimino();
 				
 			}
@@ -165,7 +167,6 @@ int main() {
 	chrono::system_clock::time_point start, end;
 
 	//ゲーム開始
-	//StartGame();
 	GameBoard gb;
 	KeyInput ki;
 	//cout << st.GetScore() << endl;
