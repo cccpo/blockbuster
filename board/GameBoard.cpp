@@ -4,7 +4,6 @@
 
 #include "../state/Score.h"
 
-//#include "DrawGameBoard.h"
 typedef unsigned char byte;
 
 using std::cout;

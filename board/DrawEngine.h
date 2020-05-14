@@ -4,7 +4,7 @@
 #include "GameBoard.h"
 
 //　GameBoardの描画を行うクラス
-class DrawGameBoard
+class DrawEngine
 {
 private:
 	int gbpx;

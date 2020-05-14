@@ -11,7 +11,7 @@
 //#include "window/window.h"
 #include "state/Score.h"
 #include "board/GameBoard.h"
-#include "board/DrawGameBoard.h"
+#include "board/DrawEngine.h"
 #include "agent/BlockPiece.h"
 #include "Input/KeyInput.h"
 #include "Data/Data.h"
@@ -24,7 +24,7 @@ using std::endl;
 void StartGame() {
 	static GameBoard *gb,*gb1;
 
-	DrawGameBoard dgb;
+	DrawEngine dgb;
 	static BlockPiece *bp;
 	KeyInput ki;
 	Score sc;
@@ -34,11 +34,12 @@ void StartGame() {
 	sc.SetHighScore(HiScore);//ハイスコアをセットする
 
 	gb = new GameBoard(1,2);//
-	gb1 = new GameBoard(30, 2);
+	//gb1 = new GameBoard(90, 2);
 	gb->InitGameBoard();//ゲームボード初期化
+	//gb1->InitGameBoard();
 	
 	dgb.DrawBoard(*gb);//ゲームボード外枠の描画
-	dgb.DrawBoard(*gb1,GameBoard::Color::Red);
+	//dgb.DrawBoard(*gb1,GameBoard::Color::Red);
 	dgb.DrawStage(*gb);//ゲームボード内部の描画
 
 	sc.SetScore(0);//スコアの初期化
@@ -47,7 +48,7 @@ void StartGame() {
 	bp = new BlockPiece();
 
 	bp->AddTertimino();//テトリミノの追加
-	bp->DrawTetrimino();//テトリミノの描画
+	dgb.DrawTetrimino(*bp);//テトリミノの描画
 
 	int bpx = bp->GetgTetriminoPosX();//テトリミノx座標設定
 	int bpy = bp->GetTetriminoPosY();//テトリミノy座標設定
@@ -77,7 +78,7 @@ void StartGame() {
 					dgb.DrawScore();
 					bp->AddTertimino();
 					dgb.DrawStage(*gb);//ゲームボード内部の描画(ToDo)
-					bp->DrawTetrimino();
+					dgb.DrawTetrimino(*bp);
 					bpx = bp->GetgTetriminoPosX();//テトリミノx座標設定
 					bpy = bp->GetTetriminoPosY();//テトリミノy座標設定
 					if (bp->IsOverLaped())
@@ -116,9 +117,9 @@ void StartGame() {
 						bp->SetRot(0);
 						tx = 0;
 					}
-					bp->SetTertimino(bp->GetgTeriminoType(), tx);
+					bp->SetTertimino(bp->mTetriminoType, tx);
 					if (bp->IsOverLaped()) {    
-						bp->SetTertimino(bp->GetgTeriminoType(), bp->GetRot());
+						bp->SetTertimino(bp->mTetriminoType, bp->GetRot());
 					}
 					else {
 						bp->SetRot(tx);
@@ -129,7 +130,7 @@ void StartGame() {
 			}
 			if (update) {
 				dgb.DrawStage(*gb);//ゲームボード内部の描画(ToDo)
-				bp->DrawTetrimino();
+				dgb.DrawTetrimino(*bp);
 				
 			}
 			if (!keyDown) {     // キー押下を受け付けていない場合
@@ -171,6 +172,7 @@ int main() {
 
 	//ゲーム開始
 	GameBoard gb;
+	DrawEngine dgb;
 	KeyInput ki;
 	//cout << st.GetScore() << endl;
 	Score sc;
@@ -189,14 +191,15 @@ int main() {
 		double time = static_cast<double>(chrono::duration_cast<chrono::microseconds>(end - start).count() / 1000.0);
 		
 		//処理を変更する必要がある。
-		gb.SetCursorPos(0, GameBoard::mGbHeight+5);
-		gb.SetColor(static_cast<int>(GameBoard::Color::Gray), static_cast<int>(GameBoard::Color::Black));
+		dgb.SetCursorPos(0, GameBoard::mGbHeight+5);
+		dgb.SetColor(static_cast<int>(GameBoard::Color::Gray), static_cast<int>(GameBoard::Color::Black));
 		
 		if (sc.GetScore()>sc.GetHighScore()) {
 			std::cout << "HiScore!!" << sc.GetScore() <<endl;
 			d.HiScoreSave(sc.GetScore());
 		}
 		
+		//dgb.SetCursorPos(0, GameBoard::mGbHeight + 15);
 		std::cout << "GAME OVER. Replay? [Y/N] "<< endl;
 		
 		for (;;) {
@@ -207,7 +210,7 @@ int main() {
 			Sleep(LoopInterval);     // 10ミリ秒ウェイト
 		}
 
-		gb.SetCursorPos(0, 25 - 1);//リプレイ時にゲームボードの位置が初期化される
+		dgb,SetCursorPos(0, 25 - 1);//リプレイ時にゲームボードの位置が初期化される
 		
 		for (int i = 0; i < 80 - 1; ++i) {
 			std::cout << ' ';
