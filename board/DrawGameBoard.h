@@ -10,11 +10,13 @@ private:
 	int gbpx;
 	int gbpy;
 
-	
+	enum Mask {
+		Intensity = 8, RedMask = 4, GreenMask = 2, BlueMask = 1
+	};
 
 public:
 
-	void DrawBoard(GameBoard& gb);//ゲームボード外枠の描画
+	void DrawBoard(GameBoard const& gb);//ゲームボード外枠の描画
 	void DrawBoard(GameBoard gb,GameBoard::Color cl);//ゲームボード外枠の描画
 	void DrawStage(GameBoard gb);//ゲームボード内部の描画
 	
