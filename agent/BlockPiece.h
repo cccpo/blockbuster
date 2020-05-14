@@ -16,12 +16,14 @@ const int gTetriminoWidth = { 4 };
 class BlockPiece
 {
 private:
-	int mTetriminoPosX;//ゲームボード左上からの相対的な位置
-	int mTetriminoPosY;
-	int mTetriminoType;//テトリミノのタイプ
+	
+	
 
 	
 public:
+	int mTetriminoPosX;//ゲームボード左上からの相対的な位置
+	int mTetriminoPosY;
+	int mTetriminoType;//テトリミノのタイプ
 
 	//テトリミノのタイプを列挙　#ToDO 名前は仮
 	enum class TetrimnoType
@@ -46,8 +48,6 @@ public:
 
 	void SetTertimino(int type, int rx);
 	void AddTertimino();
-
-	void DrawTetrimino();
 
 
 	int GetgTetriminoPosX();
