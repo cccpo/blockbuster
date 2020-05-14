@@ -26,9 +26,9 @@ public:
 	int mTetriminoType;//テトリミノのタイプ
 
 	//テトリミノのタイプを列挙　#ToDO 名前は仮
-	enum class TetrimnoType
+	enum class TetrimnoType:int
 	{
-		TypeA,TypeB,TypeC,TypeD,TypeE,TypeF,TypeG
+		TypeA=1,TypeB,TypeC,TypeD,TypeE,TypeF,TypeG
 	};
 	
 

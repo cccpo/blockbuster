@@ -61,11 +61,9 @@ void DrawGameBoard::DrawStage(GameBoard gb) {
 	for (int y = 1; y <= GameBoard::mGbHeight; ++y) {
 		SetCursorPos(gb.GetmGameBoardPosX() + 2, y + gb.GetmGameBoardPosY());
 		for (int x = 1; x <= GameBoard::mGbWidth; ++x) {
-			//空ではないブロックは緑で固定化→
+			//空ではないブロックは固定化→
 			if (gb.GetGameBoardValue(x,y) != gb.GetmEmpty()) {
-
-
-				int Color = bp.TetriminoTypeToColor(gb.GetGameBoardValue(x, y) - 1);
+				int Color = bp.TetriminoTypeToColor(gb.GetGameBoardValue(x, y));
 
 				//テトリミノの色を設定
 				gb.SetColor(static_cast<int>(Color), static_cast<int>(Color));
@@ -81,8 +79,7 @@ void DrawGameBoard::DrawStage(GameBoard gb) {
 void DrawGameBoard::DrawTetrimino(BlockPiece& bp)
 {
 	//GUIアプリとして移植する際にテトリミノを形状と色を持った構造体として定義することで描画を行う関数側から指定する必要をなくす
-
-	int Color = TetriminoTypeToColor(bp.mTetriminoType);
+	int Color = TetriminoTypeToColor(bp.mTetriminoType + 1);
 
 	//テトリミノの色を設定
 	gb.SetColor(static_cast<int>(Color), static_cast<int>(Color));
@@ -111,26 +108,26 @@ int DrawGameBoard::TetriminoTypeToColor(int ttc) {
 		case static_cast<int>(BlockPiece::TetrimnoType::TypeA) :
 			tkl = static_cast<int>(GameBoard::Color::Cyan);
 			break;
-			case static_cast<int>(BlockPiece::TetrimnoType::TypeB) :
-				tkl = static_cast<int>(GameBoard::Color::Yellow);
-				break;
-				case static_cast<int>(BlockPiece::TetrimnoType::TypeC) :
-					tkl = static_cast<int>(GameBoard::Color::Red);
-					break;
-					case static_cast<int>(BlockPiece::TetrimnoType::TypeD) :
-						tkl = static_cast<int>(GameBoard::Color::Green);
-						break;
-						case static_cast<int>(BlockPiece::TetrimnoType::TypeE) :
-							tkl = static_cast<int>(GameBoard::Color::Blue);
-							break;
-							case static_cast<int>(BlockPiece::TetrimnoType::TypeF) :
-								tkl = static_cast<int>(GameBoard::Color::DarkRed);
-								break;
-								case static_cast<int>(BlockPiece::TetrimnoType::TypeG) :
-									tkl = static_cast<int>(GameBoard::Color::Violet);
-									break;
-								default:
-									break;
+		case static_cast<int>(BlockPiece::TetrimnoType::TypeB) :
+			tkl = static_cast<int>(GameBoard::Color::Yellow);
+			break;
+		case static_cast<int>(BlockPiece::TetrimnoType::TypeC) :
+			tkl = static_cast<int>(GameBoard::Color::Red);
+			break;
+		case static_cast<int>(BlockPiece::TetrimnoType::TypeD) :
+			tkl = static_cast<int>(GameBoard::Color::Green);
+			break;
+		case static_cast<int>(BlockPiece::TetrimnoType::TypeE) :
+			tkl = static_cast<int>(GameBoard::Color::Blue);
+			break;
+		case static_cast<int>(BlockPiece::TetrimnoType::TypeF) :
+			tkl = static_cast<int>(GameBoard::Color::DarkRed);
+			break;
+		case static_cast<int>(BlockPiece::TetrimnoType::TypeG) :
+			tkl = static_cast<int>(GameBoard::Color::Violet);
+			break;
+		default:
+			break;
 	}
 
 	return tkl;
