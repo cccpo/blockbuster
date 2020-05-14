@@ -210,11 +210,9 @@ void BlockPiece::SetTertimino(int type, int rx) {
 
 //テトリミノの追加　ToDo 関数名の変更
 void BlockPiece::AddTertimino() {
-	string debug;
-
 	std::random_device rnd;
 	std::mt19937 mt(rnd());
-	std::uniform_int_distribution<int> type(0,6);
+	std::uniform_int_distribution<int> type(0,6);//0～6の
 
 	int gbw = GameBoard::mGbWidth;
 	
@@ -227,31 +225,6 @@ void BlockPiece::AddTertimino() {
     SetTertimino(mTetriminoType, mRotIX = 0);
     }
 
-void BlockPiece::DrawTetrimino()
-{
-    GameBoard gb;
-
-	//GUIアプリとして移植する際にテトリミノを形状と色を持った構造体として定義することで描画を行う関数側から指定する必要をなくす
-	
-	int Color = TetriminoTypeToColor(GetgTeriminoType());
-
-	//テトリミノの色を設定
-	gb.SetColor(static_cast<int>(Color), static_cast<int>(Color));
-   
-
-	for (int i = 0; i < gTetriminoWidth; ++i) {
-        int y = mTetriminoPosY + i;
-        if (y < 0 || y >= GameBoard::mGbHeight) continue;
-			for (int k = 0; k < gTetriminoWidth; ++k) {
-				int x = mTetriminoPosX + k;
-            if (x < 0 || x >= GameBoard::mGbWidth) continue;
-				if (mTetrimino[k][i]) {
-					gb.SetCursorPos(gb.GetmGameBoardPosX() + (x + 1) * 2, gb.GetmGameBoardPosY() + y + 1);
-					cout << "  ";
-				}
-			}
-    }
-}
 
 //接触判定
 bool BlockPiece::IsMoveDown() {
@@ -446,3 +419,6 @@ int BlockPiece::TetriminoTypeToColor(int ttc) {
 }
 
 
+BlockPiece::BlockPiece() {
+
+}
