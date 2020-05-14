@@ -10,26 +10,26 @@ using std::cout;
 using std::endl;
 
 //ゲームボード外枠の描画
-void DrawGameBoard::DrawBoard(GameBoard gb) {
+void DrawGameBoard::DrawBoard(GameBoard& gb) {
 
 	gbpy = gb.GetmGameBoardPosY();
 
 	//色設定
 	gb.SetColor((int)GameBoard::Color::Gray, (int)(GameBoard::Color::Gray));
 
-	gb.SetCursorPos(gb.mGameBoardPosX, gbpy);
+	SetCursorPos(gb.mGameBoardPosX, gbpy);
 	for (int x = 0; x < GameBoard::mGbWidth + 2; ++x) {
 		cout << "  ";
 	}
 
-	gb.SetCursorPos(gb.mGameBoardPosX, gbpy + GameBoard::mGbHeight + 1);
+	SetCursorPos(gb.mGameBoardPosX, gbpy + GameBoard::mGbHeight + 1);
 	for (int x = 0; x < GameBoard::mGbWidth + 2; ++x) {
 		cout << "  ";
 	}
 	for (int y = gbpy + 1; y < gbpy + GameBoard::mGbHeight + 1; ++y) {
-		gb.SetCursorPos(gb.mGameBoardPosX, y);
+		SetCursorPos(gb.mGameBoardPosX, y);
 		cout << "  ";
-		gb.SetCursorPos(gb.mGameBoardPosX + (GameBoard::mGbWidth + 1) * 2, y);
+		SetCursorPos(gb.mGameBoardPosX + (GameBoard::mGbWidth + 1) * 2, y);
 		cout << "  ";
 	}
 }
@@ -43,19 +43,19 @@ void DrawGameBoard::DrawBoard(GameBoard gb, GameBoard::Color cl)
 	//色設定
 	gb.SetColor(static_cast<int>(cl), static_cast<int>(cl));
 
-	gb.SetCursorPos(gbpx, gbpy);
+	SetCursorPos(gbpx, gbpy);
 	for (int x = 0; x < GameBoard::mGbWidth + 2; ++x) {
 		cout << "  ";
 	}
 
-	gb.SetCursorPos(gbpx, gbpy + GameBoard::mGbHeight + 1);
+	SetCursorPos(gbpx, gbpy + GameBoard::mGbHeight + 1);
 	for (int x = 0; x < GameBoard::mGbWidth + 2; ++x) {
 		cout << "  ";
 	}
 	for (int y = gbpy + 1; y < gbpy + GameBoard::mGbHeight + 1; ++y) {
-		gb.SetCursorPos(gbpx, y);
+		SetCursorPos(gbpx, y);
 		cout << "  ";
-		gb.SetCursorPos(gbpx + (GameBoard::mGbWidth + 1) * 2, y);
+		SetCursorPos(gbpx + (GameBoard::mGbWidth + 1) * 2, y);
 		cout << "  ";
 	}
 }
@@ -65,7 +65,7 @@ void DrawGameBoard::DrawStage(GameBoard gb) {
 	BlockPiece bp;
 
 	for (int y = 1; y <= GameBoard::mGbHeight; ++y) {
-		gb.SetCursorPos(gb.GetmGameBoardPosX() + 2, y + gb.GetmGameBoardPosY());
+		SetCursorPos(gb.GetmGameBoardPosX() + 2, y + gb.GetmGameBoardPosY());
 		for (int x = 1; x <= GameBoard::mGbWidth; ++x) {
 			//空ではないブロックは緑で固定化→
 			if (gb.GetGameBoardValue(x,y) != gb.GetmEmpty()) {
@@ -83,6 +83,13 @@ void DrawGameBoard::DrawStage(GameBoard gb) {
 	}
 }
 
+void DrawGameBoard::SetCursorPos(int x, int y) {
+	HANDLE hCons = GetStdHandle(STD_OUTPUT_HANDLE);
+	COORD pos;
+	pos.X = x;
+	pos.Y = y;
+	SetConsoleCursorPosition(hCons, pos);
+}
 
 
 //スコア表示
@@ -96,7 +103,7 @@ void DrawGameBoard::DrawScore() {
 	
 	int score = sc.GetScore();//スコア取得
 
-	gb.SetCursorPos(ScorePosX,ScorePosY);
+	SetCursorPos(ScorePosX,ScorePosY);
 	//スコアの色を設定
 	gb.SetColor(static_cast<int>(GameBoard::Color::Gray), static_cast<int>(GameBoard::Color::Black));
 	
@@ -115,7 +122,7 @@ void DrawGameBoard::DrawRotType() {
 	int RotePosY = gb.GetmGameBoardPosY() + 2;
 
 	int RotType = bp.GetRot();
-	gb.SetCursorPos(RotPosX, RotePosY);
+	SetCursorPos(RotPosX, RotePosY);
 	gb.SetColor(static_cast<int>(GameBoard::Color::Gray), static_cast<int>(GameBoard::Color::Black));
 	cout << "RotType:";
 	cout.width(8);
