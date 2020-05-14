@@ -53,9 +53,6 @@ public:
 
 	void InitGameBoard();// ゲームボード初期化
 
-	void SetColor(int fg, int bg);
-	void SetCursorPos(int x, int y);
-
 	int GetmEmpty() const;
 
 	int GetmGameBoardPosX() const;

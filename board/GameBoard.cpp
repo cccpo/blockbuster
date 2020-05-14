@@ -41,37 +41,6 @@ void GameBoard::SetTerimonoValue(int x,int y,int val) {
     gBoard[x][y] = val;
 }
 
-void GameBoard::SetColor(int fg, int bg) {
-    HANDLE hCons = GetStdHandle(STD_OUTPUT_HANDLE);
-    WORD attr = 0;
-    if (fg & static_cast<int>(GameBoard::Mask::Intensity))
-        attr |= FOREGROUND_INTENSITY;
-    if (fg & static_cast<int>(GameBoard::Mask::RedMask))
-        attr |= FOREGROUND_RED;
-    if (fg & static_cast<int>(GameBoard::Mask::GreenMask))
-        attr |= FOREGROUND_GREEN;
-    if (fg & static_cast<int>(GameBoard::Mask::BlueMask))
-        attr |= FOREGROUND_BLUE;
-
-    if (bg & static_cast<int>(GameBoard::Mask::Intensity))
-        attr |= BACKGROUND_INTENSITY;
-    if (bg & static_cast<int>(GameBoard::Mask::RedMask))
-        attr |= BACKGROUND_RED;
-    if (bg & static_cast<int>(GameBoard::Mask::GreenMask))
-        attr |= BACKGROUND_GREEN;
-    if (bg & static_cast<int>(GameBoard::Mask::BlueMask))
-        attr |= BACKGROUND_BLUE;
-    SetConsoleTextAttribute(hCons, attr);
-}
-
-void GameBoard::SetCursorPos(int x, int y) {
-    HANDLE hCons = GetStdHandle(STD_OUTPUT_HANDLE);
-    COORD pos;
-    pos.X = x;
-    pos.Y = y;
-    SetConsoleCursorPosition(hCons, pos);
-}
-
 void GameBoard::Down(int y) {
 
     while (y > 1) {
