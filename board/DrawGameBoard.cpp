@@ -10,9 +10,9 @@ using std::cout;
 using std::endl;
 
 //ゲームボード外枠の描画
-void DrawGameBoard::DrawBoard(GameBoard& gb) {
+void DrawGameBoard::DrawBoard(GameBoard const& gb) {
 	//色設定
-	gb.SetColor((int)GameBoard::Color::Gray, (int)(GameBoard::Color::Gray));
+	SetColor((int)GameBoard::Color::Gray, (int)(GameBoard::Color::Gray));
 
 	SetCursorPos(gb.mGameBoardPosX, gb.mGameBoardPosY);
 	for (int x = 0; x < GameBoard::mGbWidth + 2; ++x) {
@@ -35,7 +35,7 @@ void DrawGameBoard::DrawBoard(GameBoard& gb) {
 void DrawGameBoard::DrawBoard(GameBoard gb, GameBoard::Color cl) 
 {
 	//色設定
-	gb.SetColor(static_cast<int>(cl), static_cast<int>(cl));
+	SetColor(static_cast<int>(cl), static_cast<int>(cl));
 
 	SetCursorPos(gb.mGameBoardPosX, gb.mGameBoardPosY);
 	for (int x = 0; x < GameBoard::mGbWidth + 2; ++x) {
@@ -66,10 +66,10 @@ void DrawGameBoard::DrawStage(GameBoard gb) {
 				int Color = bp.TetriminoTypeToColor(gb.GetGameBoardValue(x, y));
 
 				//テトリミノの色を設定
-				gb.SetColor(static_cast<int>(Color), static_cast<int>(Color));
+				SetColor(static_cast<int>(Color), static_cast<int>(Color));
 			}
 			else
-				gb.SetColor(static_cast<int>(GameBoard::Color::Gray), static_cast<int>(GameBoard::Color::Black));
+				SetColor(static_cast<int>(GameBoard::Color::Gray), static_cast<int>(GameBoard::Color::Black));
 			cout << "  ";
 		}
 	}
@@ -79,10 +79,10 @@ void DrawGameBoard::DrawStage(GameBoard gb) {
 void DrawGameBoard::DrawTetrimino(BlockPiece& bp)
 {
 	//GUIアプリとして移植する際にテトリミノを形状と色を持った構造体として定義することで描画を行う関数側から指定する必要をなくす
-	int Color = TetriminoTypeToColor(bp.mTetriminoType + 1);
+	int Color = TetriminoTypeToColor(bp.mTetriminoType + 1);//Typeの範囲を0~6ではなく、1~7に、
 
 	//テトリミノの色を設定
-	gb.SetColor(static_cast<int>(Color), static_cast<int>(Color));
+	SetColor(static_cast<int>(Color), static_cast<int>(Color));
 
 
 	for (int i = 0; i < gTetriminoWidth; ++i) {
@@ -92,7 +92,7 @@ void DrawGameBoard::DrawTetrimino(BlockPiece& bp)
 			int x = bp.mTetriminoPosX + k;
 			if (x < 0 || x >= GameBoard::mGbWidth) continue;
 			if (bp.mTetrimino[k][i]) {
-				gb.SetCursorPos(gb.GetmGameBoardPosX() + (x + 1) * 2, gb.GetmGameBoardPosY() + y + 1);
+				SetCursorPos(gb.GetmGameBoardPosX() + (x + 1) * 2, gb.GetmGameBoardPosY() + y + 1);
 				cout << "  ";
 			}
 		}
@@ -155,7 +155,7 @@ void DrawGameBoard::DrawScore() {
 
 	SetCursorPos(ScorePosX,ScorePosY);
 	//スコアの色を設定
-	gb.SetColor(static_cast<int>(GameBoard::Color::Gray), static_cast<int>(GameBoard::Color::Black));
+	SetColor(static_cast<int>(GameBoard::Color::Gray), static_cast<int>(GameBoard::Color::Black));
 	
 	cout << "score:";
 	cout.width(8);     
@@ -173,8 +173,33 @@ void DrawGameBoard::DrawRotType() {
 
 	int RotType = bp.GetRot();
 	SetCursorPos(RotPosX, RotePosY);
-	gb.SetColor(static_cast<int>(GameBoard::Color::Gray), static_cast<int>(GameBoard::Color::Black));
+	SetColor(static_cast<int>(GameBoard::Color::Gray), static_cast<int>(GameBoard::Color::Black));
 	cout << "RotType:";
 	cout.width(8);
 	cout << RotType;
+}
+
+
+
+void DrawGameBoard::SetColor(int fg, int bg) {
+	HANDLE hCons = GetStdHandle(STD_OUTPUT_HANDLE);
+	WORD attr = 0;
+	if (fg & static_cast<int>(Mask::Intensity))
+		attr |= FOREGROUND_INTENSITY;
+	if (fg & static_cast<int>(Mask::RedMask))
+		attr |= FOREGROUND_RED;
+	if (fg & static_cast<int>(Mask::GreenMask))
+		attr |= FOREGROUND_GREEN;
+	if (fg & static_cast<int>(Mask::BlueMask))
+		attr |= FOREGROUND_BLUE;
+
+	if (bg & static_cast<int>(Mask::Intensity))
+		attr |= BACKGROUND_INTENSITY;
+	if (bg & static_cast<int>(Mask::RedMask))
+		attr |= BACKGROUND_RED;
+	if (bg & static_cast<int>(Mask::GreenMask))
+		attr |= BACKGROUND_GREEN;
+	if (bg & static_cast<int>(Mask::BlueMask))
+		attr |= BACKGROUND_BLUE;
+	SetConsoleTextAttribute(hCons, attr);
 }
