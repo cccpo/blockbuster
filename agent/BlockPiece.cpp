@@ -370,19 +370,12 @@ int BlockPiece::GetTeriminoValue(int x,int y) {
 	return s;
 }
 
-//int BlockPiece::GetRot() {
-//	return mRotIX;
-//}
+
 
 void BlockPiece::SetRot(int r) {
 	mRotIX = r;
 }
 
-//BlockPiece::BlockPiece(byte* p, int tw, int th) {
-//	top = p;
-//	= tw;
-//
-//}
 
 int BlockPiece::TetriminoTypeToColor(int ttc) {
 	static int tkl;
