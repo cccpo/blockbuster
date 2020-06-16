@@ -86,7 +86,7 @@ void StartGame() {
 					continue;
 				}
 				++bpy;     // —Ž‰º’†ƒeƒgƒŠƒX‚ð‚Ð‚Æ‚Â‰º‚ÉˆÚ“®
-				bp->SetgTeriminoPosY(bpy);
+				bp->SetTeriminoPosY(bpy);
 				update = true;
 			}
 

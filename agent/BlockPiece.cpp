@@ -217,9 +217,9 @@ void BlockPiece::AddTertimino() {
 	int gbw = GameBoard::mGbWidth;
 	
 	SetTeriminoPosX(((gbw - gTetriminoWidth) / 2));
-	SetgTeriminoPosY(0);
+	SetTeriminoPosY(0);
 
-	SetgTeriminoType(type(mt));
+	SetTeriminoType(type(mt));
 	//Ç±Ç±Ç≈êFÇ‡éwíËÇ∑ÇÈÇ©?
 
     SetTertimino(mTetriminoType, mRotIX = 0);
@@ -349,7 +349,7 @@ int BlockPiece::GetTetriminoPosY() {
 	return mTetriminoPosY;
 }
 
-void BlockPiece::SetgTeriminoPosY(int tpy) {
+void BlockPiece::SetTeriminoPosY(int tpy) {
 	mTetriminoPosY = tpy;
 }
 
@@ -357,7 +357,7 @@ int BlockPiece::GetgTeriminoType(){
 	return mTetriminoType;
 }
 
-void BlockPiece::SetgTeriminoType(int ttype) {
+void BlockPiece::SetTeriminoType(int ttype) {
 	mTetriminoType = ttype;
 }
 

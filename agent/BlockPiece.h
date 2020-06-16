@@ -56,15 +56,14 @@ public:
 	void ChangeBlock();
 
 	int GetTetriminoPosY();
-	void SetgTeriminoPosY(int tpy);
+	void SetTeriminoPosY(int tpy);
 
 	void DeleteLine();
 
-	//int GetRot();
 	void SetRot(int r);
 	
 	int GetgTeriminoType();
-	void SetgTeriminoType(int ttype);
+	void SetTeriminoType(int ttype);
 
 	int GetTeriminoValue(int x, int y);
 	
