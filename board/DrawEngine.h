@@ -2,6 +2,8 @@
 #include <Windows.h>
 
 #include "GameBoard.h"
+#include "../agent/BlockPiece.h"
+#include "../state/Score.h"
 
 //　GameBoardの描画を行うクラス
 class DrawEngine
@@ -28,9 +30,11 @@ public:
 	
 	void DrawTetrimino(BlockPiece& bp);
 
-	int TetriminoTypeToColor(int ttc);
+	int TetriminoTypeToColor(int ttc);//テトリミノの形状から色を設定する
 
 	void DrawScore();//スコア表示
+
+	void DrawRule();
 
 	void DrawRotType();
 
@@ -42,6 +46,8 @@ public:
 
 protected:
 	GameBoard gb;
+	BlockPiece bp;
+	Score sc;
 
 
 };

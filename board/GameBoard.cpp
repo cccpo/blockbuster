@@ -42,6 +42,7 @@ void GameBoard::SetTerimonoValue(int x,int y,int val) {
     gBoard[x][y] = val;
 }
 
+// 一段落とす(揃ったときに使用)
 void GameBoard::Down(int y) {
 
     while (y > 1) {
@@ -49,22 +50,22 @@ void GameBoard::Down(int y) {
             gBoard[x][y] = gBoard[x][y - 1];     // １行下に移動
         --y;      //  上の行に
     }
+    
     for (int x = 1; x <= mGbWidth; ++x)
         gBoard[x][1] = 0;     // 最上行は空に
 }
 
-
-
+// 初期化関数
 int GameBoard::GetmEmpty() const{
     return mEmpty;
 }
 
-
-
+// ゲームボードのx座標を返す
 int GameBoard::GetmGameBoardPosX() const{
     return mGameBoardPosX;
 }
 
+// ゲームボードのy座標を返す
 int GameBoard::GetmGameBoardPosY() const{
     return mGameBoardPosY;
 }

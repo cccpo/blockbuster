@@ -36,24 +36,18 @@ public:
 
 	int mGameBoardPosX;//ゲームボード位置のx座標
 	int mGameBoardPosY;//ゲームボード位置のy座標
-	//
-
 
 	void InitGameBoard();// ゲームボード初期化
 
 	int GetGameBoardValue(int x, int y);// ゲームボードの値をゲット
-
 	void SetTerimonoValue(int x, int y, int val);// ゲームボードの値をセット
 
-	int GetmEmpty() const;
+	void Down(int y);// 一段落とす(揃ったときに使用)
 
-	int GetmGameBoardPosX() const;
+	int GetmEmpty() const;// 初期化関数
 
-	int GetmGameBoardPosY() const;
-
-
-
-	void Down(int y);
+	int GetmGameBoardPosX() const;// ゲームボードのx座標を返す
+	int GetmGameBoardPosY() const;// ゲームボードのy座標を返す
 
 	GameBoard();
 
