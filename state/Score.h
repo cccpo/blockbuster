@@ -9,7 +9,6 @@ private:
 
 
  public:
-	 int mScore = 0;
 	
 	int GetScore() const;////スコアを取得
 	void SetScore(int sc);//スコアをセット

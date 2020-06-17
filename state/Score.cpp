@@ -2,6 +2,7 @@
 
 
 static int mHighScore;
+int mScore = 0;
 
 //ƒXƒRƒA‚ğæ“¾
 int Score::GetScore() const{
