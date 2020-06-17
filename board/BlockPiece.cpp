@@ -269,6 +269,7 @@ bool BlockPiece::IsMoveRight(GameBoard gb) {
 	return true;
 }
 
+//˜gŠO‚ÉˆÚ“®‚µ‚È‚¢‚æ‚¤‚É‚·‚é
 bool BlockPiece::IsOverLaped(GameBoard gb) {
 	for (int y = 0; y < gTetriminoHeight; ++y) {
 		for (int x = 0; x < gTetriminoWidth; ++x) {
