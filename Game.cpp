@@ -63,7 +63,7 @@ void StartGame() {
 
 	
 	//テトリミノ生成時点で固定ブロックと接触するとループを抜ける
-	 while (!bp->IsOverLaped()) {
+	 while (!bp->IsOverLaped(*gb)) {
 	//for(int cnt =1;;++cnt){
 			bool update = false;
 
@@ -73,8 +73,8 @@ void StartGame() {
 					key = 0;
 					int FinalPosX = bp->GetgTetriminoPosX();
 					int FinalPosY = bp->GetTetriminoPosY();
-					bp->ChangeBlock();//ブロックの固定化
-					bp->DeleteLine();//揃ったlineの消去
+					bp->ChangeBlock(*gb);//ブロックの固定化
+					bp->DeleteLine(*gb);//揃ったlineの消去
 					de.DrawScore();
 				/*	de.DrawRule();*/
 					bp->AddTertimino();
@@ -82,7 +82,7 @@ void StartGame() {
 					de.DrawTetrimino(*bp);
 					bpx = bp->GetgTetriminoPosX();//テトリミノx座標設定
 					bpy = bp->GetTetriminoPosY();//テトリミノy座標設定
-					if (bp->IsOverLaped())
+					if (bp->IsOverLaped(*gb))
 						return;
 					continue;
 				}
@@ -119,7 +119,7 @@ void StartGame() {
 						tx = 0;
 					}
 					bp->SetTertimino(bp->mTetriminoType, tx);
-					if (bp->IsOverLaped()) {    
+					if (bp->IsOverLaped(*gb)) {    
 						bp->SetTertimino(bp->mTetriminoType, bp->GetRot());
 					}
 					else {
@@ -161,10 +161,6 @@ void StartGame() {
 
 
 }
-
-
-
-
 
 //main
 int main() {
