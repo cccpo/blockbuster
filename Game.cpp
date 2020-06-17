@@ -12,7 +12,7 @@
 #include "state/Score.h"
 #include "board/GameBoard.h"
 #include "board/DrawEngine.h"
-#include "agent/BlockPiece.h"
+#include "board/BlockPiece.h"
 #include "Input/KeyInput.h"
 #include "Data/Data.h"
 
@@ -24,7 +24,7 @@ using std::endl;
 void StartGame() {
 	static GameBoard *gb,*gb1;
 
-	DrawEngine dgb;
+	DrawEngine de;
 	static BlockPiece *bp;
 	KeyInput ki;
 	Score sc;
@@ -38,17 +38,17 @@ void StartGame() {
 	gb->InitGameBoard();//ゲームボード初期化
 	//gb1->InitGameBoard();
 	
-	dgb.DrawBoard(*gb);//ゲームボード外枠の描画
-	//dgb.DrawBoard(*gb1,GameBoard::Color::Red);
-	dgb.DrawStage(*gb);//ゲームボード内部の描画
+	de.DrawBoard(*gb);//ゲームボード外枠の描画
+	//de.DrawBoard(*gb1,GameBoard::Color::Red);
+	de.DrawStage(*gb);//ゲームボード内部の描画
 
 	sc.SetScore(0);//スコアの初期化
-	dgb.DrawScore();//スコア表示
+	de.DrawScore();//スコア表示
 	
 	bp = new BlockPiece();
 
 	bp->AddTertimino();//テトリミノの追加
-	dgb.DrawTetrimino(*bp);//テトリミノの描画
+	de.DrawTetrimino(*bp);//テトリミノの描画
 
 	int bpx = bp->GetgTetriminoPosX();//テトリミノx座標設定
 	int bpy = bp->GetTetriminoPosY();//テトリミノy座標設定
@@ -69,17 +69,17 @@ void StartGame() {
 
 			if (cnt % FallInterval == 0 || key == VK_DOWN){
 				//テトリミノが動かくなったら以下の処理
-				if (!bp->IsMoveDown()) {
+				if (!bp->IsMoveDown(*gb)) {
 					key = 0;
 					int FinalPosX = bp->GetgTetriminoPosX();
 					int FinalPosY = bp->GetTetriminoPosY();
 					bp->ChangeBlock();//ブロックの固定化
 					bp->DeleteLine();//揃ったlineの消去
-					dgb.DrawScore();
-				/*	dgb.DrawRule();*/
+					de.DrawScore();
+				/*	de.DrawRule();*/
 					bp->AddTertimino();
-					dgb.DrawStage(*gb);//ゲームボード内部の描画(ToDo)
-					dgb.DrawTetrimino(*bp);
+					de.DrawStage(*gb);//ゲームボード内部の描画(ToDo)
+					de.DrawTetrimino(*bp);
 					bpx = bp->GetgTetriminoPosX();//テトリミノx座標設定
 					bpy = bp->GetTetriminoPosY();//テトリミノy座標設定
 					if (bp->IsOverLaped())
@@ -93,7 +93,7 @@ void StartGame() {
 
 			if (cnt % MoveInterval == 0) {   
 				if (key == VK_LEFT) {
-					if (bp->IsMoveLeft()) {
+					if (bp->IsMoveLeft(*gb)) {
 						--bpx;  
 						bp->SetTeriminoPosX(bpx);
 						update = true;
@@ -101,7 +101,7 @@ void StartGame() {
 					key = 0;
 				}
 				else if (key == VK_RIGHT) {
-					if (bp->IsMoveRight()) {
+					if (bp->IsMoveRight(*gb)) {
 						++bpx;  
 						bp->SetTeriminoPosX(bpx);
 						update = true;
@@ -130,8 +130,8 @@ void StartGame() {
 				}
 			}
 			if (update) {
-				dgb.DrawStage(*gb);//ゲームボード内部の描画(ToDo)
-				dgb.DrawTetrimino(*bp);
+				de.DrawStage(*gb);//ゲームボード内部の描画(ToDo)
+				de.DrawTetrimino(*bp);
 				
 			}
 			if (!keyDown) {     // キー押下を受け付けていない場合
@@ -173,7 +173,7 @@ int main() {
 
 	//ゲーム開始
 	GameBoard gb;
-	DrawEngine dgb;
+	DrawEngine de;
 	KeyInput ki;
 	//cout << st.GetScore() << endl;
 	Score sc;
@@ -187,13 +187,11 @@ int main() {
 
 		end = chrono::system_clock::now();
 
-	
-
 		double time = static_cast<double>(chrono::duration_cast<chrono::microseconds>(end - start).count() / 1000.0);
 		
 		//処理を変更する必要がある。
-		dgb.SetCursorPos(0, GameBoard::mGbHeight+5);
-		dgb.SetColor((int)DrawEngine::Color::Gray, (int)DrawEngine::Color::Black);
+		de.SetCursorPos(0, GameBoard::mGbHeight+5);
+		de.SetColor((int)DrawEngine::Color::Gray, (int)DrawEngine::Color::Black);
 		
 		//ハイスコア更新時の処理
 		if (sc.GetScore()>sc.GetHighScore()) {
@@ -211,7 +209,7 @@ int main() {
 			Sleep(LoopInterval);     // 10ミリ秒ウェイト
 		}
 
-		dgb,SetCursorPos(0, 25 - 1);//リプレイ時にゲームボードの位置が初期化される
+		de.SetCursorPos(0, 25 - 1);//リプレイ時にゲームボードの位置が初期化される
 		
 		for (int i = 0; i < 80 - 1; ++i) {
 			std::cout << ' ';
