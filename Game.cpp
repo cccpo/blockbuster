@@ -76,6 +76,7 @@ void StartGame() {
 					bp->ChangeBlock();//ブロックの固定化
 					bp->DeleteLine();//揃ったlineの消去
 					dgb.DrawScore();
+				/*	dgb.DrawRule();*/
 					bp->AddTertimino();
 					dgb.DrawStage(*gb);//ゲームボード内部の描画(ToDo)
 					dgb.DrawTetrimino(*bp);
@@ -192,14 +193,14 @@ int main() {
 		
 		//処理を変更する必要がある。
 		dgb.SetCursorPos(0, GameBoard::mGbHeight+5);
-		dgb.SetColor(static_cast<int>(GameBoard::Color::Gray), static_cast<int>(GameBoard::Color::Black));
+		dgb.SetColor((int)DrawEngine::Color::Gray, (int)DrawEngine::Color::Black);
 		
+		//ハイスコア更新時の処理
 		if (sc.GetScore()>sc.GetHighScore()) {
 			std::cout << "HiScore!!" << sc.GetScore() <<endl;
 			d.HiScoreSave(sc.GetScore());
 		}
 		
-		//dgb.SetCursorPos(0, GameBoard::mGbHeight + 15);
 		std::cout << "GAME OVER. Replay? [Y/N] "<< endl;
 		
 		for (;;) {
