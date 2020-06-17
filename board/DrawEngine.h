@@ -15,9 +15,15 @@ private:
 	};
 
 public:
+	enum class Color : int
+	{
+		Black = 0x00, DarkBlue, DarkGreen, DarkCyan, DarkRed, DarkViolet, DarkYellow, Gray, LightGray, Blue,
+		Green, Cyan, Red, Violet, Yellow, White
+
+	};
 
 	void DrawBoard(GameBoard const& gb);//ゲームボード外枠の描画
-	void DrawBoard(GameBoard gb,GameBoard::Color cl);//ゲームボード外枠の描画
+	void DrawBoard(GameBoard gb,Color cl);//ゲームボード外枠の描画
 	void DrawStage(GameBoard gb);//ゲームボード内部の描画
 	
 	void DrawTetrimino(BlockPiece& bp);

@@ -12,7 +12,7 @@ using std::endl;
 //ゲームボード外枠の描画
 void DrawEngine::DrawBoard(GameBoard const& gb) {
 	//色設定
-	SetColor((int)GameBoard::Color::Gray, (int)(GameBoard::Color::Gray));
+	SetColor((int)Color::Gray, (int)(Color::Gray));
 
 	SetCursorPos(gb.mGameBoardPosX, gb.mGameBoardPosY);
 	for (int x = 0; x < GameBoard::mGbWidth + 2; ++x) {
@@ -32,7 +32,7 @@ void DrawEngine::DrawBoard(GameBoard const& gb) {
 }
 
 //ゲームボード外枠の描画(外枠色指定)
-void DrawEngine::DrawBoard(GameBoard gb, GameBoard::Color cl) 
+void DrawEngine::DrawBoard(GameBoard gb, Color cl) 
 {
 	//色設定
 	SetColor(static_cast<int>(cl), static_cast<int>(cl));
@@ -63,13 +63,13 @@ void DrawEngine::DrawStage(GameBoard gb) {
 		for (int x = 1; x <= GameBoard::mGbWidth; ++x) {
 			//空ではないブロックは固定化→
 			if (gb.GetGameBoardValue(x,y) != gb.GetmEmpty()) {
-				int Color = bp.TetriminoTypeToColor(gb.GetGameBoardValue(x, y));
+				int Color = TetriminoTypeToColor(gb.GetGameBoardValue(x, y));
 
 				//テトリミノの色を設定
 				SetColor(static_cast<int>(Color), static_cast<int>(Color));
 			}
 			else
-				SetColor(static_cast<int>(GameBoard::Color::Gray), static_cast<int>(GameBoard::Color::Black));
+				SetColor(static_cast<int>(Color::Gray), static_cast<int>(Color::Black));
 			cout << "  ";
 		}
 	}
@@ -99,6 +99,7 @@ void DrawEngine::DrawTetrimino(BlockPiece& bp)
 	}
 }
 
+//テトリミノの形状から色を設定する
 int DrawEngine::TetriminoTypeToColor(int ttc) {
 	static int tkl;
 
@@ -106,25 +107,25 @@ int DrawEngine::TetriminoTypeToColor(int ttc) {
 	switch (ttc)
 	{
 		case static_cast<int>(BlockPiece::TetrimnoType::TypeA) :
-			tkl = static_cast<int>(GameBoard::Color::Cyan);
+			tkl = static_cast<int>(Color::Cyan);
 			break;
 		case static_cast<int>(BlockPiece::TetrimnoType::TypeB) :
-			tkl = static_cast<int>(GameBoard::Color::Yellow);
+			tkl = static_cast<int>(Color::Yellow);
 			break;
 		case static_cast<int>(BlockPiece::TetrimnoType::TypeC) :
-			tkl = static_cast<int>(GameBoard::Color::Red);
+			tkl = static_cast<int>(Color::Red);
 			break;
 		case static_cast<int>(BlockPiece::TetrimnoType::TypeD) :
-			tkl = static_cast<int>(GameBoard::Color::Green);
+			tkl = static_cast<int>(Color::Green);
 			break;
 		case static_cast<int>(BlockPiece::TetrimnoType::TypeE) :
-			tkl = static_cast<int>(GameBoard::Color::Blue);
+			tkl = static_cast<int>(Color::Blue);
 			break;
 		case static_cast<int>(BlockPiece::TetrimnoType::TypeF) :
-			tkl = static_cast<int>(GameBoard::Color::DarkRed);
+			tkl = static_cast<int>(Color::DarkRed);
 			break;
 		case static_cast<int>(BlockPiece::TetrimnoType::TypeG) :
-			tkl = static_cast<int>(GameBoard::Color::Violet);
+			tkl = static_cast<int>(Color::Violet);
 			break;
 		default:
 			break;
@@ -155,7 +156,7 @@ void DrawEngine::DrawScore() {
 
 	SetCursorPos(ScorePosX,ScorePosY);
 	//スコアの色を設定
-	SetColor(static_cast<int>(GameBoard::Color::Gray), static_cast<int>(GameBoard::Color::Black));
+	SetColor(static_cast<int>(Color::Gray), static_cast<int>(Color::Black));
 	
 	cout << "score:";
 	cout.width(8);     
@@ -173,7 +174,7 @@ void DrawEngine::DrawRotType() {
 
 	int RotType = bp.GetRot();
 	SetCursorPos(RotPosX, RotePosY);
-	SetColor(static_cast<int>(GameBoard::Color::Gray), static_cast<int>(GameBoard::Color::Black));
+	SetColor(static_cast<int>(Color::Gray), static_cast<int>(Color::Black));
 	cout << "RotType:";
 	cout.width(8);
 	cout << RotType;

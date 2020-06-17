@@ -67,7 +67,6 @@ public:
 
 	int GetTeriminoValue(int x, int y);
 	
-	int TetriminoTypeToColor(int ttc);
 
 	
 	BlockPiece();

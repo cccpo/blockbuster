@@ -377,41 +377,6 @@ void BlockPiece::SetRot(int r) {
 }
 
 
-int BlockPiece::TetriminoTypeToColor(int ttc) {
-	static int tkl;
-
-
-	switch (ttc)
-	{
-	case static_cast<int>(BlockPiece::TetrimnoType::TypeA):
-		tkl = static_cast<int>(GameBoard::Color::Cyan);
-		break;
-	case static_cast<int>(BlockPiece::TetrimnoType::TypeB):
-		tkl = static_cast<int>(GameBoard::Color::Yellow);
-		break;
-	case static_cast<int>(BlockPiece::TetrimnoType::TypeC):
-		tkl = static_cast<int>(GameBoard::Color::Red);
-		break;
-	case static_cast<int>(BlockPiece::TetrimnoType::TypeD):
-		tkl = static_cast<int>(GameBoard::Color::Green);
-		break;
-	case static_cast<int>(BlockPiece::TetrimnoType::TypeE):
-		tkl = static_cast<int>(GameBoard::Color::Blue);
-		break;
-	case static_cast<int>(BlockPiece::TetrimnoType::TypeF):
-		tkl = static_cast<int>(GameBoard::Color::DarkRed);
-		break;
-	case static_cast<int>(BlockPiece::TetrimnoType::TypeG) :
-		tkl = static_cast<int>(GameBoard::Color::Violet);
-		break;
-	default:
-		break;
-	}
-
-	return tkl;
-}
-
-
 BlockPiece::BlockPiece() {
 
 }
