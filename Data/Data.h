@@ -12,7 +12,7 @@ private:
 
 public:
 
-	int HiScoreLoad();
-	void HiScoreSave(int sc);
+	int HiScoreLoad();//"HiScore.txt"よりハイスコアを取得
+	void HiScoreSave(int sc);//ハイスコアを"HiScore.txt"に保存する
 };
 
