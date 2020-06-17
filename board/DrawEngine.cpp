@@ -2,8 +2,8 @@
 
 
 #include "DrawEngine.h"
-#include "../state/Score.h"
-#include "../agent/BlockPiece.h"
+
+
 
 
 using std::cout;
@@ -12,7 +12,7 @@ using std::endl;
 //ゲームボード外枠の描画
 void DrawEngine::DrawBoard(GameBoard const& gb) {
 	//色設定
-	SetColor((int)Color::Gray, (int)(Color::Gray));
+	SetColor((int)Color::Gray, (int)Color::Gray);
 
 	SetCursorPos(gb.mGameBoardPosX, gb.mGameBoardPosY);
 	for (int x = 0; x < GameBoard::mGbWidth + 2; ++x) {
@@ -35,7 +35,7 @@ void DrawEngine::DrawBoard(GameBoard const& gb) {
 void DrawEngine::DrawBoard(GameBoard gb, Color cl) 
 {
 	//色設定
-	SetColor(static_cast<int>(cl), static_cast<int>(cl));
+	SetColor((int)(cl), (int)(cl));
 
 	SetCursorPos(gb.mGameBoardPosX, gb.mGameBoardPosY);
 	for (int x = 0; x < GameBoard::mGbWidth + 2; ++x) {
@@ -56,8 +56,6 @@ void DrawEngine::DrawBoard(GameBoard gb, Color cl)
 
 //ゲームボード内部の描画
 void DrawEngine::DrawStage(GameBoard gb) {
-	BlockPiece bp;
-
 	for (int y = 1; y <= GameBoard::mGbHeight; ++y) {
 		SetCursorPos(gb.GetmGameBoardPosX() + 2, y + gb.GetmGameBoardPosY());
 		for (int x = 1; x <= GameBoard::mGbWidth; ++x) {
@@ -134,6 +132,7 @@ int DrawEngine::TetriminoTypeToColor(int ttc) {
 	return tkl;
 }
 
+//コンソール上の描画位置を設定
 void DrawEngine::SetCursorPos(int x, int y) {
 	HANDLE hCons = GetStdHandle(STD_OUTPUT_HANDLE);
 	COORD pos;
@@ -145,9 +144,6 @@ void DrawEngine::SetCursorPos(int x, int y) {
 
 //スコア表示
 void DrawEngine::DrawScore() {
-	GameBoard gb;
-	Score sc;
-	
 	//スコア表示位置の設定
 	int ScorePosX = (gb.GetmGameBoardPosX() + GameBoard::mGbWidth + 2) * 3 + 4;
 	int ScorePosY = gb.GetmGameBoardPosY();
@@ -162,13 +158,24 @@ void DrawEngine::DrawScore() {
 	cout.width(8);     
 	cout << score;
 }
+//
+////ルール表示
+//void DrawEngine::DrawRule() {
+//	//スコア表示位置の設定
+//	int RulePosX = (gb.GetmGameBoardPosX() + GameBoard::mGbWidth + 2) * 3 + 4;
+//	int RulePosY = gb.GetmGameBoardPosY();
+//
+//	SetCursorPos(RulePosX, RulePosY);
+//	//スコアの色を設定
+//	SetColor(static_cast<int>(Color::Gray), static_cast<int>(Color::Black));
+//
+//	cout << "Rule:";
+//	cout.width(8);
+//	cout << pa;
+//}
 
 //デバック用テスト関数
 void DrawEngine::DrawRotType() {
-	GameBoard gb;
-	Score sc;
-	BlockPiece bp;
-
 	int RotPosX = (gb.GetmGameBoardPosX() + (GameBoard::mGbWidth + 2) * 3 + 4);
 	int RotePosY = gb.GetmGameBoardPosY() + 2;
 

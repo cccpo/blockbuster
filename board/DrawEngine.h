@@ -2,7 +2,7 @@
 #include <Windows.h>
 
 #include "GameBoard.h"
-#include "../agent/BlockPiece.h"
+#include "BlockPiece.h"
 #include "../state/Score.h"
 
 //　GameBoardの描画を行うクラス
