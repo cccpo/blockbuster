@@ -1,18 +1,19 @@
 #include "Score.h"
 
-int mScore = 0;
+
 static int mHighScore;
 
-//score取得
+//スコアを取得
 int Score::GetScore() const{
 	return mScore;
 };
 
-
+//スコアをセット
 void Score::SetScore(int sc) {
 	mScore = sc;
 };
 
+//消去パターンに応じてスコアを加算
 void Score::AddScore(int a) {
 	
 	switch (a) {
@@ -25,10 +26,12 @@ void Score::AddScore(int a) {
 	SetScore(mScore);
 }
 
+//　ハイスコアをゲット
 int Score::GetHighScore() const {
 	return mHighScore;
 }
 
+// ハイスコアをセット
 void Score::SetHighScore(int hs) {
 	mHighScore = hs;
 }
