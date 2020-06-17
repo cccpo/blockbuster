@@ -38,13 +38,16 @@ public:
 
 	bool IsMoveDown(GameBoard gb);//接触判定
 
-	bool IsMoveLeft(GameBoard gb);
-	bool IsMoveRight(GameBoard gb);
+	bool IsMoveLeft(GameBoard gb);//左に移動する
+	bool IsMoveRight(GameBoard gb);//右に移動する
 
-	bool IsOverLaped();
-		
+	bool IsOverLaped(GameBoard gb);
 	
-	int GetRot();
+	void ChangeBlock(GameBoard gb);//テトリミノを固定化
+	
+	void DeleteLine(GameBoard gb);// 揃ったラインを消去
+
+	int GetRot();//現在のテトリミノの回転タイプをゲット
 
 	void SetTertimino(int type, int rx);//テトリミノをゲームボードに配置
 	void AddTertimino(); // テトリミノの追加
@@ -53,12 +56,12 @@ public:
 	int GetgTetriminoPosX();
 	void SetTeriminoPosX(int tpx);
 
-	void ChangeBlock();
+	
 
 	int GetTetriminoPosY();
 	void SetTeriminoPosY(int tpy);
 
-	void DeleteLine();
+	
 
 	void SetRot(int r);
 	

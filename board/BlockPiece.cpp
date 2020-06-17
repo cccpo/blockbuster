@@ -269,10 +269,7 @@ bool BlockPiece::IsMoveRight(GameBoard gb) {
 	return true;
 }
 
-//テトリミノが固定
-bool BlockPiece::IsOverLaped() {
-	GameBoard gb;
-	
+bool BlockPiece::IsOverLaped(GameBoard gb) {
 	for (int y = 0; y < gTetriminoHeight; ++y) {
 		for (int x = 0; x < gTetriminoWidth; ++x) {
 			if (mTetrimino[x][y] != 0 && gb.GetGameBoardValue(x + mTetriminoPosX + 1, y + mTetriminoPosY + 1) != 0)
@@ -283,9 +280,7 @@ bool BlockPiece::IsOverLaped() {
 }
 
 //テトリミノを固定化
-void BlockPiece::ChangeBlock() {
-	GameBoard gb;
-
+void BlockPiece::ChangeBlock(GameBoard gb) {
 	for (int y = 0; y < gTetriminoHeight; ++y) {
 		for (int x = 0; x < gTetriminoWidth; ++x) {
 			if (mTetrimino[x][y] != 0)
@@ -297,11 +292,9 @@ void BlockPiece::ChangeBlock() {
 }
 
 // 揃ったラインを消去
-void BlockPiece::DeleteLine()
+void BlockPiece::DeleteLine(GameBoard gb)
 {
 	Score sc;
-	GameBoard gb;
-
 
 	int nClear = 0;       // 消去したライン数(これに応じてポイント数が上昇)
 	for (int ty = 0; ty < gTetriminoHeight; ++ty) {
@@ -324,12 +317,12 @@ void BlockPiece::DeleteLine()
 
 }
 
+//現在のテトリミノの回転タイプをゲット
 int BlockPiece::GetRot() {
 	return mRotIX;
 }
 
 int BlockPiece::GetgTetriminoPosX() {
-
 	return mTetriminoPosX;
 }
 
@@ -353,21 +346,14 @@ void BlockPiece::SetTeriminoType(int ttype) {
 	mTetriminoType = ttype;
 }
 
-//auto BlockPiece::GetTetrimino() {
-//	return gTetrimino;
-//}
-
 int BlockPiece::GetTeriminoValue(int x,int y) {
 	int s = mTetrimino[x][y];
 	return s;
 }
 
-
-
 void BlockPiece::SetRot(int r) {
 	mRotIX = r;
 }
-
 
 BlockPiece::BlockPiece() {
 
