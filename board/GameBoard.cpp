@@ -31,11 +31,13 @@ void GameBoard::InitGameBoard() {
 
 };
 
+// ゲームボードの値をゲット
 int GameBoard::GetGameBoardValue(int x, int y) {
     int s = gBoard[x][y];
     return s;
 }
 
+// ゲームボードの値をセット
 void GameBoard::SetTerimonoValue(int x,int y,int val) {
     gBoard[x][y] = val;
 }

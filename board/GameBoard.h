@@ -37,21 +37,13 @@ public:
 	int mGameBoardPosX;//ゲームボード位置のx座標
 	int mGameBoardPosY;//ゲームボード位置のy座標
 	//
-	//
-	//
-	//
-	enum class Color: int
-	{
-		Black = 0x00, DarkBlue, DarkGreen, DarkCyan, DarkRed, DarkViolet, DarkYellow, Gray, LightGray, Blue,
-		Green, Cyan, Red, Violet, Yellow, White
-
-	};
-
-
-
 
 
 	void InitGameBoard();// ゲームボード初期化
+
+	int GetGameBoardValue(int x, int y);// ゲームボードの値をゲット
+
+	void SetTerimonoValue(int x, int y, int val);// ゲームボードの値をセット
 
 	int GetmEmpty() const;
 
@@ -59,8 +51,7 @@ public:
 
 	int GetmGameBoardPosY() const;
 
-	int GetGameBoardValue(int x, int y);
-	void SetTerimonoValue(int x, int y, int val);
+
 
 	void Down(int y);
 
