@@ -201,7 +201,7 @@ int trData[][4][4][4] = {
 };
 
 //テトリミノをゲームボードに配置
-void BlockPiece::SetTertimino(int type, int rx) {
+void BlockPiece::SetTertimino(GameBoard gb, int type, int rx) {
         for (int y = 0; y < gTetriminoHeight; ++y) {
             for (int x = 0; x < gTetriminoWidth; ++x) {
                 mTetrimino[x][y] = trData[type][rx][y][x];
@@ -210,7 +210,7 @@ void BlockPiece::SetTertimino(int type, int rx) {
     }
 
 //テトリミノの追加
-void BlockPiece::AddTertimino() {
+void BlockPiece::AddTertimino(GameBoard gb) {
 	std::random_device rnd;
 	std::mt19937 mt(rnd());
 	std::uniform_int_distribution<int> type(0,6);//0～6の範囲で乱数発生
@@ -223,7 +223,7 @@ void BlockPiece::AddTertimino() {
 	SetTeriminoType(type(mt));
 
 
-    SetTertimino(mTetriminoType, mRotIX = 0);
+    SetTertimino(gb,mTetriminoType, mRotIX = 0);
     }
 
 
