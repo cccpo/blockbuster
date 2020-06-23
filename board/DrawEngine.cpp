@@ -146,7 +146,7 @@ void DrawEngine::SetCursorPos(int x, int y) {
 void DrawEngine::DrawScore() {
 	//スコア表示位置の設定
 	int ScorePosX = (gb.GetmGameBoardPosX() + GameBoard::mGbWidth + 2) * 3 + 4;
-	int ScorePosY = gb.GetmGameBoardPosY();
+	int ScorePosY = gb.GetmGameBoardPosY()+2;
 	
 	int score = sc.GetScore();//スコア取得
 
@@ -154,25 +154,27 @@ void DrawEngine::DrawScore() {
 	//スコアの色を設定
 	SetColor(static_cast<int>(Color::Gray), static_cast<int>(Color::Black));
 	
-	cout << "score:";
+	cout << "Score:";
 	cout.width(8);     
 	cout << score;
 }
 //
 ////ルール表示
-//void DrawEngine::DrawRule() {
-//	//スコア表示位置の設定
-//	int RulePosX = (gb.GetmGameBoardPosX() + GameBoard::mGbWidth + 2) * 3 + 4;
-//	int RulePosY = gb.GetmGameBoardPosY();
-//
-//	SetCursorPos(RulePosX, RulePosY);
-//	//スコアの色を設定
-//	SetColor(static_cast<int>(Color::Gray), static_cast<int>(Color::Black));
-//
-//	cout << "Rule:";
-//	cout.width(8);
-//	cout << pa;
-//}
+void DrawEngine::DrawRule() {
+	//スコア表示位置の設定
+	int RulePosX = (gb.GetmGameBoardPosX() + GameBoard::mGbWidth + 2) * 3 + 4;
+	int RulePosY = gb.GetmGameBoardPosY();
+
+	int hiscore = sc.GetHighScore();//スコア取得
+
+	SetCursorPos(RulePosX, RulePosY);
+	//スコアの色を設定
+	SetColor(static_cast<int>(Color::Gray), static_cast<int>(Color::Black));
+
+	cout << "HiScore:";
+	cout.width(6);
+	cout << hiscore;
+}
 
 //デバック用テスト関数
 void DrawEngine::DrawRotType() {

@@ -7,8 +7,7 @@
 #include <chrono>
 
 #include "Game.h"
-//#include "message/Message.h"
-//#include "window/window.h"
+
 #include "state/Score.h"
 #include "board/GameBoard.h"
 #include "board/DrawEngine.h"
@@ -21,7 +20,7 @@ using std::endl;
 
 
 //game
-void StartGame() {
+void PlayGame() {
 	static GameBoard *gb,*gb1;
 
 	DrawEngine de;
@@ -44,6 +43,7 @@ void StartGame() {
 
 	sc.SetScore(0);//スコアの初期化
 	de.DrawScore();//スコア表示
+	de.DrawRule();
 	
 	bp = new BlockPiece();
 
@@ -76,7 +76,7 @@ void StartGame() {
 					bp->ChangeBlock(*gb);//ブロックの固定化
 					bp->DeleteLine(*gb);//揃ったlineの消去
 					de.DrawScore();
-				/*	de.DrawRule();*/
+					de.DrawRule();
 					bp->AddTertimino();
 					de.DrawStage(*gb);//ゲームボード内部の描画(ToDo)
 					de.DrawTetrimino(*bp);
@@ -171,14 +171,13 @@ int main() {
 	GameBoard gb;
 	DrawEngine de;
 	KeyInput ki;
-	//cout << st.GetScore() << endl;
 	Score sc;
 	Data d;
 
 	for (;;) {
 		start = chrono::system_clock::now();
 		
-		StartGame();
+		PlayGame();
 
 
 		end = chrono::system_clock::now();
