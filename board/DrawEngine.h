@@ -3,6 +3,7 @@
 
 #include "GameBoard.h"
 #include "BlockPiece.h"
+#include "../Data/Data.h"
 #include "../state/Score.h"
 
 //　GameBoardの描画を行うクラス
@@ -32,9 +33,9 @@ public:
 
 	int TetriminoTypeToColor(int ttc);//テトリミノの形状から色を設定する
 
-	void DrawScore();//スコア表示
+	void DrawScore(Score sc);//スコア表示
 
-	void DrawRule();
+	void DrawHighScore();
 
 	void DrawRotType();
 
@@ -48,7 +49,7 @@ protected:
 	GameBoard gb;
 	BlockPiece bp;
 	Score sc;
-
+	Data d;
 
 };
 

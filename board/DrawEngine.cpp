@@ -143,7 +143,7 @@ void DrawEngine::SetCursorPos(int x, int y) {
 
 
 //スコア表示
-void DrawEngine::DrawScore() {
+void DrawEngine::DrawScore(Score sc) {
 	//スコア表示位置の設定
 	int ScorePosX = (gb.GetmGameBoardPosX() + GameBoard::mGbWidth + 2) * 3 + 4;
 	int ScorePosY = gb.GetmGameBoardPosY()+2;
@@ -160,7 +160,7 @@ void DrawEngine::DrawScore() {
 }
 //
 ////ルール表示
-void DrawEngine::DrawRule() {
+void DrawEngine::DrawHighScore() {
 	//スコア表示位置の設定
 	int RulePosX = (gb.GetmGameBoardPosX() + GameBoard::mGbWidth + 2) * 3 + 4;
 	int RulePosY = gb.GetmGameBoardPosY();
