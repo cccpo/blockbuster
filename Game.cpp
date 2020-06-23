@@ -32,7 +32,7 @@ void PlayGame() {
 	int HiScore = d.HiScoreLoad();//ハイスコアを取得
 	sc.SetHighScore(HiScore);//ハイスコアをセットする
 
-	gb = new GameBoard(1,2);//
+	gb = new GameBoard(1,2);//ゲームボード位置設定
 	//gb1 = new GameBoard(90, 2);
 	gb->InitGameBoard();//ゲームボード初期化
 	//gb1->InitGameBoard();
@@ -42,19 +42,19 @@ void PlayGame() {
 	de.DrawStage(*gb);//ゲームボード内部の描画
 
 	sc.SetScore(0);//スコアの初期化
-	de.DrawScore();//スコア表示
-	de.DrawRule();
+	de.DrawScore(sc);//スコア表示
+	de.DrawHighScore();//ハイスコア表示
 	
 	bp = new BlockPiece();
 
-	bp->AddTertimino();//テトリミノの追加
+	bp->AddTertimino(*gb);//テトリミノの追加
 	de.DrawTetrimino(*bp);//テトリミノの描画
 
-	int bpx = bp->GetgTetriminoPosX();//テトリミノx座標設定
-	int bpy = bp->GetTetriminoPosY();//テトリミノy座標設定
+	int bpx = bp->GetgTetriminoPosX(*gb);//テトリミノx座標設定
+	int bpy = bp->GetTetriminoPosY(*gb);//テトリミノy座標設定
 
 	
-	
+	// Todo 
 	int cnt = 1;
 	int ts = 0;
 
@@ -68,22 +68,25 @@ void PlayGame() {
 			bool update = false;
 
 			if (cnt % FallInterval == 0 || key == VK_DOWN){
-				//テトリミノが動かくなったら以下の処理
+				//テトリミノが落下完了した場合に以下の処理
 				if (!bp->IsMoveDown(*gb)) {
 					key = 0;
-					int FinalPosX = bp->GetgTetriminoPosX();
-					int FinalPosY = bp->GetTetriminoPosY();
+					int FinalPosX = bp->GetgTetriminoPosX(*gb);
+					int FinalPosY = bp->GetTetriminoPosY(*gb);
 					bp->ChangeBlock(*gb);//ブロックの固定化
 					bp->DeleteLine(*gb);//揃ったlineの消去
-					de.DrawScore();
-					de.DrawRule();
-					bp->AddTertimino();
+					de.DrawScore(sc);
+					
+					bp->AddTertimino(*gb);
 					de.DrawStage(*gb);//ゲームボード内部の描画(ToDo)
-					de.DrawTetrimino(*bp);
-					bpx = bp->GetgTetriminoPosX();//テトリミノx座標設定
-					bpy = bp->GetTetriminoPosY();//テトリミノy座標設定
+					de.DrawTetrimino(*bp);//テトリミノの描画
+					bpx = bp->GetgTetriminoPosX(*gb);//テトリミノx座標設定
+					bpy = bp->GetTetriminoPosY(*gb);//テトリミノy座標設定
+					
+					//枠外に出てしまった場合終了
 					if (bp->IsOverLaped(*gb))
 						return;
+					
 					continue;
 				}
 				++bpy;     // 落下中テトリスをひとつ下に移動
@@ -92,6 +95,7 @@ void PlayGame() {
 			}
 
 			if (cnt % MoveInterval == 0) {   
+				//Move Left
 				if (key == VK_LEFT) {
 					if (bp->IsMoveLeft(*gb)) {
 						--bpx;  
@@ -100,6 +104,7 @@ void PlayGame() {
 					}
 					key = 0;
 				}
+				//Move Right
 				else if (key == VK_RIGHT) {
 					if (bp->IsMoveRight(*gb)) {
 						++bpx;  
@@ -110,17 +115,18 @@ void PlayGame() {
 				}
 			}
 
+			//Rotate
 			if (cnt % RotateInterval == 0) {       
 				if (key == VK_UP) {
-					int tx = bp->GetRot();
+					int tx = bp->GetRot(*gb);
 
 					if (++tx >= 4) {
 						bp->SetRot(0);
 						tx = 0;
 					}
-					bp->SetTertimino(bp->mTetriminoType, tx);
+					bp->SetTertimino(*gb,bp->mTetriminoType, tx);
 					if (bp->IsOverLaped(*gb)) {    
-						bp->SetTertimino(bp->mTetriminoType, bp->GetRot());
+						bp->SetTertimino(*gb,bp->mTetriminoType, bp->GetRot(*gb));
 					}
 					else {
 						bp->SetRot(tx);
@@ -168,7 +174,6 @@ int main() {
 	chrono::system_clock::time_point start, end;
 
 	//ゲーム開始
-	GameBoard gb;
 	DrawEngine de;
 	KeyInput ki;
 	Score sc;
@@ -204,9 +209,10 @@ int main() {
 			Sleep(LoopInterval);     // 10ミリ秒ウェイト
 		}
 
-		de.SetCursorPos(0, 25 - 1);//リプレイ時にゲームボードの位置が初期化される
 		
-		for (int i = 0; i < 80 - 1; ++i) {
+		de.SetCursorPos(0, GameBoard::mGbHeight + 5);//リプレイ時にゲームボードの位置を初期化
+		
+		for (int i = 0; i < 79; ++i) {
 			std::cout << ' ';
 		}
 

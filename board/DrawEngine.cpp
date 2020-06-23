@@ -178,15 +178,15 @@ void DrawEngine::DrawHighScore() {
 
 //デバック用テスト関数
 void DrawEngine::DrawRotType() {
-	int RotPosX = (gb.GetmGameBoardPosX() + (GameBoard::mGbWidth + 2) * 3 + 4);
-	int RotePosY = gb.GetmGameBoardPosY() + 2;
+	//int RotPosX = (gb.GetmGameBoardPosX() + (GameBoard::mGbWidth + 2) * 3 + 4);
+	//int RotePosY = gb.GetmGameBoardPosY() + 2;
 
-	int RotType = bp.GetRot();
-	SetCursorPos(RotPosX, RotePosY);
-	SetColor(static_cast<int>(Color::Gray), static_cast<int>(Color::Black));
-	cout << "RotType:";
-	cout.width(8);
-	cout << RotType;
+	//int RotType = bp.GetRot();
+	//SetCursorPos(RotPosX, RotePosY);
+	//SetColor(static_cast<int>(Color::Gray), static_cast<int>(Color::Black));
+	//cout << "RotType:";
+	//cout.width(8);
+	//cout << RotType;
 }
 
 

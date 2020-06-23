@@ -51,5 +51,6 @@ protected:
 	Score sc;
 	Data d;
 
+
 };
 
