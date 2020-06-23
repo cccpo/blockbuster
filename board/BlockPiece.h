@@ -47,18 +47,18 @@ public:
 	
 	void DeleteLine(GameBoard gb);// 揃ったラインを消去
 
-	int GetRot();//現在のテトリミノの回転タイプをゲット
+	int GetRot(GameBoard gb);//現在のテトリミノの回転タイプをゲット
 
 	void SetTertimino(GameBoard gb, int type, int rx);//テトリミノをゲームボードに配置
 	void AddTertimino(GameBoard gb); // テトリミノの追加
 
 
-	int GetgTetriminoPosX();
+	int GetgTetriminoPosX(GameBoard gb);
 	void SetTeriminoPosX(int tpx);
 
 	
 
-	int GetTetriminoPosY();
+	int GetTetriminoPosY(GameBoard gb);
 	void SetTeriminoPosY(int tpy);
 
 	
