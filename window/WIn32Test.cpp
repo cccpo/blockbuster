@@ -1,12 +1,18 @@
 #include <Windows.h>
 
+#include "../resource.h"
 
+//コールバック関数
+LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdLine, int nCmdShow){
 
 	static TCHAR szAppName[] = TEXT("BlockPiece");
 	WNDCLASS wc; //WNDCLASS構造体:ウィンドウクラスの属性を表す
 	HWND hwnd; //ウィンドウハンドル
+	MSG msg;
+
+
 
 	//ウィンドウクラスの属性を設定
 	
@@ -16,8 +22,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdLi
 	wc.style = CS_HREDRAW | CS_VREDRAW;
 	//lpfnWndProc:ウィンドウプロシージャ:まだウィンドウプロシージャが完成していないので
 	//規定のDefWindoProcを宣言
-	wc.lpfnWndProc = DefWindowProc;
-	//wc.lpfnWndProc = WndProc;
+	//wc.lpfnWndProc = DefWindowProc;
+	wc.lpfnWndProc = WndProc;
 	//ウィンドウクラス構造体の後に確保する領域のバイト数
 	wc.cbClsExtra = 0;
 	//ウィンドウインスタンスの後に確保する領域のバイト数
@@ -27,7 +33,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdLi
 	wc.hInstance = hInstance;
 	//
 	//アイコンへのハンドルを指定
-	wc.hIcon = LoadIcon(NULL, IDI_APPLICATION);
+	//wc.hIcon = LoadIcon(NULL, IDI_APPLICATION);
+	wc.hIcon = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_ICON1));
 	//マウスカーソルへのハンドルを指定
 	//IDC_ARROW:矢印
 	wc.hCursor = LoadCursor(NULL, IDC_ARROW);
@@ -62,15 +69,33 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdLi
 	//ウィンドウを再描画
 	UpdateWindow(hwnd);
 
+	//メッセージループ
+	while (GetMessage(&msg, NULL, 0, 0)) {
+		TranslateMessage(&msg);//キー入力メッセージを文字メッセージに変換
+		DispatchMessage(&msg);//メッセージをウィンドウプロシージャへディスパッチする
+	}
+
 	//メッセージボックス生成
 	MessageBox(NULL,
 		TEXT("Create Window"),
 		TEXT("Test"),
 		MB_OK);
 
+	
+
+	
+
 	return 0;
 }
-
-//LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam) {
 //
-//}
+//　ウィンドウプロシージャ(メッセージに対するコールバック関数
+
+LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam) {
+
+	switch (message) {
+
+
+	}
+
+	return DefWindowProc(hwnd, message, wParam, lParam);
+}
