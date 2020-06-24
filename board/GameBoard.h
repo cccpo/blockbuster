@@ -31,6 +31,10 @@ private:
 
 
 public:
+	enum Value {
+		empty=0
+	};
+
 	const static int mGbWidth = 10;
 	const static int mGbHeight = 20;
 

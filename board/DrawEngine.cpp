@@ -35,7 +35,7 @@ void DrawEngine::DrawBoard(GameBoard const& gb) {
 void DrawEngine::DrawBoard(GameBoard gb, Color cl) 
 {
 	//色設定
-	SetColor((int)(cl), (int)(cl));
+	SetColor((int)cl, (int)cl);
 
 	SetCursorPos(gb.mGameBoardPosX, gb.mGameBoardPosY);
 	for (int x = 0; x < GameBoard::mGbWidth + 2; ++x) {
@@ -59,15 +59,16 @@ void DrawEngine::DrawStage(GameBoard gb) {
 	for (int y = 1; y <= GameBoard::mGbHeight; ++y) {
 		SetCursorPos(gb.GetmGameBoardPosX() + 2, y + gb.GetmGameBoardPosY());
 		for (int x = 1; x <= GameBoard::mGbWidth; ++x) {
+			int Value = gb.GetGameBoardValue(x, y);
 			//空ではないブロックは固定化→
-			if (gb.GetGameBoardValue(x,y) != gb.GetmEmpty()) {
-				int Color = TetriminoTypeToColor(gb.GetGameBoardValue(x, y));
+			if(Value !=GameBoard::Value::empty){
+				int Color = TetriminoTypeToColor(Value);
 
 				//テトリミノの色を設定
-				SetColor(static_cast<int>(Color), static_cast<int>(Color));
+				SetColor(Color, Color);
 			}
 			else
-				SetColor(static_cast<int>(Color::Gray), static_cast<int>(Color::Black));
+				SetColor((int)Color::Gray, (int)Color::Black);
 			cout << "  ";
 		}
 	}

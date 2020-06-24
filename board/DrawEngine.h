@@ -3,6 +3,7 @@
 
 #include "GameBoard.h"
 #include "BlockPiece.h"
+#include "Value.h"
 #include "../Data/Data.h"
 #include "../state/Score.h"
 
