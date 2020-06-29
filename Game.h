@@ -7,14 +7,18 @@ const int RotateInterval = 15;
 
 class Game
 {
-private:
-
-
-
 public:
+	Game(DrawEngine& de);
+	~Game();
+
+	void restart();
+
+	bool keyPress(int k);
+
 
 
 protected:
-	
+	DrawEngine &de;
+
 };
 

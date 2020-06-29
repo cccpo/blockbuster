@@ -20,10 +20,9 @@ using std::endl;
 
 
 //game
-void PlayGame() {
+void PlayGame(DrawEngine &de) {
 	static GameBoard *gb,*gb1;
 
-	DrawEngine de;
 	static BlockPiece *bp;
 	KeyInput ki;
 	Score sc;
@@ -37,23 +36,24 @@ void PlayGame() {
 	gb->InitGameBoard();//ゲームボード初期化
 	//gb1->InitGameBoard();
 	
-	de.DrawBoard(*gb);//ゲームボード外枠の描画
-	//de.DrawBoard(*gb1,GameBoard::Color::Red);
-	de.DrawStage(*gb);//ゲームボード内部の描画
 
 	sc.SetScore(0);//スコアの初期化
-	de.DrawScore(sc);//スコア表示
-	de.DrawHighScore();//ハイスコア表示
-	
+
 	bp = new BlockPiece();
 
 	bp->AddTertimino(*gb);//テトリミノの追加
-	de.DrawTetrimino(*bp);//テトリミノの描画
 
 	int bpx = bp->GetgTetriminoPosX(*gb);//テトリミノx座標設定
 	int bpy = bp->GetTetriminoPosY(*gb);//テトリミノy座標設定
 
-	
+	de.DrawBoard(*gb);//ゲームボード外枠の描画
+	de.DrawStage(*gb);//ゲームボード内部の描画
+
+	de.DrawScore(sc);//スコア表示
+	de.DrawHighScore();//ハイスコア表示
+
+	de.DrawTetrimino(*bp);//テトリミノの描画
+
 	// Todo 
 	int cnt = 1;
 	int ts = 0;
@@ -168,57 +168,93 @@ void PlayGame() {
 
 }
 
+void draw(DrawEngine& de) {
+
+}
+
 //main
-//int main() {
-//	using namespace std;
-//	chrono::system_clock::time_point start, end;
-//
-//	//ゲーム開始
-//	DrawEngine de;
-//	KeyInput ki;
-//	Score sc;
-//	Data d;
-//
-//	for (;;) {
-//		start = chrono::system_clock::now();
-//		
-//		PlayGame();
-//
-//
-//		end = chrono::system_clock::now();
-//
-//		double time = static_cast<double>(chrono::duration_cast<chrono::microseconds>(end - start).count() / 1000.0);
-//		
-//		//処理を変更する必要がある。
-//		de.SetCursorPos(0, GameBoard::mGbHeight+5);
-//		de.SetColor((int)DrawEngine::Color::Gray, (int)DrawEngine::Color::Black);
-//		
-//		//ハイスコア更新時の処理
-//		if (sc.GetScore()>sc.GetHighScore()) {
-//			std::cout << "HiScore!!" << sc.GetScore() <<endl;
-//			d.HiScoreSave(sc.GetScore());
-//		}
-//		
-//		std::cout << "GAME OVER. Replay? [Y/N] "<< endl;
-//		
-//		for (;;) {
-//			if (ki.IsKeyPressed('N'))
-//				return 0;
-//			if (ki.IsKeyPressed('Y'))
-//				break;
-//			Sleep(LoopInterval);     // 10ミリ秒ウェイト
-//		}
-//
-//		
-//		de.SetCursorPos(0, GameBoard::mGbHeight + 5);//リプレイ時にゲームボードの位置を初期化
-//		
-//		for (int i = 0; i < 79; ++i) {
-//			std::cout << ' ';
-//		}
-//
-//	}
-//}
+int main() {
+	using namespace std;
+	chrono::system_clock::time_point start, end;
+
+	//ゲーム開始
+	DrawEngine de;
+	KeyInput ki;
+	Score sc;
+	Data d;
+
+	for (;;) {
+		start = chrono::system_clock::now();
+		
+		PlayGame(de);
 
 
+		end = chrono::system_clock::now();
+
+		double time = static_cast<double>(chrono::duration_cast<chrono::microseconds>(end - start).count() / 1000.0);
+		
+		//処理を変更する必要がある。
+		de.SetCursorPos(0, GameBoard::mGbHeight+5);
+		de.SetColor((int)DrawEngine::Color::Gray, (int)DrawEngine::Color::Black);
+		
+		//ハイスコア更新時の処理
+		if (sc.GetScore()>sc.GetHighScore()) {
+			std::cout << "HiScore!!" << sc.GetScore() <<endl;
+			d.HiScoreSave(sc.GetScore());
+		}
+		
+		std::cout << "GAME OVER. Replay? [Y/N] "<< endl;
+		
+		for (;;) {
+			if (ki.IsKeyPressed('N'))
+				return 0;
+			if (ki.IsKeyPressed('Y'))
+				break;
+			Sleep(LoopInterval);     // 10ミリ秒ウェイト
+		}
+
+		
+		de.SetCursorPos(0, GameBoard::mGbHeight + 5);//リプレイ時にゲームボードの位置を初期化
+		
+		for (int i = 0; i < 79; ++i) {
+			std::cout << ' ';
+		}
+
+	}
+}
 
 
+// Key入力管理クラス
+bool Game::keyPress(int k) {
+	// When pausing, ignore keys other than PAUSE and ENTER
+	if (k != VK_PAUSE)
+		//&& k != VK_RETURN && isPaused)
+		return false;
+
+	switch (k)
+	{
+	case VK_UP:
+		
+		break;
+	case VK_DOWN:
+		
+		break;
+	case VK_LEFT:
+		
+		break;
+	case VK_RIGHT:
+		
+		break;
+	case VK_SPACE:
+	
+		break;
+	case VK_PAUSE:
+	
+		break;
+	case VK_RETURN:
+		
+	default:
+		return false;
+	}
+	return true;
+}
