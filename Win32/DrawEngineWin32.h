@@ -5,7 +5,10 @@
 class DrawEngineWin32
 {
 public:
-	DrawEngineWin32(HDC mHdc, HWND mHwnd, int pxPerBlock = 15, int mWidth = 10, int mHeight = 20);
+	DrawEngineWin32(HDC mHdc, HWND mHwnd, 
+		int pxPerBlock = 15, int mWidth = 10, int mHeight = 20);
+
+	~DrawEngineWin32();
 
 protected:
 	HDC mHdc;
