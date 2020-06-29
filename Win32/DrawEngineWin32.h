@@ -10,6 +10,12 @@ public:
 
 	~DrawEngineWin32();
 
+	void DrawUI();
+
+	void DrawTetrimino();
+
+	void DrawScore();
+
 protected:
 	HDC mHdc;
 	HWND mHwnd;
