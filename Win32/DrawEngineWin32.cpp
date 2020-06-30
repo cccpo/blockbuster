@@ -45,3 +45,14 @@ void DrawEngineWin32::DrawText(TCHAR* szText, int x, int y) const
 {
 	TextOut(mHdc, x, y, szText, lstrlen(szText));
 }
+
+//ÉXÉRÉAï`âÊ
+void DrawEngineWin32::DrawScore(int score, int x, int y) const
+{
+	TCHAR szBuffer[20];
+	int len = wsprintf(szBuffer, TEXT("Score: %6d"), score);
+
+	SetBkMode(mHdc, OPAQUE);
+	TextOut(mHdc, x, y, szBuffer, len);
+	SetBkMode(mHdc, TRANSPARENT);
+}

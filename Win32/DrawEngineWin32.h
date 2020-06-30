@@ -11,10 +11,12 @@ public:
 	~DrawEngineWin32();
 
 	void DrawUI();
+	void DrawText(TCHAR* szText, int x, int y) const;
+	void DrawScore(int score, int x, int y) const;
 
 	void DrawTetrimino();
 
-	void DrawScore();
+	
 
 protected:
 	HDC mHdc;
