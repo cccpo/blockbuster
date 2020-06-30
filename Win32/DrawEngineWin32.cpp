@@ -25,7 +25,7 @@ DrawEngineWin32::~DrawEngineWin32()
 	RestoreDC(mHdc, -1);
 }
 
-//UIの表示
+//UI描画
 void DrawEngineWin32::DrawUI() 
 {
 	// Draw a gray area at the right
@@ -40,3 +40,8 @@ void DrawEngineWin32::DrawUI()
 	DeleteObject(hBrush);
 }
 
+//テキスト描画
+void DrawEngineWin32::DrawText(TCHAR* szText, int x, int y) const
+{
+	TextOut(mHdc, x, y, szText, lstrlen(szText));
+}
