@@ -8,17 +8,17 @@ const int RotateInterval = 15;
 class Game
 {
 public:
-	Game(DrawEngine& de);
-	~Game();
+	//Game(DrawEngine& de);
+	//~Game();
 
-	void restart();
+	//void restart();
 
-	bool keyPress(int k);
+	bool KeyPress(int k);
 
 
 
 protected:
-	DrawEngine &de;
+	//DrawEngine &de;
 
 };
 
