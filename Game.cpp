@@ -32,10 +32,7 @@ void gPlayGame(DrawEngine& ioDrawEngine) {
 	int HiScore = data.HiScoreLoad();//ハイスコアを取得
 	score.SetHighScore(HiScore);//ハイスコアをセットする
 
-	//gb = new GameBoard(1,2);//ゲームボード位置設定
 	gb.InitGameBoard();//ゲームボード初期化
-	//gb1->InitGameBoard();
-	
 
 	score.SetScore(0);//スコアの初期化
 
@@ -52,13 +49,13 @@ void gPlayGame(DrawEngine& ioDrawEngine) {
 
 	ioDrawEngine.DrawTetrimino(blockpiece);//テトリミノの描画
 
-	// Todo 
+	// Todo fix
 	int cnt = 1;
 	int ts = 0;
 
 	int key = 0;
 	int keyDown = 0;
-
+	
 	
 	//テトリミノ生成時点で固定ブロックと接触するとループを抜ける
 	 while (!blockpiece.IsOverLaped(gb)) {
@@ -223,13 +220,12 @@ int main() {
 
 
 // Key入力管理クラス
-bool Game::KeyPress(int k) {
-	// When pausing, ignore keys other than PAUSE and ENTER
-	if (k != VK_PAUSE)
-		//&& k != VK_RETURN && isPaused)
+bool Game::KeyPress(int input_key) {
+	if (input_key != VK_PAUSE)
+	
 		return false;
 
-	switch (k)
+	switch (input_key)
 	{
 	case VK_UP:
 		
