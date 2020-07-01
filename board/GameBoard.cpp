@@ -9,7 +9,7 @@ typedef unsigned char byte;
 using std::cout;
 using std::endl;
 
-int gBoard[GameBoard::mGbWidth + 2][GameBoard::mGbHeight + 2];
+static int sBoard[GameBoard::mGbWidth + 2][GameBoard::mGbHeight + 2];
 
 // ゲームボード初期化
 void GameBoard::InitGameBoard() {
@@ -17,29 +17,29 @@ void GameBoard::InitGameBoard() {
     //ゲームボード内部の初期化
     for (int x = 1; x < mGbWidth + 1; ++x) {
         for (int y = 1; y < mGbHeight + 1; ++y) {
-            gBoard[x][y] = GetmEmpty();    
+            sBoard[x][y] = GetmEmpty();    
         }
     }
   
     //ゲームボード外枠の初期化
     for (int x = 0; x <= mGbWidth + 1; ++x) {
-        gBoard[x][0] = gBoard[x][mGbHeight + 1] = mOuterFrame;
+        sBoard[x][0] = sBoard[x][mGbHeight + 1] = mOuterFrame;
     }
     for (int y = 0; y <= mGbHeight + 1; ++y) {
-        gBoard[0][y] = gBoard[mGbWidth + 1][y] = mOuterFrame;
+        sBoard[0][y] = sBoard[mGbWidth + 1][y] = mOuterFrame;
     }
 
 };
 
 // ゲームボードの値をゲット
 int GameBoard::GetGameBoardValue(int x, int y) {
-    int s = gBoard[x][y];
+    int s = sBoard[x][y];
     return s;
 }
 
 // ゲームボードの値をセット
 void GameBoard::SetTerimonoValue(int x,int y,int val) {
-    gBoard[x][y] = val;
+    sBoard[x][y] = val;
 }
 
 // 一段落とす(揃ったときに使用)
@@ -47,12 +47,12 @@ void GameBoard::Down(int y) {
 
     while (y > 1) {
         for (int x = 1; x <= mGbWidth; ++x)
-            gBoard[x][y] = gBoard[x][y - 1];     // １行下に移動
+            sBoard[x][y] = sBoard[x][y - 1];     // １行下に移動
         --y;      //  上の行に
     }
     
     for (int x = 1; x <= mGbWidth; ++x)
-        gBoard[x][1] = 0;     // 最上行は空に
+        sBoard[x][1] = 0;     // 最上行は空に
 }
 
 // 初期化関数
