@@ -201,13 +201,15 @@ int trData[][4][4][4] = {
 };
 
 //テトリミノをゲームボードに配置
-void BlockPiece::SetTertimino(GameBoard gb, int type, int rx) {
+void BlockPiece::SetTertimino(GameBoard inGameBoard, int inTetriminoType, 
+	int inRollingPattern) 
+{
         for (int y = 0; y < gTetriminoHeight; ++y) {
             for (int x = 0; x < gTetriminoWidth; ++x) {
-                mTetrimino[x][y] = trData[type][rx][y][x];
+                mTetrimino[x][y] = trData[inTetriminoType][inRollingPattern][y][x];
             }
         }
-    }
+}
 
 //テトリミノの追加
 void BlockPiece::AddTertimino(GameBoard gb) {
