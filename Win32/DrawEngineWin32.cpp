@@ -1,7 +1,7 @@
 #include "DrawEngineWin32.h"
 
 DrawEngineWin32::DrawEngineWin32(HDC mHdc, HWND mHwnd, 
-	int pxPerBlock = 15, int mWidth = 10, int mHeight = 20) :
+	int pxPerBlock, int mWidth, int mHeight) :
 	mHdc(mHdc), mHwnd(mHwnd), mWidth(mWidth), mHeight(mHeight)
 {
 	//クライアントエリアのサイズを取得
@@ -55,4 +55,15 @@ void DrawEngineWin32::DrawScore(int score, int x, int y) const
 	SetBkMode(mHdc, OPAQUE);
 	TextOut(mHdc, x, y, szBuffer, len);
 	SetBkMode(mHdc, TRANSPARENT);
+}
+
+void DrawEngineWin32::DrawTetrimino(int x, int y, COLORREF color) 
+{
+	HBRUSH hBrush = CreateSolidBrush(color);
+	mRect.left = x;
+	mRect.right = x + 1;
+	mRect.top = y;
+	mRect.bottom = y + 1;
+
+	FillRect(mHdc, &mRect, hBrush);
 }
