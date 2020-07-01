@@ -24,7 +24,7 @@ void gPlayGame(DrawEngine& ioDrawEngine) {
 	
 	GameBoard gb(1,2);
 
-	BlockPiece bp;
+	BlockPiece blockpiece;
 	KeyInput key_input;
 	Score score;
 	Data data;
@@ -39,10 +39,10 @@ void gPlayGame(DrawEngine& ioDrawEngine) {
 
 	score.SetScore(0);//スコアの初期化
 
-	bp.AddTertimino(gb);//テトリミノの追加
+	blockpiece.AddTertimino(gb);//テトリミノの追加
 
-	int bpx = bp.GetgTetriminoPosX(gb);//テトリミノx座標設定
-	int bpy = bp.GetTetriminoPosY(gb);//テトリミノy座標設定
+	int bpx = blockpiece.GetgTetriminoPosX(gb);//テトリミノx座標設定
+	int bpy = blockpiece.GetTetriminoPosY(gb);//テトリミノy座標設定
 
 	ioDrawEngine.DrawBoard(gb);//ゲームボード外枠の描画
 	ioDrawEngine.DrawStage(gb);//ゲームボード内部の描画
@@ -50,7 +50,7 @@ void gPlayGame(DrawEngine& ioDrawEngine) {
 	ioDrawEngine.DrawScore(score);//スコア表示
 	ioDrawEngine.DrawHighScore();//ハイスコア表示
 
-	ioDrawEngine.DrawTetrimino(bp);//テトリミノの描画
+	ioDrawEngine.DrawTetrimino(blockpiece);//テトリミノの描画
 
 	// Todo 
 	int cnt = 1;
@@ -61,52 +61,52 @@ void gPlayGame(DrawEngine& ioDrawEngine) {
 
 	
 	//テトリミノ生成時点で固定ブロックと接触するとループを抜ける
-	 while (!bp.IsOverLaped(gb)) {
+	 while (!blockpiece.IsOverLaped(gb)) {
 	//for(int cnt =1;;++cnt){
 			bool update = false;
 
 			if (cnt % FallInterval == 0 || key == VK_DOWN){
 				//テトリミノが落下完了した場合に以下の処理
-				if (!bp.IsMoveDown(gb)) {
+				if (!blockpiece.IsMoveDown(gb)) {
 					key = 0;
-					int FinalPosX = bp.GetgTetriminoPosX(gb);
-					int FinalPosY = bp.GetTetriminoPosY(gb);
-					bp.ChangeBlock(gb);//ブロックの固定化
-					bp.DeleteLine(gb);//揃ったlineの消去
+					int FinalPosX = blockpiece.GetgTetriminoPosX(gb);
+					int FinalPosY = blockpiece.GetTetriminoPosY(gb);
+					blockpiece.ChangeBlock(gb);//ブロックの固定化
+					blockpiece.DeleteLine(gb);//揃ったlineの消去
 					ioDrawEngine.DrawScore(score);
 					
-					bp.AddTertimino(gb);
+					blockpiece.AddTertimino(gb);
 					ioDrawEngine.DrawStage(gb);//ゲームボード内部の描画(ToDo)
-					ioDrawEngine.DrawTetrimino(bp);//テトリミノの描画
-					bpx = bp.GetgTetriminoPosX(gb);//テトリミノx座標設定
-					bpy = bp.GetTetriminoPosY(gb);//テトリミノy座標設定
+					ioDrawEngine.DrawTetrimino(blockpiece);//テトリミノの描画
+					bpx = blockpiece.GetgTetriminoPosX(gb);//テトリミノx座標設定
+					bpy = blockpiece.GetTetriminoPosY(gb);//テトリミノy座標設定
 					
 					//枠外に出てしまった場合終了
-					if (bp.IsOverLaped(gb))
+					if (blockpiece.IsOverLaped(gb))
 						return;
 					
 					continue;
 				}
 				++bpy;     // 落下中テトリスをひとつ下に移動
-				bp.SetTeriminoPosY(bpy);
+				blockpiece.SetTeriminoPosY(bpy);
 				update = true;
 			}
 
 			if (cnt % MoveInterval == 0) {   
 				//Move Left
 				if (key == VK_LEFT) {
-					if (bp.IsMoveLeft(gb)) {
+					if (blockpiece.IsMoveLeft(gb)) {
 						--bpx;  
-						bp.SetTeriminoPosX(bpx);
+						blockpiece.SetTeriminoPosX(bpx);
 						update = true;
 					}
 					key = 0;
 				}
 				//Move Right
 				else if (key == VK_RIGHT) {
-					if (bp.IsMoveRight(gb)) {
+					if (blockpiece.IsMoveRight(gb)) {
 						++bpx;  
-						bp.SetTeriminoPosX(bpx);
+						blockpiece.SetTeriminoPosX(bpx);
 						update = true;
 					}
 					key = 0;
@@ -116,18 +116,18 @@ void gPlayGame(DrawEngine& ioDrawEngine) {
 			//Rotate
 			if (cnt % RotateInterval == 0) {       
 				if (key == VK_UP) {
-					int tx = bp.GetRot(gb);
+					int tx = blockpiece.GetRot(gb);
 
 					if (++tx >= 4) {
-						bp.SetRot(0);
+						blockpiece.SetRot(0);
 						tx = 0;
 					}
-					bp.SetTertimino(gb,bp.mTetriminoType, tx);
-					if (bp.IsOverLaped(gb)) {    
-						bp.SetTertimino(gb,bp.mTetriminoType, bp.GetRot(gb));
+					blockpiece.SetTertimino(gb,blockpiece.mTetriminoType, tx);
+					if (blockpiece.IsOverLaped(gb)) {    
+						blockpiece.SetTertimino(gb,blockpiece.mTetriminoType, blockpiece.GetRot(gb));
 					}
 					else {
-						bp.SetRot(tx);
+						blockpiece.SetRot(tx);
 						update = true;
 					}
 					key = 0;
@@ -135,7 +135,7 @@ void gPlayGame(DrawEngine& ioDrawEngine) {
 			}
 			if (update) {
 				ioDrawEngine.DrawStage(gb);//ゲームボード内部の描画(ToDo)
-				ioDrawEngine.DrawTetrimino(bp);
+				ioDrawEngine.DrawTetrimino(blockpiece);
 				
 			}
 			if (!keyDown) {     // キー押下を受け付けていない場合
