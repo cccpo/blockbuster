@@ -10,7 +10,7 @@ using std::cout;
 using std::endl;
 
 //ゲームボード外枠の描画
-void DrawEngine::DrawBoard(GameBoard const& gb) {
+void DrawEngine::DefaultDrawBoard(const GameBoard& gb) {
 	//色設定
 	SetColor((int)Color::Gray, (int)Color::Gray);
 
@@ -74,7 +74,7 @@ void DrawEngine::DrawStage(GameBoard gb) {
 	}
 }
 
-//DrawGameBoardに移植
+
 void DrawEngine::DrawTetrimino(BlockPiece& bp)
 {
 	//GUIアプリとして移植する際にテトリミノを形状と色を持った構造体として定義することで描画を行う関数側から指定する必要をなくす
