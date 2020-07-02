@@ -26,7 +26,7 @@ public:
 
 	};
 
-	void DrawBoard(GameBoard const& gb);//ゲームボード外枠の描画
+	void DefaultDrawBoard(const GameBoard& gb);//ゲームボード外枠の描画
 	void DrawBoard(GameBoard gb,Color cl);//ゲームボード外枠の描画
 	void DrawStage(GameBoard gb);//ゲームボード内部の描画
 	
