@@ -104,37 +104,37 @@ void DrawEngine::DrawTetrimino(const GameBoard& ioGameBoard, const BlockPiece& i
 
 //テトリミノの形状から色を設定する
 int DrawEngine::TetriminoTypeToColor(int inTetriminoType) {
-	static int tkl;
+	static int tetrimino_color;
 
 
 	switch (inTetriminoType)
 	{
 		case static_cast<int>(BlockPiece::TetrimnoType::TypeA) :
-			tkl = static_cast<int>(Color::Cyan);
+			tetrimino_color = static_cast<int>(Color::Cyan);
 			break;
 		case static_cast<int>(BlockPiece::TetrimnoType::TypeB) :
-			tkl = static_cast<int>(Color::Yellow);
+			tetrimino_color = static_cast<int>(Color::Yellow);
 			break;
 		case static_cast<int>(BlockPiece::TetrimnoType::TypeC) :
-			tkl = static_cast<int>(Color::Red);
+			tetrimino_color = static_cast<int>(Color::Red);
 			break;
 		case static_cast<int>(BlockPiece::TetrimnoType::TypeD) :
-			tkl = static_cast<int>(Color::Green);
+			tetrimino_color = static_cast<int>(Color::Green);
 			break;
 		case static_cast<int>(BlockPiece::TetrimnoType::TypeE) :
-			tkl = static_cast<int>(Color::Blue);
+			tetrimino_color = static_cast<int>(Color::Blue);
 			break;
 		case static_cast<int>(BlockPiece::TetrimnoType::TypeF) :
-			tkl = static_cast<int>(Color::DarkRed);
+			tetrimino_color = static_cast<int>(Color::DarkRed);
 			break;
 		case static_cast<int>(BlockPiece::TetrimnoType::TypeG) :
-			tkl = static_cast<int>(Color::Violet);
+			tetrimino_color = static_cast<int>(Color::Violet);
 			break;
 		default:
 			break;
 	}
 
-	return tkl;
+	return tetrimino_color;
 }
 
 //コンソール上の描画位置を設定
