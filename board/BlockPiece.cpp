@@ -1,5 +1,5 @@
 #include "../Game.h"
-#include "../state/Score.h"
+#include "../state/ScoreManager.h"
 
 #include "../board/GameBoard.h"
 
@@ -297,7 +297,7 @@ void BlockPiece::ChangeBlock(GameBoard gb) {
 // 揃ったラインを消去
 void BlockPiece::DeleteLine(GameBoard gb)
 {
-	Score sc;
+	ScoreManager sc;
 
 	int nClear = 0;       // 消去したライン数(これに応じてポイント数が上昇)
 	for (int ty = 0; ty < gTetriminoHeight; ++ty) {

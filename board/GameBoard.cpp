@@ -2,7 +2,7 @@
 
 #include "GameBoard.h"
 
-#include "../state/Score.h"
+#include "../state/ScoreManager.h"
 
 typedef unsigned char byte;
 

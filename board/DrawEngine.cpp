@@ -148,12 +148,12 @@ void DrawEngine::SetCursorPos(int inConsolePosX, int inConsolePosY) {
 
 
 //スコア表示
-void DrawEngine::DrawScore(Score sc) {
+void DrawEngine::DrawScore(ScoreManager inScore) {
 	//スコア表示位置の設定
 	int ScorePosX = (game_board.GetmGameBoardPosX() + GameBoard::mGbWidth + 2) * 3 + 4;
 	int ScorePosY = game_board.GetmGameBoardPosY()+2;
 	
-	int score = sc.GetScore();//スコア取得
+	int score = inScore.GetScore();//スコア取得
 
 	SetCursorPos(ScorePosX,ScorePosY);
 	//スコアの色を設定

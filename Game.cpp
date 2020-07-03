@@ -8,7 +8,7 @@
 
 #include "Game.h"
 
-#include "state/Score.h"
+#include "state/ScoreManager.h"
 #include "board/GameBoard.h"
 #include "board/DrawEngine.h"
 #include "board/BlockPiece.h"
@@ -26,7 +26,7 @@ void gPlayGame(DrawEngine& ioDrawEngine) {
 
 	BlockPiece block_piece;
 	KeyInput key_input;
-	Score score;
+	ScoreManager score;
 	Data data;
 
 	int HiScore = data.HiScoreLoad();//ハイスコアを取得
@@ -175,7 +175,7 @@ int main() {
 	//ゲーム開始
 	DrawEngine de;
 	KeyInput ki;
-	Score sc;
+	ScoreManager sc;
 	Data d;
 
 	for (;;) {

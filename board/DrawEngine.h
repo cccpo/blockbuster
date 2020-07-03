@@ -5,14 +5,13 @@
 #include "BlockPiece.h"
 #include "Value.h"
 #include "../Data/Data.h"
-#include "../state/Score.h"
+#include "../state/ScoreManager.h"
 
 //　GameBoardの描画を行うクラス
 class DrawEngine
 {
 private:
-	int gbpx;
-	int gbpy;
+	int gbpx, gbpy;
 
 	enum Mask {
 		Intensity = 8, RedMask = 4, GreenMask = 2, BlueMask = 1
@@ -34,14 +33,14 @@ public:
 
 	int TetriminoTypeToColor(int inTetriminoType);//テトリミノの形状から色を設定する
 
-	void DrawScore(Score sc);//スコア表示
+	void DrawScore(ScoreManager inScore);//スコア表示
 
 	void DrawHighScore();
 
 	void DrawRotType();
 
 	void SetColor(int inForeGroundColor, int inBackGroundColor);
-	void SetCursorPos(int x, int y);
+	void SetCursorPos(int inConsolePosX, int inConsolePosY);
 
 	//DrawGameBoard(){}
 	//~DrawGameBoard(){}
@@ -49,7 +48,7 @@ public:
 protected:
 	GameBoard game_board;
 	BlockPiece block_piece;
-	Score score;
+	ScoreManager score;
 	Data data;
 
 
