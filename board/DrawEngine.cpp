@@ -32,7 +32,7 @@ void DrawEngine::DefaultDrawBoard(const GameBoard& gb) {
 }
 
 //ゲームボード外枠の描画(外枠色指定)
-void DrawEngine::DrawBoard(GameBoard gb, Color cl) 
+void DrawEngine::DrawBoard(const GameBoard& gb, Color cl) 
 {
 	//色設定
 	SetColor((int)cl, (int)cl);
