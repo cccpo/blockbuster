@@ -10,56 +10,56 @@ using std::cout;
 using std::endl;
 
 //ゲームボード外枠の描画
-void DrawEngine::DefaultDrawBoard(const GameBoard& gb) {
+void DrawEngine::DefaultDrawBoard(const GameBoard& ioGameBoard) {
 	//色設定
 	SetColor((int)Color::Gray, (int)Color::Gray);
 
-	SetCursorPos(gb.mGameBoardPosX, gb.mGameBoardPosY);
+	SetCursorPos(ioGameBoard.mGameBoardPosX, ioGameBoard.mGameBoardPosY);
 	for (int x = 0; x < GameBoard::mGbWidth + 2; ++x) {
 		cout << "  ";
 	}
 
-	SetCursorPos(gb.mGameBoardPosX, gb.mGameBoardPosY + GameBoard::mGbHeight + 1);
+	SetCursorPos(ioGameBoard.mGameBoardPosX, ioGameBoard.mGameBoardPosY + GameBoard::mGbHeight + 1);
 	for (int x = 0; x < GameBoard::mGbWidth + 2; ++x) {
 		cout << "  ";
 	}
-	for (int y = gb.mGameBoardPosY + 1; y < gb.mGameBoardPosY + GameBoard::mGbHeight + 1; ++y) {
-		SetCursorPos(gb.mGameBoardPosX, y);
+	for (int y = ioGameBoard.mGameBoardPosY + 1; y < ioGameBoard.mGameBoardPosY + GameBoard::mGbHeight + 1; ++y) {
+		SetCursorPos(ioGameBoard.mGameBoardPosX, y);
 		cout << "  ";
-		SetCursorPos(gb.mGameBoardPosX + (GameBoard::mGbWidth + 1) * 2, y);
+		SetCursorPos(ioGameBoard.mGameBoardPosX + (GameBoard::mGbWidth + 1) * 2, y);
 		cout << "  ";
 	}
 }
 
 //ゲームボード外枠の描画(外枠色指定)
-void DrawEngine::DrawBoard(const GameBoard& gb, Color cl) 
+void DrawEngine::DrawBoard(const GameBoard& ioGameBoard, const Color& cl) 
 {
 	//色設定
 	SetColor((int)cl, (int)cl);
 
-	SetCursorPos(gb.mGameBoardPosX, gb.mGameBoardPosY);
+	SetCursorPos(ioGameBoard.mGameBoardPosX, ioGameBoard.mGameBoardPosY);
 	for (int x = 0; x < GameBoard::mGbWidth + 2; ++x) {
 		cout << "  ";
 	}
 
-	SetCursorPos(gb.mGameBoardPosX, gb.mGameBoardPosY + GameBoard::mGbHeight + 1);
+	SetCursorPos(ioGameBoard.mGameBoardPosX, ioGameBoard.mGameBoardPosY + GameBoard::mGbHeight + 1);
 	for (int x = 0; x < GameBoard::mGbWidth + 2; ++x) {
 		cout << "  ";
 	}
-	for (int y = gb.mGameBoardPosY + 1; y < gbpy + GameBoard::mGbHeight + 1; ++y) {
-		SetCursorPos(gb.mGameBoardPosX, y);
+	for (int y = ioGameBoard.mGameBoardPosY + 1; y < gbpy + GameBoard::mGbHeight + 1; ++y) {
+		SetCursorPos(ioGameBoard.mGameBoardPosX, y);
 		cout << "  ";
-		SetCursorPos(gb.mGameBoardPosX + (GameBoard::mGbWidth + 1) * 2, y);
+		SetCursorPos(ioGameBoard.mGameBoardPosX + (GameBoard::mGbWidth + 1) * 2, y);
 		cout << "  ";
 	}
 }
 
 //ゲームボード内部の描画
-void DrawEngine::DrawStage(GameBoard gb) {
+void DrawEngine::DrawStage(GameBoard inGameBoard) {
 	for (int y = 1; y <= GameBoard::mGbHeight; ++y) {
-		SetCursorPos(gb.GetmGameBoardPosX() + 2, y + gb.GetmGameBoardPosY());
+		SetCursorPos(inGameBoard.GetmGameBoardPosX() + 2, y + inGameBoard.GetmGameBoardPosY());
 		for (int x = 1; x <= GameBoard::mGbWidth; ++x) {
-			int Value = gb.GetGameBoardValue(x, y);
+			int Value = inGameBoard.GetGameBoardValue(x, y);
 			//空ではないブロックは固定化→
 			if(Value !=GameBoard::Value::empty){
 				int Color = TetriminoTypeToColor(Value);

@@ -26,9 +26,9 @@ public:
 
 	};
 
-	void DefaultDrawBoard(const GameBoard& gb);//ゲームボード外枠の描画
-	void DrawBoard(const GameBoard& gb,Color cl);//ゲームボード外枠の描画
-	void DrawStage(GameBoard gb);//ゲームボード内部の描画
+	void DefaultDrawBoard(const GameBoard& ioGameBoard);//ゲームボード外枠の描画
+	void DrawBoard(const GameBoard& ioGameBoard,const Color& cl);//ゲームボード外枠の描画
+	void DrawStage(GameBoard ioGameBoard);//ゲームボード内部の描画
 	
 	void DrawTetrimino(BlockPiece& bp);
 
