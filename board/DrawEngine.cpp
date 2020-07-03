@@ -74,36 +74,40 @@ void DrawEngine::DrawStage(GameBoard inGameBoard) {
 	}
 }
 
-
-void DrawEngine::DrawTetrimino(BlockPiece& bp)
+//テトリミノの描画
+void DrawEngine::DrawTetrimino(const GameBoard& ioGameBoard, const BlockPiece& ioBlockPiece)
 {
 	//GUIアプリとして移植する際にテトリミノを形状と色を持った構造体として定義することで描画を行う関数側から指定する必要をなくす
-	int Color = TetriminoTypeToColor(bp.mTetriminoType + 1);//Typeの範囲を0~6ではなく、1~7に、
+	int tetrimino_color = TetriminoTypeToColor(ioBlockPiece.mTetriminoType + 1);//Typeの範囲を0~6ではなく、1~7に、
 
 	//テトリミノの色を設定
-	SetColor(static_cast<int>(Color), static_cast<int>(Color));
+	SetColor(static_cast<int>(tetrimino_color), static_cast<int>(tetrimino_color));
 
 
 	for (int i = 0; i < gTetriminoWidth; ++i) {
-		int y = bp.mTetriminoPosY + i;
-		if (y < 0 || y >= GameBoard::mGbHeight) continue;
-		for (int k = 0; k < gTetriminoWidth; ++k) {
-			int x = bp.mTetriminoPosX + k;
-			if (x < 0 || x >= GameBoard::mGbWidth) continue;
-			if (bp.mTetrimino[k][i]) {
-				SetCursorPos(gb.GetmGameBoardPosX() + (x + 1) * 2, gb.GetmGameBoardPosY() + y + 1);
-				cout << "  ";
+		int blockpiece_posy = ioBlockPiece.mTetriminoPosY + i;
+		
+		if (blockpiece_posy < 0 || blockpiece_posy >= GameBoard::mGbHeight) continue;
+			for (int k = 0; k < gTetriminoWidth; ++k) {
+				int blockpiece_posx = ioBlockPiece.mTetriminoPosX + k;
+
+				if (blockpiece_posx < 0 || blockpiece_posx >= GameBoard::mGbWidth) continue;
+					
+				if (ioBlockPiece.mTetrimino[k][i]) {
+					SetCursorPos(ioGameBoard.GetmGameBoardPosX() + (blockpiece_posx + 1) * 2, 
+								ioGameBoard.GetmGameBoardPosY() + blockpiece_posy + 1);
+					cout << "  ";
 			}
 		}
 	}
 }
 
 //テトリミノの形状から色を設定する
-int DrawEngine::TetriminoTypeToColor(int ttc) {
+int DrawEngine::TetriminoTypeToColor(int inTetriminoType) {
 	static int tkl;
 
 
-	switch (ttc)
+	switch (inTetriminoType)
 	{
 		case static_cast<int>(BlockPiece::TetrimnoType::TypeA) :
 			tkl = static_cast<int>(Color::Cyan);
@@ -146,8 +150,8 @@ void DrawEngine::SetCursorPos(int x, int y) {
 //スコア表示
 void DrawEngine::DrawScore(Score sc) {
 	//スコア表示位置の設定
-	int ScorePosX = (gb.GetmGameBoardPosX() + GameBoard::mGbWidth + 2) * 3 + 4;
-	int ScorePosY = gb.GetmGameBoardPosY()+2;
+	int ScorePosX = (game_board.GetmGameBoardPosX() + GameBoard::mGbWidth + 2) * 3 + 4;
+	int ScorePosY = game_board.GetmGameBoardPosY()+2;
 	
 	int score = sc.GetScore();//スコア取得
 
@@ -159,14 +163,14 @@ void DrawEngine::DrawScore(Score sc) {
 	cout.width(8);     
 	cout << score;
 }
-//
-////ルール表示
+
+//ルール表示
 void DrawEngine::DrawHighScore() {
 	//スコア表示位置の設定
-	int RulePosX = (gb.GetmGameBoardPosX() + GameBoard::mGbWidth + 2) * 3 + 4;
-	int RulePosY = gb.GetmGameBoardPosY();
+	int RulePosX = (game_board.GetmGameBoardPosX() + GameBoard::mGbWidth + 2) * 3 + 4;
+	int RulePosY = game_board.GetmGameBoardPosY();
 
-	int hiscore = sc.GetHighScore();//スコア取得
+	int hiscore = score.GetHighScore();//スコア取得
 
 	SetCursorPos(RulePosX, RulePosY);
 	//スコアの色を設定
@@ -190,27 +194,26 @@ void DrawEngine::DrawRotType() {
 	//cout << RotType;
 }
 
-
-
-void DrawEngine::SetColor(int fg, int bg) {
-	HANDLE hCons = GetStdHandle(STD_OUTPUT_HANDLE);
+//前景色と背景色を設定
+void DrawEngine::SetColor(int inForeGroundColor, int inBackGroundColor) {
+	HANDLE h_cons = GetStdHandle(STD_OUTPUT_HANDLE);
 	WORD attr = 0;
-	if (fg & static_cast<int>(Mask::Intensity))
+	if (inForeGroundColor & static_cast<int>(Mask::Intensity))
 		attr |= FOREGROUND_INTENSITY;
-	if (fg & static_cast<int>(Mask::RedMask))
+	if (inForeGroundColor & static_cast<int>(Mask::RedMask))
 		attr |= FOREGROUND_RED;
-	if (fg & static_cast<int>(Mask::GreenMask))
+	if (inForeGroundColor & static_cast<int>(Mask::GreenMask))
 		attr |= FOREGROUND_GREEN;
-	if (fg & static_cast<int>(Mask::BlueMask))
+	if (inForeGroundColor & static_cast<int>(Mask::BlueMask))
 		attr |= FOREGROUND_BLUE;
 
-	if (bg & static_cast<int>(Mask::Intensity))
+	if (inBackGroundColor & static_cast<int>(Mask::Intensity))
 		attr |= BACKGROUND_INTENSITY;
-	if (bg & static_cast<int>(Mask::RedMask))
+	if (inBackGroundColor & static_cast<int>(Mask::RedMask))
 		attr |= BACKGROUND_RED;
-	if (bg & static_cast<int>(Mask::GreenMask))
+	if (inBackGroundColor & static_cast<int>(Mask::GreenMask))
 		attr |= BACKGROUND_GREEN;
-	if (bg & static_cast<int>(Mask::BlueMask))
+	if (inBackGroundColor & static_cast<int>(Mask::BlueMask))
 		attr |= BACKGROUND_BLUE;
-	SetConsoleTextAttribute(hCons, attr);
+	SetConsoleTextAttribute(h_cons, attr);
 }

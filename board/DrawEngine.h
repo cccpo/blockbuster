@@ -28,9 +28,9 @@ public:
 
 	void DefaultDrawBoard(const GameBoard& ioGameBoard);//ゲームボード外枠の描画
 	void DrawBoard(const GameBoard& ioGameBoard,const Color& cl);//ゲームボード外枠の描画
-	void DrawStage(GameBoard ioGameBoard);//ゲームボード内部の描画
+	void DrawStage(GameBoard inGameBoard);//ゲームボード内部の描画
 	
-	void DrawTetrimino(BlockPiece& bp);
+	void DrawTetrimino(const GameBoard& ioGameBoard, const BlockPiece& ioBlockPiece);
 
 	int TetriminoTypeToColor(int ttc);//テトリミノの形状から色を設定する
 
@@ -40,17 +40,17 @@ public:
 
 	void DrawRotType();
 
-	void SetColor(int fg, int bg );
+	void SetColor(int inForeGroundColor, int inBackGroundColor);
 	void SetCursorPos(int x, int y);
 
 	//DrawGameBoard(){}
 	//~DrawGameBoard(){}
 
 protected:
-	GameBoard gb;
-	BlockPiece bp;
-	Score sc;
-	Data d;
+	GameBoard game_board;
+	BlockPiece block_piece;
+	Score score;
+	Data data;
 
 
 };
