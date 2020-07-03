@@ -2,7 +2,7 @@
 
 
 //スコア管理クラス
-class Score
+class ScoreManager
 {
 private:
 	

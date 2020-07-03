@@ -1,21 +1,21 @@
-#include "Score.h"
+#include "ScoreManager.h"
 
 
 static int mHighScore;
 int mScore = 0;
 
 //スコアを取得
-int Score::GetScore() const{
+int ScoreManager::GetScore() const{
 	return mScore;
 };
 
 //スコアをセット
-void Score::SetScore(int sc) {
+void ScoreManager::SetScore(int sc) {
 	mScore = sc;
 };
 
 //消去パターンに応じてスコアを加算
-void Score::AddScore(int a) {
+void ScoreManager::AddScore(int a) {
 	
 	switch (a) {
 	case 1: mScore += 50; break;
@@ -28,11 +28,11 @@ void Score::AddScore(int a) {
 }
 
 //　ハイスコアをゲット
-int Score::GetHighScore() const {
+int ScoreManager::GetHighScore() const {
 	return mHighScore;
 }
 
 // ハイスコアをセット
-void Score::SetHighScore(int hs) {
+void ScoreManager::SetHighScore(int hs) {
 	mHighScore = hs;
 }
