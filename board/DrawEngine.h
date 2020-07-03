@@ -32,7 +32,7 @@ public:
 	
 	void DrawTetrimino(const GameBoard& ioGameBoard, const BlockPiece& ioBlockPiece);
 
-	int TetriminoTypeToColor(int ttc);//テトリミノの形状から色を設定する
+	int TetriminoTypeToColor(int inTetriminoType);//テトリミノの形状から色を設定する
 
 	void DrawScore(Score sc);//スコア表示
 

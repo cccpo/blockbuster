@@ -138,11 +138,11 @@ int DrawEngine::TetriminoTypeToColor(int inTetriminoType) {
 }
 
 //コンソール上の描画位置を設定
-void DrawEngine::SetCursorPos(int x, int y) {
+void DrawEngine::SetCursorPos(int inConsolePosX, int inConsolePosY) {
 	HANDLE hCons = GetStdHandle(STD_OUTPUT_HANDLE);
 	COORD pos;
-	pos.X = x;
-	pos.Y = y;
+	pos.X = inConsolePosX;
+	pos.Y = inConsolePosY;
 	SetConsoleCursorPosition(hCons, pos);
 }
 
