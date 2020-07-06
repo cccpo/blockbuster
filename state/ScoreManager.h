@@ -11,12 +11,12 @@ private:
  public:
 	
 	int GetScore() const;////スコアを取得
-	void SetScore(int sc);//スコアをセット
+	void SetScore(int inScore);//スコアをセット
 
-	void AddScore(int a);//消去パターンに応じてスコアを加算
+	void AddScore(int inAddScore);//消去パターンに応じてスコアを加算
 	
 	int GetHighScore() const;//　ハイスコアをゲット
-	void SetHighScore(int a);// ハイスコアをセット
+	void SetHighScore(int inHiScore);// ハイスコアをセット
 
 
 	//Score() {};
