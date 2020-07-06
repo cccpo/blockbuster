@@ -5,7 +5,7 @@
 #include "BlockPiece.h"
 #include "Value.h"
 #include "../Data/Data.h"
-#include "../state/ScoreManager.h"
+#include "ScoreManager.h"
 
 //　GameBoardの描画を行うクラス
 class DrawEngine

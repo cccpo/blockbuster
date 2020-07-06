@@ -8,7 +8,7 @@
 
 #include "Game.h"
 
-#include "state/ScoreManager.h"
+#include "board/ScoreManager.h"
 #include "board/GameBoard.h"
 #include "board/DrawEngine.h"
 #include "board/BlockPiece.h"

@@ -1,5 +1,5 @@
 #include "../Game.h"
-#include "../state/ScoreManager.h"
+#include "ScoreManager.h"
 
 #include "../board/GameBoard.h"
 

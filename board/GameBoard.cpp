@@ -1,8 +1,7 @@
 #include <iostream>
 
 #include "GameBoard.h"
-
-#include "../state/ScoreManager.h"
+#include "ScoreManager.h"
 
 typedef unsigned char byte;
 
