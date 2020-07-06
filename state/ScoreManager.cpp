@@ -10,14 +10,14 @@ int ScoreManager::GetScore() const{
 };
 
 //スコアをセット
-void ScoreManager::SetScore(int sc) {
-	mScore = sc;
+void ScoreManager::SetScore(int inScore) {
+	mScore = inScore;
 };
 
 //消去パターンに応じてスコアを加算
-void ScoreManager::AddScore(int a) {
+void ScoreManager::AddScore(int inDeletePattern) {
 	
-	switch (a) {
+	switch (inDeletePattern) {
 	case 1: mScore += 50; break;
 	case 2: mScore += 100; break;
 	case 3: mScore += 160; break;
@@ -33,6 +33,6 @@ int ScoreManager::GetHighScore() const {
 }
 
 // ハイスコアをセット
-void ScoreManager::SetHighScore(int hs) {
-	mHighScore = hs;
+void ScoreManager::SetHighScore(int inHiScore) {
+	mHighScore = inHiScore;
 }
