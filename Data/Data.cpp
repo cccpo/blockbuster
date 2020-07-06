@@ -1,7 +1,5 @@
 #include "Data.h"
 
-static int HiScore;
-
 
 //"HiScore.txt"よりハイスコアを取得
 int Data::HiScoreLoad() {
@@ -21,8 +19,9 @@ int Data::HiScoreLoad() {
 }
 
 //ハイスコアを"HiScore.txt"に保存する
-void Data::HiScoreSave(int sc) {
+void Data::HiScoreSave(int inHiScore) {
     std::ofstream outputfile("HiScore.txt");
-    outputfile << sc;
+    
+    outputfile << inHiScore;
     outputfile.close();
 }
