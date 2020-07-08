@@ -212,7 +212,7 @@ void BlockPiece::SetTertimino(GameBoard inGameBoard, int inTetriminoType,
 }
 
 //ƒeƒgƒŠƒ~ƒm‚Ì’Ç‰Á
-void BlockPiece::AddTertimino(GameBoard gb) {
+void BlockPiece::AddTertimino(GameBoard inGameBoard) {
 	std::random_device rnd;
 	std::mt19937 mt(rnd());
 	std::uniform_int_distribution<int> type(0,6);//0`6‚Ì”ÍˆÍ‚Å—””­¶
@@ -225,7 +225,7 @@ void BlockPiece::AddTertimino(GameBoard gb) {
 	SetTeriminoType(type(mt));
 
 
-    SetTertimino(gb,mTetriminoType, mRotIX = 0);
+    SetTertimino(inGameBoard,mTetriminoType, mRotIX = 0);
     }
 
 

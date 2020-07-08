@@ -49,8 +49,8 @@ public:
 
 	int GetRot(GameBoard gb);//現在のテトリミノの回転タイプをゲット
 
-	void SetTertimino(GameBoard gb, int type, int rx);//テトリミノをゲームボードに配置
-	void AddTertimino(GameBoard gb); // テトリミノの追加
+	void SetTertimino(GameBoard inGameBoard, int type, int inTetriminoType);//テトリミノをゲームボードに配置
+	void AddTertimino(GameBoard inGameBoard); // テトリミノの追加
 
 
 	int GetgTetriminoPosX(GameBoard gb);
