@@ -36,7 +36,7 @@ public:
 
 
 
-	bool IsMoveDown(GameBoard gb);//ÚG”»’è
+	bool IsMoveDown(GameBoard ioGameBoard);//ÚG”»’è
 
 	bool IsMoveLeft(GameBoard gb);//¶‚ÉˆÚ“®‚·‚é
 	bool IsMoveRight(GameBoard gb);//‰E‚ÉˆÚ“®‚·‚é
@@ -53,7 +53,7 @@ public:
 	void AddTertimino(const GameBoard& ioGameBoard); // ƒeƒgƒŠƒ~ƒm‚Ì’Ç‰Á
 
 
-	int GetgTetriminoPosX(GameBoard gb);
+	int GetgTetriminoPosX(GameBoard inGameBoard);
 	void SetTeriminoPosX(int tpx);
 
 	

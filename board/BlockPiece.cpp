@@ -230,11 +230,11 @@ void BlockPiece::AddTertimino(const GameBoard& ioGameBoard) {
 
 
 //ê⁄êGîªíË
-bool BlockPiece::IsMoveDown(GameBoard gb) {
+bool BlockPiece::IsMoveDown(GameBoard ioGameBoard) {
 	for (int x = 0; x < gTetriminoWidth; ++x) {
 		for (int y = gTetriminoHeight; --y >= 0;) {
 			if (mTetrimino[x][y] != 0) {
-				if (gb.GetGameBoardValue(x + mTetriminoPosX + 1, y + mTetriminoPosY + 2) != 0)
+				if (ioGameBoard.GetGameBoardValue(x + mTetriminoPosX + 1, y + mTetriminoPosY + 2) != 0)
 					return false; 
 				break;
 			}
@@ -325,7 +325,7 @@ int BlockPiece::GetRot(GameBoard gb) {
 	return mRotIX;
 }
 
-int BlockPiece::GetgTetriminoPosX(GameBoard gb) {
+int BlockPiece::GetgTetriminoPosX(GameBoard inGameBoard) {
 	return mTetriminoPosX;
 }
 
