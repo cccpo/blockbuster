@@ -1,6 +1,8 @@
 #pragma once
 
 #include "DrawEngineWin32.h"
+#include "../board/BlockPiece.h"
+#include "../board/GameBoard.h"
 
 
 class GameWin32
@@ -10,10 +12,15 @@ public:
 	GameWin32(DrawEngineWin32& ioDrawEngineWin32);
 	~GameWin32();
 
-	bool KeyPress(int inInputKey);
+	const bool IsKeyPress(int inInputKey);
+
+	const bool IsGameOver();
 
 protected:
 	DrawEngineWin32 draw_engine_win32;
+	
+	GameBoard& game_board;
+	BlockPiece& block_piece;
 
 	bool mIsPaused;
 };
