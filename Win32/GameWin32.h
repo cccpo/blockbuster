@@ -3,6 +3,8 @@
 #include "DrawEngineWin32.h"
 #include "../board/BlockPiece.h"
 #include "../board/GameBoard.h"
+#include "../board/ScoreManager.h"
+#include "../Data/Data.h"
 
 
 class GameWin32
@@ -21,6 +23,8 @@ protected:
 	
 	GameBoard& game_board;
 	BlockPiece& block_piece;
+	ScoreManager score;
+	Data data;
 
 	bool mIsPaused;
 };
