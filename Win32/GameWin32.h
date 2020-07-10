@@ -10,6 +10,8 @@ public:
 	GameWin32(DrawEngineWin32& ioDrawEngineWin32);
 	~GameWin32();
 
+	bool KeyPress(int inInputKey);
+
 protected:
 	DrawEngineWin32 draw_engine_win32;
 
