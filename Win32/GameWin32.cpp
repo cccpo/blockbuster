@@ -2,11 +2,13 @@
 
 #include <iostream>
 
+
 GameWin32::GameWin32(DrawEngineWin32& ioDrawEngineWin32):
     draw_engine_win32(draw_engine_win32),game_board(game_board),
-    block_piece(block_piece),mIsPaused(false)
+    block_piece(block_piece),score(score),data(data),
+    mIsPaused(false)
 {
-    
+    GameBoard GameBoard(1, 2);
 }
 
 GameWin32::~GameWin32()
@@ -53,9 +55,11 @@ const bool GameWin32::IsKeyPress(int inKeyPress)
     return true;
 }
 
-//ゲームオーバーの処理をかける
+
+
+//ゲームオーバー判定
 const bool GameWin32::IsGameOver() 
 {
-
+    return block_piece.IsOverLaped(game_board);
 }
 
