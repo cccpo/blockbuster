@@ -38,16 +38,16 @@ public:
 
 	bool IsMoveDown(GameBoard ioGameBoard);//接触判定
 
-	bool IsMoveLeft(GameBoard gb);//左に移動する
-	bool IsMoveRight(GameBoard gb);//右に移動する
+	bool IsMoveLeft(GameBoard inGaneBoard);//左に移動する
+	bool IsMoveRight(GameBoard inGaneBoard);//右に移動する
 
-	bool IsOverLaped(GameBoard gb);
+	bool IsOverLaped(GameBoard inGaneBoard);
 	
-	void ChangeBlock(GameBoard gb);//テトリミノを固定化
+	void ChangeBlock(GameBoard inGaneBoard);//テトリミノを固定化
 	
-	void DeleteLine(GameBoard gb);// 揃ったラインを消去
+	void DeleteLine(GameBoard inGaneBoard);// 揃ったラインを消去
 
-	int GetRot(GameBoard gb);//現在のテトリミノの回転タイプをゲット
+	int GetRot(GameBoard inGaneBoard);//現在のテトリミノの回転タイプをゲット
 
 	void SetTertimino(const GameBoard& ioGameBoard, int type, int inTetriminoType);//テトリミノをゲームボードに配置
 	void AddTertimino(const GameBoard& ioGameBoard); // テトリミノの追加
@@ -58,7 +58,7 @@ public:
 
 	
 
-	int GetTetriminoPosY(GameBoard gb);
+	int GetTetriminoPosY(GameBoard inGaneBoard);
 	void SetTeriminoPosY(int tpy);
 
 	
@@ -76,7 +76,7 @@ public:
 	//~BlockPiece();
 
 protected:
-	GameBoard gb;
+	GameBoard inGaneBoard;
 
 };
 

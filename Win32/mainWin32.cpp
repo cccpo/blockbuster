@@ -113,8 +113,6 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam) 
 	static GameWin32* game_win_32;
 	static DrawEngineWin32* draw_engine_win32;
 
-	
-
 	switch (message) {
 	
 	//ウィンドウ破棄メッセージ
@@ -122,7 +120,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam) 
 		hdc = GetDC(hwnd);
 
 		draw_engine_win32 = new DrawEngineWin32(hdc, hwnd, gTetriminoSize);
-		game_win_32 = new GameWin32(*draw_engine_win32);
+		game_win_32 = new GameWin32(draw_engine_win32);
 
 		ReleaseDC(hwnd, hdc);//デバイスコンテキストの開放
 		return 0;
@@ -131,9 +129,11 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam) 
 	case WM_KEYDOWN:
 		game_win_32->IsKeyPress(wParam);
 		return 0;
-
+	
+	//時間計測メッセージ
 	case WM_TIMER:
-		
+		game_win_32->UpdateTime();
+
 		return 0;
 
 	//フォーカスを失うメッセージ
