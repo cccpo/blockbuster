@@ -16,6 +16,11 @@ GameWin32::~GameWin32()
 
 }
 
+void GameWin32::UpdateTime() 
+{
+
+}
+
 // Key“ü—ÍŠÇ—ƒNƒ‰ƒX
 const bool GameWin32::IsKeyPress(int inKeyPress)
 {

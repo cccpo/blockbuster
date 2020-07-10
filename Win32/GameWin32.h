@@ -14,6 +14,8 @@ public:
 	GameWin32(DrawEngineWin32& ioDrawEngineWin32);
 	~GameWin32();
 
+	void UpdateTime();
+
 	const bool IsKeyPress(int inInputKey);
 
 	const bool IsGameOver();
