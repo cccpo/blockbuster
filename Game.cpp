@@ -29,8 +29,8 @@ void gPlayGame(DrawEngine& ioDrawEngine) {
 	ScoreManager score;
 	Data data;
 
-	int HiScore = data.HiScoreLoad();//ハイスコアを取得
-	score.SetHighScore(HiScore);//ハイスコアをセットする
+	int hi_score = data.HiScoreLoad();//ハイスコアを取得
+	score.SetHighScore(hi_score);//ハイスコアをセットする
 
 	gb.InitGameBoard();//ゲームボード初期化
 
@@ -38,8 +38,8 @@ void gPlayGame(DrawEngine& ioDrawEngine) {
 
 	block_piece.AddTertimino(gb);//テトリミノの追加
 
-	int bpx = block_piece.GetgTetriminoPosX(gb);//テトリミノx座標設定
-	int bpy = block_piece.GetTetriminoPosY(gb);//テトリミノy座標設定
+	int block_piece_posx = block_piece.GetgTetriminoPosX(gb);//テトリミノx座標設定
+	int block_piece_posy = block_piece.GetTetriminoPosY(gb);//テトリミノy座標設定
 
 	ioDrawEngine.DefaultDrawBoard(gb);//ゲームボード外枠の描画
 	ioDrawEngine.DrawStage(gb);//ゲームボード内部の描画
@@ -66,8 +66,8 @@ void gPlayGame(DrawEngine& ioDrawEngine) {
 				//テトリミノが落下完了した場合に以下の処理
 				if (!block_piece.IsMoveDown(gb)) {
 					key = 0;
-					int FinalPosX = block_piece.GetgTetriminoPosX(gb);
-					int FinalPosY = block_piece.GetTetriminoPosY(gb);
+					int final_posx = block_piece.GetgTetriminoPosX(gb);
+					int final_posy = block_piece.GetTetriminoPosY(gb);
 					block_piece.ChangeBlock(gb);//ブロックの固定化
 					block_piece.DeleteLine(gb);//揃ったlineの消去
 					ioDrawEngine.DrawScore(score);
@@ -75,8 +75,8 @@ void gPlayGame(DrawEngine& ioDrawEngine) {
 					block_piece.AddTertimino(gb);
 					ioDrawEngine.DrawStage(gb);//ゲームボード内部の描画(ToDo)
 					ioDrawEngine.DrawTetrimino(gb,block_piece);//テトリミノの描画
-					bpx = block_piece.GetgTetriminoPosX(gb);//テトリミノx座標設定
-					bpy = block_piece.GetTetriminoPosY(gb);//テトリミノy座標設定
+					block_piece_posx = block_piece.GetgTetriminoPosX(gb);//テトリミノx座標設定
+					block_piece_posy = block_piece.GetTetriminoPosY(gb);//テトリミノy座標設定
 					
 					//枠外に出てしまった場合終了
 					if (block_piece.IsOverLaped(gb))
@@ -84,8 +84,8 @@ void gPlayGame(DrawEngine& ioDrawEngine) {
 					
 					continue;
 				}
-				++bpy;     // 落下中テトリスをひとつ下に移動
-				block_piece.SetTeriminoPosY(bpy);
+				++block_piece_posy;     // 落下中テトリスをひとつ下に移動
+				block_piece.SetTeriminoPosY(block_piece_posy);
 				update = true;
 			}
 
@@ -93,8 +93,8 @@ void gPlayGame(DrawEngine& ioDrawEngine) {
 				//Move Left
 				if (key == VK_LEFT) {
 					if (block_piece.IsMoveLeft(gb)) {
-						--bpx;  
-						block_piece.SetTeriminoPosX(bpx);
+						--block_piece_posx;  
+						block_piece.SetTeriminoPosX(block_piece_posx);
 						update = true;
 					}
 					key = 0;
@@ -102,8 +102,8 @@ void gPlayGame(DrawEngine& ioDrawEngine) {
 				//Move Right
 				else if (key == VK_RIGHT) {
 					if (block_piece.IsMoveRight(gb)) {
-						++bpx;  
-						block_piece.SetTeriminoPosX(bpx);
+						++block_piece_posx;  
+						block_piece.SetTeriminoPosX(block_piece_posx);
 						update = true;
 					}
 					key = 0;
