@@ -50,13 +50,14 @@ void DrawEngineWin32::DrawText(TCHAR* szText, int x, int y) const
 void DrawEngineWin32::DrawScore(int score, int x, int y) const
 {
 	TCHAR szBuffer[20];
-	int len = wsprintf(szBuffer, TEXT("Score: %6d"), score);
+	int score_board = wsprintf(szBuffer, TEXT("Score: %6d"), score);
 
 	SetBkMode(mHdc, OPAQUE);
-	TextOut(mHdc, x, y, szBuffer, len);
+	TextOut(mHdc, x, y, szBuffer, score_board);
 	SetBkMode(mHdc, TRANSPARENT);
 }
 
+//ƒeƒgƒŠƒ~ƒm•`‰æ
 void DrawEngineWin32::DrawTetrimino(int x, int y, COLORREF color) 
 {
 	HBRUSH hBrush = CreateSolidBrush(color);
