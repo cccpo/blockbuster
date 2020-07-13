@@ -7,12 +7,6 @@
 typedef unsigned char byte;
 
 
-
-
-enum class Mask {
-	
-};
-
 class GameBoard
 {
 
@@ -48,14 +42,14 @@ public:
 
 	void Down(int y);// 一段落とす(揃ったときに使用)
 
-	int GetmEmpty() const;// 初期化関数
+	const int GetmEmpty();// 初期化関数
 
-	int GetmGameBoardPosX() const;// ゲームボードのx座標を返す
-	int GetmGameBoardPosY() const;// ゲームボードのy座標を返す
+	const int GetmGameBoardPosX();// ゲームボードのx座標を返す
+	const int GetmGameBoardPosY();// ゲームボードのy座標を返す
 
 	GameBoard();
 
-	GameBoard(int x, int y);
+	GameBoard(int posx, int posy);
 
 	//~GameBoard();
 };

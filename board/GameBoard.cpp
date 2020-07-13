@@ -31,23 +31,23 @@ void GameBoard::InitGameBoard() {
 };
 
 // ゲームボードの値をゲット
-int GameBoard::GetGameBoardValue(int x, int y) {
-    int s = sBoard[x][y];
+int GameBoard::GetGameBoardValue(int inPosX, int inPosY) {
+    int s = sBoard[inPosX][inPosY];
     return s;
 }
 
 // ゲームボードの値をセット
-void GameBoard::SetTerimonoValue(int x,int y,int val) {
-    sBoard[x][y] = val;
+void GameBoard::SetTerimonoValue(int inPosX,int inPosY,int InValue) {
+    sBoard[inPosX][inPosY] = InValue;
 }
 
 // 一段落とす(揃ったときに使用)
-void GameBoard::Down(int y) {
+void GameBoard::Down(int inLinePosY) {
 
-    while (y > 1) {
+    while (inLinePosY > 1) {
         for (int x = 1; x <= mGbWidth; ++x)
-            sBoard[x][y] = sBoard[x][y - 1];     // １行下に移動
-        --y;      //  上の行に
+            sBoard[x][inLinePosY] = sBoard[x][inLinePosY - 1];     // １行下に移動
+        --inLinePosY;      //  上の行に
     }
     
     for (int x = 1; x <= mGbWidth; ++x)
@@ -55,17 +55,17 @@ void GameBoard::Down(int y) {
 }
 
 // 初期化関数
-int GameBoard::GetmEmpty() const{
+const int GameBoard::GetmEmpty(){
     return mEmpty;
 }
 
 // ゲームボードのx座標を返す
-int GameBoard::GetmGameBoardPosX() const{
+const int GameBoard::GetmGameBoardPosX() {
     return mGameBoardPosX;
 }
 
 // ゲームボードのy座標を返す
-int GameBoard::GetmGameBoardPosY() const{
+const int GameBoard::GetmGameBoardPosY(){
     return mGameBoardPosY;
 }
 
@@ -74,7 +74,7 @@ GameBoard::GameBoard() :mGameBoardPosX(1),mGameBoardPosY(2){
 }
 
 //　ゲームボードを生成する座標及びを与える
-GameBoard::GameBoard(int x,int y) :mGameBoardPosX(x),mGameBoardPosY(y){
+GameBoard::GameBoard(int posx,int posy) :mGameBoardPosX(posx),mGameBoardPosY(posy){
 }
 
 
