@@ -23,7 +23,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdLi
 	static TCHAR szAppName[] = TEXT("BlockPiece");
 	WNDCLASS wc; //WNDCLASS構造体:ウィンドウクラスの属性を表す
 	HWND hwnd; //ウィンドウハンドル
-	MSG msg;
+	MSG message;
 
 
 
@@ -84,22 +84,22 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdLi
 	UpdateWindow(hwnd);
 
 	//メッセージループ
-	//while (GetMessage(&msg, NULL, 0, 0)) {
-	//	TranslateMessage(&msg);//キー入力メッセージを文字メッセージに変換
-	//	DispatchMessage(&msg);//メッセージをウィンドウプロシージャへディスパッチする
-	//}
+	while (GetMessage(&message, NULL, 0, 0)) {
+		TranslateMessage(&message);//キー入力メッセージを文字メッセージに変換
+		DispatchMessage(&message);//メッセージをウィンドウプロシージャへディスパッチする
+	}
 
 	//メッセージボックス生成
-	MessageBox(NULL,
-		TEXT("Create Window"),
-		TEXT("Test"),
-		MB_OK);
+	//MessageBox(NULL,
+	//	TEXT("Create Window"),
+	//	TEXT("Test"),
+	//	MB_OK);
+
+	//return 0;
+
+	return message.wParam;
 
 	
-
-	
-
-	return 0;
 }
 
 
@@ -120,7 +120,9 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam) 
 		hdc = GetDC(hwnd);
 
 		draw_engine_win32 = new DrawEngineWin32(hdc, hwnd, gTetriminoSize);
-		game_win_32 = new GameWin32(draw_engine_win32);
+		game_win_32 = new GameWin32(*draw_engine_win32);
+
+		SetTimer(hwnd, gTimerId, 30, NULL);
 
 		ReleaseDC(hwnd, hdc);//デバイスコンテキストの開放
 		return 0;
@@ -138,18 +140,18 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam) 
 
 	//フォーカスを失うメッセージ
 	case WM_KILLFOCUS:
-	
+		KillTimer(hwnd, gTimerId);
 		return 0;
 
 	//フォーカスを取得するメッセージ
 	case WM_SETFOCUS:
-		
+		SetTimer(hwnd, gTimerId, 30, NULL);
 		return 0;
 	
 	//描画を行わせるメッセージ
 	case WM_PAINT:
 		hdc = BeginPaint(hwnd, &ps);
-
+		game_win_32->Draw();
 		EndPaint(hwnd, &ps);
 		return 0;
 
