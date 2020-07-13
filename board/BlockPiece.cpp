@@ -228,13 +228,14 @@ void BlockPiece::AddTertimino(const GameBoard& ioGameBoard) {
     SetTertimino(ioGameBoard,mTetriminoType, mRotIX = 0);
     }
 
-
-//接触判定
-bool BlockPiece::IsMoveDown(GameBoard ioGameBoard) {
+//*接触判定
+//数値を参照するためにconstを付与できない
+//*
+bool BlockPiece::IsMoveDown(GameBoard inGameBoard) {
 	for (int x = 0; x < gTetriminoWidth; ++x) {
 		for (int y = gTetriminoHeight; --y >= 0;) {
 			if (mTetrimino[x][y] != 0) {
-				if (ioGameBoard.GetGameBoardValue(x + mTetriminoPosX + 1, y + mTetriminoPosY + 2) != 0)
+				if (inGameBoard.GetGameBoardValue(x + mTetriminoPosX + 1, y + mTetriminoPosY + 2) != 0)
 					return false; 
 				break;
 			}
@@ -272,10 +273,10 @@ bool BlockPiece::IsMoveRight(GameBoard inGameBoard) {
 }
 
 //枠外にいるかを判定
-bool BlockPiece::IsOverLaped(GameBoard gameboard) {
+bool BlockPiece::IsOverLaped(GameBoard inGameBoard) {
 	for (int y = 0; y < gTetriminoHeight; ++y) {
 		for (int x = 0; x < gTetriminoWidth; ++x) {
-			if (mTetrimino[x][y] != 0 && gameboard.GetGameBoardValue(x + mTetriminoPosX + 1, y + mTetriminoPosY + 1) != 0)
+			if (mTetrimino[x][y] != 0 && inGameBoard.GetGameBoardValue(x + mTetriminoPosX + 1, y + mTetriminoPosY + 1) != 0)
 				return true;
 		}
 	}
@@ -321,41 +322,41 @@ void BlockPiece::DeleteLine(GameBoard inGameBoard)
 }
 
 //現在のテトリミノの回転タイプをゲット
-int BlockPiece::GetRot(GameBoard inGameBoard) {
+int BlockPiece::GetRot(const GameBoard& ioGameBoard) {
 	return mRotIX;
 }
 
-int BlockPiece::GetgTetriminoPosX(GameBoard inGameBoard) {
+int BlockPiece::GetTetriminoPosX(GameBoard inGameBoard) {
 	return mTetriminoPosX;
 }
 
-void BlockPiece::SetTeriminoPosX(int tpx) {
-	mTetriminoPosX = tpx;
+void BlockPiece::SetTeriminoPosX(int inTetriminoPosX) {
+	mTetriminoPosX = inTetriminoPosX;
 }
 
 int BlockPiece::GetTetriminoPosY(GameBoard inGameBoard) {
 	return mTetriminoPosY;
 }
 
-void BlockPiece::SetTeriminoPosY(int tpy) {
-	mTetriminoPosY = tpy;
+void BlockPiece::SetTeriminoPosY(int inTetriminoPosY) {
+	mTetriminoPosY = inTetriminoPosY;
 }
 
-int BlockPiece::GetgTeriminoType(){
+int BlockPiece::GetTeriminoType(){
 	return mTetriminoType;
 }
 
-void BlockPiece::SetTeriminoType(int ttype) {
-	mTetriminoType = ttype;
+void BlockPiece::SetTeriminoType(int inTetriminoType) {
+	mTetriminoType = inTetriminoType;
 }
 
-int BlockPiece::GetTeriminoValue(int x,int y) {
-	int s = mTetrimino[x][y];
+int BlockPiece::GetTeriminoValue(int inTetriminoPosX,int inTetriminoPosY) {
+	int s = mTetrimino[inTetriminoPosX][inTetriminoPosY];
 	return s;
 }
 
-void BlockPiece::SetRot(int r) {
-	mRotIX = r;
+void BlockPiece::SetRot(int inRotateNumber) {
+	mRotIX = inRotateNumber;
 }
 
 BlockPiece::BlockPiece() {

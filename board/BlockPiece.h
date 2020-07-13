@@ -36,24 +36,22 @@ public:
 
 
 
-	bool IsMoveDown(GameBoard ioGameBoard);//接触判定
-
+	bool IsMoveDown(GameBoard inGameBoard);//接触判定
 	bool IsMoveLeft(GameBoard inGaneBoard);//左に移動する
 	bool IsMoveRight(GameBoard inGaneBoard);//右に移動する
-
-	bool IsOverLaped(GameBoard inGaneBoard);
+	bool IsOverLaped(GameBoard inGaneBoard);//枠外にいるかを判定
 	
 	void ChangeBlock(GameBoard inGaneBoard);//テトリミノを固定化
 	
 	void DeleteLine(GameBoard inGaneBoard);// 揃ったラインを消去
 
-	int GetRot(GameBoard inGaneBoard);//現在のテトリミノの回転タイプをゲット
+	int GetRot(const GameBoard& ioGaneBoard);//現在のテトリミノの回転タイプをゲット
 
 	void SetTertimino(const GameBoard& ioGameBoard, int type, int inTetriminoType);//テトリミノをゲームボードに配置
 	void AddTertimino(const GameBoard& ioGameBoard); // テトリミノの追加
 
 
-	int GetgTetriminoPosX(GameBoard inGameBoard);
+	int GetTetriminoPosX(GameBoard inGameBoard);
 	void SetTeriminoPosX(int tpx);
 
 	
@@ -65,7 +63,7 @@ public:
 
 	void SetRot(int r);
 	
-	int GetgTeriminoType();
+	int GetTeriminoType();
 	void SetTeriminoType(int ttype);
 
 	int GetTeriminoValue(int x, int y);
