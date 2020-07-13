@@ -16,7 +16,11 @@ public:
 
 	void UpdateTime();
 
+	const void Draw();
+	
 	const bool IsKeyPress(int inInputKey);
+
+	
 
 	const bool IsGameOver();
 
