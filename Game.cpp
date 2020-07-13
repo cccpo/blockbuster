@@ -38,7 +38,7 @@ void gPlayGame(DrawEngine& ioDrawEngine) {
 
 	block_piece.AddTertimino(game_board);//テトリミノの追加
 
-	int block_piece_posx = block_piece.GetgTetriminoPosX(game_board);//テトリミノx座標設定
+	int block_piece_posx = block_piece.GetTetriminoPosX(game_board);//テトリミノx座標設定
 	int block_piece_posy = block_piece.GetTetriminoPosY(game_board);//テトリミノy座標設定
 
 	ioDrawEngine.DefaultDrawBoard(game_board);//ゲームボード外枠の描画
@@ -66,7 +66,7 @@ void gPlayGame(DrawEngine& ioDrawEngine) {
 				//テトリミノが落下完了した場合に以下の処理
 				if (!block_piece.IsMoveDown(game_board)) {
 					key = 0;
-					int final_posx = block_piece.GetgTetriminoPosX(game_board);
+					int final_posx = block_piece.GetTetriminoPosX(game_board);
 					int final_posy = block_piece.GetTetriminoPosY(game_board);
 					block_piece.ChangeBlock(game_board);//ブロックの固定化
 					block_piece.DeleteLine(game_board);//揃ったlineの消去
@@ -75,7 +75,7 @@ void gPlayGame(DrawEngine& ioDrawEngine) {
 					block_piece.AddTertimino(game_board);
 					ioDrawEngine.DrawStage(game_board);//ゲームボード内部の描画(ToDo)
 					ioDrawEngine.DrawTetrimino(game_board,block_piece);//テトリミノの描画
-					block_piece_posx = block_piece.GetgTetriminoPosX(game_board);//テトリミノx座標設定
+					block_piece_posx = block_piece.GetTetriminoPosX(game_board);//テトリミノx座標設定
 					block_piece_posy = block_piece.GetTetriminoPosY(game_board);//テトリミノy座標設定
 					
 					//枠外に出てしまった場合終了

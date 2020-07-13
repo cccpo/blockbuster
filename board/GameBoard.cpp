@@ -37,8 +37,8 @@ int GameBoard::GetGameBoardValue(int inPosX, int inPosY) {
 }
 
 // ゲームボードの値をセット
-void GameBoard::SetTerimonoValue(int inPosX,int inPosY,int InValue) {
-    sBoard[inPosX][inPosY] = InValue;
+void GameBoard::SetTerimonoValue(int inPosX,int inPosY,int inValue) {
+    sBoard[inPosX][inPosY] = inValue;
 }
 
 // 一段落とす(揃ったときに使用)
@@ -74,7 +74,7 @@ GameBoard::GameBoard() :mGameBoardPosX(1),mGameBoardPosY(2){
 }
 
 //　ゲームボードを生成する座標及びを与える
-GameBoard::GameBoard(int posx,int posy) :mGameBoardPosX(posx),mGameBoardPosY(posy){
+GameBoard::GameBoard(int inPosX,int inPosY) :mGameBoardPosX(inPosX),mGameBoardPosY(inPosY){
 }
 
 

@@ -298,9 +298,10 @@ void BlockPiece::ChangeBlock(GameBoard inGameBoard) {
 // 揃ったラインを消去
 void BlockPiece::DeleteLine(GameBoard inGameBoard)
 {
-	ScoreManager sc;
+	ScoreManager score_manager;
 
-	int nClear = 0;       // 消去したライン数(これに応じてポイント数が上昇)
+	int clear_lines = 0;       // 消去したライン数(これに応じてポイント数が上昇)
+	
 	for (int ty = 0; ty < gTetriminoHeight; ++ty) {
 		int y = ty + GetTetriminoPosY(inGameBoard) + 1;
 		if (y > GameBoard::mGbHeight) break;
@@ -312,12 +313,12 @@ void BlockPiece::DeleteLine(GameBoard inGameBoard)
 
 		if (cnt == GameBoard::mGbWidth) {
 			inGameBoard.Down(y);
-			++nClear;
+			++clear_lines;
 		}
 	}
 
 
-	sc.AddScore(nClear);
+	score_manager.AddScore(clear_lines);
 
 }
 

@@ -10,12 +10,12 @@ private:
 
  public:
 	
-	int GetScore() const;////スコアを取得
+	const int GetScore();////スコアを取得
 	void SetScore(int inScore);//スコアをセット
 
 	void AddScore(int inAddScore);//消去パターンに応じてスコアを加算
 	
-	int GetHighScore() const;//　ハイスコアをゲット
+	const int GetHighScore();//　ハイスコアをゲット
 	void SetHighScore(int inHiScore);// ハイスコアをセット
 
 

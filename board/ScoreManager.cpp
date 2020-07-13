@@ -1,38 +1,38 @@
 #include "ScoreManager.h"
 
 
-static int mHighScore;
-int mScore = 0;
+static int gHighScore;
+int gScore = 0;
 
 //スコアを取得
-int ScoreManager::GetScore() const{
-	return mScore;
+const int ScoreManager::GetScore(){
+	return gScore;
 };
 
 //スコアをセット
 void ScoreManager::SetScore(int inScore) {
-	mScore = inScore;
+	gScore = inScore;
 };
 
 //消去パターンに応じてスコアを加算
 void ScoreManager::AddScore(int inDeletePattern) {
 	
 	switch (inDeletePattern) {
-	case 1: mScore += 50; break;
-	case 2: mScore += 100; break;
-	case 3: mScore += 160; break;
-	case 4: mScore += 250; break;
+	case 1: gScore += 50; break;
+	case 2: gScore += 100; break;
+	case 3: gScore += 160; break;
+	case 4: gScore += 250; break;
 	}
 	
-	SetScore(mScore);
+	SetScore(gScore);
 }
 
 //　ハイスコアをゲット
-int ScoreManager::GetHighScore() const {
-	return mHighScore;
+const int ScoreManager::GetHighScore(){
+	return gHighScore;
 }
 
 // ハイスコアをセット
 void ScoreManager::SetHighScore(int inHiScore) {
-	mHighScore = inHiScore;
+	gHighScore = inHiScore;
 }

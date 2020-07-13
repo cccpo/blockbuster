@@ -37,8 +37,8 @@ public:
 
 	void InitGameBoard();// ゲームボード初期化
 
-	int GetGameBoardValue(int x, int y);// ゲームボードの値をゲット
-	void SetTerimonoValue(int x, int y, int val);// ゲームボードの値をセット
+	int GetGameBoardValue(int inPosX, int inPosY);// ゲームボードの値をゲット
+	void SetTerimonoValue(int inPosX, int inPosY, int inValue);// ゲームボードの値をセット
 
 	void Down(int y);// 一段落とす(揃ったときに使用)
 
@@ -49,7 +49,7 @@ public:
 
 	GameBoard();
 
-	GameBoard(int posx, int posy);
+	GameBoard(int inPosX, int inPosY);
 
 	//~GameBoard();
 };
