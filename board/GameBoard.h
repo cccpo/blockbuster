@@ -44,8 +44,8 @@ public:
 
 	const int GetmEmpty();// 初期化関数
 
-	const int GetmGameBoardPosX();// ゲームボードのx座標を返す
-	const int GetmGameBoardPosY();// ゲームボードのy座標を返す
+	int GetGameBoardPosX();// ゲームボードのx座標を返す
+	int GetGameBoardPosY();// ゲームボードのy座標を返す
 
 	GameBoard();
 

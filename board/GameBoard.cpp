@@ -60,12 +60,12 @@ const int GameBoard::GetmEmpty(){
 }
 
 // ゲームボードのx座標を返す
-const int GameBoard::GetmGameBoardPosX() {
+int GameBoard::GetGameBoardPosX() {
     return mGameBoardPosX;
 }
 
 // ゲームボードのy座標を返す
-const int GameBoard::GetmGameBoardPosY(){
+int GameBoard::GetGameBoardPosY(){
     return mGameBoardPosY;
 }
 

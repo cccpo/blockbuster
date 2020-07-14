@@ -29,7 +29,7 @@ public:
 	void DrawBoard(const GameBoard& ioGameBoard,const Color& cl);//ゲームボード外枠の描画
 	void DrawStage(GameBoard inGameBoard);//ゲームボード内部の描画
 	
-	void DrawTetrimino(const GameBoard& ioGameBoard, const BlockPiece& ioBlockPiece);
+	void DrawTetrimino(GameBoard ioGameBoard, const BlockPiece& ioBlockPiece);
 
 	int TetriminoTypeToColor(int inTetriminoType);//テトリミノの形状から色を設定する
 

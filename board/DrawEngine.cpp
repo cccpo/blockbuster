@@ -57,7 +57,7 @@ void DrawEngine::DrawBoard(const GameBoard& ioGameBoard, const Color& cl)
 //ゲームボード内部の描画
 void DrawEngine::DrawStage(GameBoard inGameBoard) {
 	for (int y = 1; y <= GameBoard::mGbHeight; ++y) {
-		SetCursorPos(inGameBoard.GetmGameBoardPosX() + 2, y + inGameBoard.GetmGameBoardPosY());
+		SetCursorPos(inGameBoard.GetGameBoardPosX() + 2, y + inGameBoard.GetGameBoardPosY());
 		for (int x = 1; x <= GameBoard::mGbWidth; ++x) {
 			int Value = inGameBoard.GetGameBoardValue(x, y);
 			//空ではないブロックは固定化→
@@ -75,7 +75,7 @@ void DrawEngine::DrawStage(GameBoard inGameBoard) {
 }
 
 //テトリミノの描画
-void DrawEngine::DrawTetrimino(const GameBoard& ioGameBoard, const BlockPiece& ioBlockPiece)
+void DrawEngine::DrawTetrimino(GameBoard ioGameBoard, const BlockPiece& ioBlockPiece)
 {
 	//GUIアプリとして移植する際にテトリミノを形状と色を持った構造体として定義することで描画を行う関数側から指定する必要をなくす
 	int tetrimino_color = TetriminoTypeToColor(ioBlockPiece.mTetriminoType + 1);//Typeの範囲を0~6ではなく、1~7に、
@@ -94,8 +94,8 @@ void DrawEngine::DrawTetrimino(const GameBoard& ioGameBoard, const BlockPiece& i
 				if (blockpiece_posx < 0 || blockpiece_posx >= GameBoard::mGbWidth) continue;
 					
 				if (ioBlockPiece.mTetrimino[k][i]) {
-					SetCursorPos(ioGameBoard.GetmGameBoardPosX() + (blockpiece_posx + 1) * 2, 
-								ioGameBoard.GetmGameBoardPosY() + blockpiece_posy + 1);
+					SetCursorPos(ioGameBoard.GetGameBoardPosX() + (blockpiece_posx + 1) * 2, 
+								ioGameBoard.GetGameBoardPosY() + blockpiece_posy + 1);
 					cout << "  ";
 			}
 		}
@@ -150,8 +150,8 @@ void DrawEngine::SetCursorPos(int inConsolePosX, int inConsolePosY) {
 //スコア表示
 void DrawEngine::DrawScore(ScoreManager inScore) {
 	//スコア表示位置の設定
-	int ScorePosX = (game_board.GetmGameBoardPosX() + GameBoard::mGbWidth + 2) * 3 + 4;
-	int ScorePosY = game_board.GetmGameBoardPosY()+2;
+	int ScorePosX = (game_board.GetGameBoardPosX() + GameBoard::mGbWidth + 2) * 3 + 4;
+	int ScorePosY = game_board.GetGameBoardPosY()+2;
 	
 	int score = inScore.GetScore();//スコア取得
 
@@ -167,8 +167,8 @@ void DrawEngine::DrawScore(ScoreManager inScore) {
 //ルール表示
 void DrawEngine::DrawHighScore() {
 	//スコア表示位置の設定
-	int RulePosX = (game_board.GetmGameBoardPosX() + GameBoard::mGbWidth + 2) * 3 + 4;
-	int RulePosY = game_board.GetmGameBoardPosY();
+	int RulePosX = (game_board.GetGameBoardPosX() + GameBoard::mGbWidth + 2) * 3 + 4;
+	int RulePosY = game_board.GetGameBoardPosY();
 
 	int hiscore = score.GetHighScore();//スコア取得
 
