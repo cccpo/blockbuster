@@ -1,7 +1,7 @@
 #include "DrawEngineWin32.h"
 
 DrawEngineWin32::DrawEngineWin32(HDC mHdc, HWND mHwnd, 
-	int pxPerBlock, int mWidth, int mHeight) :
+								 int pxPerBlock, int mWidth, int mHeight) :
 	mHdc(mHdc), mHwnd(mHwnd), mWidth(mWidth), mHeight(mHeight)
 {
 	//クライアントエリアのサイズを取得

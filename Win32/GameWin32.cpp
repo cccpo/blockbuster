@@ -64,6 +64,8 @@ const bool GameWin32::IsKeyPress(int inKeyPress)
 const void GameWin32::Draw() {
     draw_engine_win32.DrawUI();
 
+    //draw_engine_win32.DrawTetri
+
 }
 
 
