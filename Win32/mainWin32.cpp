@@ -1,4 +1,4 @@
-#include <Windows.h>
+#include <windows.h>
 #include <iostream>
 #include "../Game.h"
 
@@ -32,10 +32,11 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdLi
 
 	//ウィンドウクラスの属性を設定
 	
+	//wc.cbSize = sizeof(WNDCLASSEX);
 	//style:スタイルを指定する
 	//CS_HREDRAW:水平方向のサイズが変更された時再描画 
 	//CS_VREDRAW:垂直方向のサイズが変更されたとき再描画
-	wc.style = CS_HREDRAW | CS_VREDRAW;
+	wc.style = CS_HREDRAW | CS_VREDRAW | CS_OWNDC;;
 	//lpfnWndProc:ウィンドウプロシージャ:まだウィンドウプロシージャが完成していないので
 	//規定のDefWindoProcを宣言
 	//wc.lpfnWndProc = DefWindowProc;
@@ -56,7 +57,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdLi
 	wc.hCursor = LoadCursor(NULL, IDC_ARROW);
 	//
 	//ウィンドウの背景を描画するブラシへのハンドル
-	wc.hbrBackground = (HBRUSH)GetStockObject(GRAY_BRUSH);
+	wc.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
 	//メニューのリソース名
 	wc.lpszMenuName = NULL;
 	//ウィンドウクラスに割り当てる名前

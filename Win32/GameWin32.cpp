@@ -3,12 +3,11 @@
 #include <iostream>
 
 
-GameWin32::GameWin32(DrawEngineWin32& ioDrawEngineWin32):
-    draw_engine_win32(draw_engine_win32),game_board(game_board),
-    block_piece(block_piece),score(score),data(data),
-    mIsPaused(false)
+GameWin32::GameWin32(DrawEngineWin32& draw_engine_win32):
+    draw_engine_win32(draw_engine_win32),mIsPaused(false)
 {
-    GameBoard GameBoard(1, 2);
+    game_board_win32 = new GameBoardWin32(draw_engine_win32,10,20);
+
 }
 
 GameWin32::~GameWin32()
@@ -39,11 +38,11 @@ const bool GameWin32::IsKeyPress(int inKeyPress)
      
         break;
     case VK_RIGHT:
-        if (block_piece.IsMoveRight(game_board)) {
-            //++block_piece_posx;
-            //block_piece.SetTeriminoPosX(block_piece_posx);
-            //update = true;
-        }
+        //if (block_piece.IsMoveRight(game_board)) {
+        //    //++block_piece_posx;
+        //    //block_piece.SetTeriminoPosX(block_piece_posx);
+        //    //update = true;
+        //}
         break;
     case VK_SPACE:
     
@@ -64,14 +63,14 @@ const bool GameWin32::IsKeyPress(int inKeyPress)
 const void GameWin32::Draw() {
     draw_engine_win32.DrawUI();
 
-    //draw_engine_win32.DrawTetri
+    game_board_win32->DrawGameBoard();
 
 }
 
 
 //ゲームオーバー判定
-const bool GameWin32::IsGameOver() 
-{
-    return block_piece.IsOverLaped(game_board);
-}
+//const bool GameWin32::IsGameOver() 
+//{
+//    //return block_piece.IsOverLaped(game_board);
+//}
 

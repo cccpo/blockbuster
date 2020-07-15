@@ -168,55 +168,55 @@ void draw_engine_win32(DrawEngine& de) {
 }
 
 //main
-int main() {
-	using namespace std;
-	chrono::system_clock::time_point start, end;
-
-	//ゲーム開始
-	DrawEngine de;
-	KeyInput ki;
-	ScoreManager sc;
-	Data d;
-
-	for (;;) {
-		start = chrono::system_clock::now();
-		
-		gPlayGame(de);
-
-
-		end = chrono::system_clock::now();
-
-		double time = static_cast<double>(chrono::duration_cast<chrono::microseconds>(end - start).count() / 1000.0);
-		
-		//処理を変更する必要がある。
-		de.SetCursorPos(0, GameBoard::mGbHeight+5);
-		de.SetColor((int)DrawEngine::Color::Gray, (int)DrawEngine::Color::Black);
-		
-		//ハイスコア更新時の処理
-		if (sc.GetScore()>sc.GetHighScore()) {
-			std::cout << "HiScore!!" << sc.GetScore() <<endl;
-			d.HiScoreSave(sc.GetScore());
-		}
-		
-		std::cout << "GAME OVER. Replay? [Y/N] "<< endl;
-		
-		for (;;) {
-			if (ki.IsKeyPressed('N'))
-				return 0;
-			if (ki.IsKeyPressed('Y'))
-				break;
-			Sleep(LoopInterval);     // 10ミリ秒ウェイト
-		}
-
-		
-		de.SetCursorPos(0, GameBoard::mGbHeight + 5);//リプレイ時にゲームボードの位置を初期化
-		
-		for (int i = 0; i < 79; ++i) {
-			std::cout << ' ';
-		}
-
-	}
-}
+//int main() {
+//	using namespace std;
+//	chrono::system_clock::time_point start, end;
+//
+//	//ゲーム開始
+//	DrawEngine de;
+//	KeyInput ki;
+//	ScoreManager sc;
+//	Data d;
+//
+//	for (;;) {
+//		start = chrono::system_clock::now();
+//		
+//		gPlayGame(de);
+//
+//
+//		end = chrono::system_clock::now();
+//
+//		double time = static_cast<double>(chrono::duration_cast<chrono::microseconds>(end - start).count() / 1000.0);
+//		
+//		//処理を変更する必要がある。
+//		de.SetCursorPos(0, GameBoard::mGbHeight+5);
+//		de.SetColor((int)DrawEngine::Color::Gray, (int)DrawEngine::Color::Black);
+//		
+//		//ハイスコア更新時の処理
+//		if (sc.GetScore()>sc.GetHighScore()) {
+//			std::cout << "HiScore!!" << sc.GetScore() <<endl;
+//			d.HiScoreSave(sc.GetScore());
+//		}
+//		
+//		std::cout << "GAME OVER. Replay? [Y/N] "<< endl;
+//		
+//		for (;;) {
+//			if (ki.IsKeyPressed('N'))
+//				return 0;
+//			if (ki.IsKeyPressed('Y'))
+//				break;
+//			Sleep(LoopInterval);     // 10ミリ秒ウェイト
+//		}
+//
+//		
+//		de.SetCursorPos(0, GameBoard::mGbHeight + 5);//リプレイ時にゲームボードの位置を初期化
+//		
+//		for (int i = 0; i < 79; ++i) {
+//			std::cout << ' ';
+//		}
+//
+//	}
+//}
 
 
 // Key入力管理クラス

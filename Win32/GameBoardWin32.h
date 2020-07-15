@@ -9,16 +9,18 @@ class GameBoardWin32
 {
 
 	public:
-	GameBoardWin32(GameBoard& game_board,DrawEngineWin32& draw_engine_win32,
+	GameBoardWin32(DrawEngineWin32& draw_engine_win32,
 				   int game_board_width = 10, int game_board_height = 20);
 	~GameBoardWin32();
+
+	const void DrawGameBoard();
 
 	protected:
 		COLORREF** game_board_win32;
 		DrawEngineWin32& draw_engine_win32;
-		BlockPiece* current_block_piece;
-		BlockPiece* next_block_piece;
-		GameBoard& game_board;
+		//BlockPiece* current_block_piece;
+		//BlockPiece* next_block_piece;
+		//GameBoard& game_board;
 
 
 		int game_board_width;

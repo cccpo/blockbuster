@@ -28,7 +28,7 @@ DrawEngineWin32::~DrawEngineWin32()
 //UI•`‰æ
 void DrawEngineWin32::DrawUI() 
 {
-	// Draw a gray area at the right
+	
 	HBRUSH hBrush = CreateSolidBrush(RGB(70, 70, 70));
 	
 	mRect.top = mHeight;
