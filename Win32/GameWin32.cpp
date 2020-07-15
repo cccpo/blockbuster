@@ -17,7 +17,13 @@ GameWin32::~GameWin32()
 
 void GameWin32::UpdateTime() 
 {
+    if (mIsPaused)
+        return;
 
+
+
+    //•`‰æ
+    game_board_win32->DrawGameBoard();
 }
 
 // Key“ü—ÍŠÇ—ƒNƒ‰ƒX
