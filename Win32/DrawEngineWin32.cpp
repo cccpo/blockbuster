@@ -41,13 +41,13 @@ void DrawEngineWin32::DrawUI()
 }
 
 //テキスト描画
-void DrawEngineWin32::DrawText(TCHAR* szText, int x, int y) const
+const void DrawEngineWin32::DrawText(TCHAR* szText, int x, int y)
 {
 	TextOut(mHdc, x, y, szText, lstrlen(szText));
 }
 
 //スコア描画
-void DrawEngineWin32::DrawScore(int score, int x, int y) const
+const void DrawEngineWin32::DrawScore(int score, int x, int y)
 {
 	TCHAR szBuffer[20];
 	int score_board = wsprintf(szBuffer, TEXT("Score: %6d"), score);
@@ -58,7 +58,7 @@ void DrawEngineWin32::DrawScore(int score, int x, int y) const
 }
 
 //テトリミノ描画
-void DrawEngineWin32::DrawTetrimino(int x, int y, COLORREF color) 
+const void DrawEngineWin32::DrawTetrimino(int x, int y, COLORREF color)
 {
 	HBRUSH hBrush = CreateSolidBrush(color);
 	mRect.left = x;

@@ -10,13 +10,13 @@ public:
 
 	~DrawEngineWin32();
 
-	void DrawTetrimino(int x, int y, COLORREF color);
+	const void DrawTetrimino(int x, int y, COLORREF color);
 
-	void DrawUI();
-	void DrawText(TCHAR* szText, int x, int y) const;
-	void DrawScore(int score, int x, int y) const;
+	const void DrawUI();
+	const void DrawText(TCHAR* szText, int x, int y);
+	const void DrawScore(int score, int x, int y);
 
-	void DrawTetrimino();
+	//const void DrawNextTetrimino(int x, int y, COLORREF color);
 
 	
 
