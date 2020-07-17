@@ -1,6 +1,6 @@
-#include "Tetrimino.h"
+#include "TetriminoWin32.h"
 
-Tetrimino::Tetrimino(int inTetriminoId,int inTetriminoRotate, COLORREF inTetriminoColor,
+TetriminoWin32::TetriminoWin32(int inTetriminoId,int inTetriminoRotate, COLORREF inTetriminoColor,
 	                 POINT* inPoint, int inNumOfPoints) :
 	mTetriminoId(inTetriminoId), mTetriminoRotation(inTetriminoRotate), mTetriminoPoints(inNumOfPoints),
 	color(inTetriminoColor), mTetriminoWidth(0), mTetriminoHeight(0)

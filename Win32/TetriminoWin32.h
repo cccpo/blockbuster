@@ -2,12 +2,12 @@
 
 #include <windows.h>
 
-class Tetrimino
+class TetriminoWin32
 {
 public:
-	Tetrimino(int inTetriminoId,int inTetriminoRotate, COLORREF inTetriminoColor,
+	TetriminoWin32(int inTetriminoId,int inTetriminoRotate, COLORREF inTetriminoColor,
 			  POINT* inPoint,int inNumOfPoints);
-	~Tetrimino();
+	~TetriminoWin32();
 protected:
     
     POINT* mTetriminoBody;
