@@ -58,13 +58,10 @@ public:
 	inline void SetTeriminoPosY(int inTetriminoPosY) { mTetriminoPosY = inTetriminoPosY; };
 
 	inline int GetTeriminoType(const GameBoard& inGaneBoard) { return mTetriminoType; };
-
+	inline void SetTeriminoType(int inTetriminoType) {mTetriminoType = inTetriminoType;};
 	
 
 	void SetRot(int r);
-	
-	//int GetTeriminoType();
-	void SetTeriminoType(int ttype);
 
 	int GetTeriminoValue(int x, int y);
 	

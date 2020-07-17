@@ -328,11 +328,6 @@ int BlockPiece::GetRot(const GameBoard& ioGameBoard) {
 }
 
 
-
-void BlockPiece::SetTeriminoType(int inTetriminoType) {
-	mTetriminoType = inTetriminoType;
-}
-
 int BlockPiece::GetTeriminoValue(int inTetriminoPosX,int inTetriminoPosY) {
 	int s = mTetrimino[inTetriminoPosX][inTetriminoPosY];
 	return s;
