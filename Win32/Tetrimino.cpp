@@ -2,25 +2,25 @@
 
 Tetrimino::Tetrimino(int inTetriminoId,int inTetriminoRotate, COLORREF inTetriminoColor,
 	                 POINT* inPoint, int inNumOfPoints) :
-	id(inTetriminoId), rotation(inTetriminoRotate), nPoints(inNumOfPoints),
-	color(inTetriminoColor), width(0), height(0)
+	mTetriminoId(inTetriminoId), mTetriminoRotation(inTetriminoRotate), mTetriminoPoints(inNumOfPoints),
+	color(inTetriminoColor), mTetriminoWidth(0), mTetriminoHeight(0)
 {
     POINT bottomLeft = inPoint[0];
 
-    for (int i = 1; i < nPoints; i++)
+    for (int i = 1; i < mTetriminoPoints; i++)
     {
         bottomLeft.x = min(inPoint[i].x, bottomLeft.x);
         bottomLeft.y = min(inPoint[i].y, bottomLeft.y);
     }
 
-    body = new POINT[nPoints];
+    mTetriminoBody = new POINT[mTetriminoPoints];
 
-    for (int i = 0; i < nPoints; i++)
+    for (int i = 0; i < mTetriminoPoints; i++)
     {
-        body[i].x = inPoint[i].x - bottomLeft.x;
-        body[i].y = inPoint[i].y - bottomLeft.y;
+        mTetriminoBody[i].x = inPoint[i].x - bottomLeft.x;
+        mTetriminoBody[i].y = inPoint[i].y - bottomLeft.y;
 
-        width = max((int)body[i].x + 1, width);
-        height = max((int)body[i].y + 1, height);
+        mTetriminoWidth = max((int)mTetriminoBody[i].x + 1, mTetriminoWidth);
+        mTetriminoHeight = max((int)mTetriminoBody[i].y + 1, mTetriminoHeight);
     }
 }
