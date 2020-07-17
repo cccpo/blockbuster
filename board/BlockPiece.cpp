@@ -327,25 +327,7 @@ int BlockPiece::GetRot(const GameBoard& ioGameBoard) {
 	return mRotIX;
 }
 
-int BlockPiece::GetTetriminoPosX(GameBoard inGameBoard) {
-	return mTetriminoPosX;
-}
 
-void BlockPiece::SetTeriminoPosX(int inTetriminoPosX) {
-	mTetriminoPosX = inTetriminoPosX;
-}
-
-int BlockPiece::GetTetriminoPosY(GameBoard inGameBoard) {
-	return mTetriminoPosY;
-}
-
-void BlockPiece::SetTeriminoPosY(int inTetriminoPosY) {
-	mTetriminoPosY = inTetriminoPosY;
-}
-
-int BlockPiece::GetTeriminoType(){
-	return mTetriminoType;
-}
 
 void BlockPiece::SetTeriminoType(int inTetriminoType) {
 	mTetriminoType = inTetriminoType;

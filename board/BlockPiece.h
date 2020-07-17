@@ -49,21 +49,21 @@ public:
 
 	void SetTertimino(const GameBoard& ioGameBoard, int type, int inTetriminoType);//テトリミノをゲームボードに配置
 	void AddTertimino(const GameBoard& ioGameBoard); // テトリミノの追加
-
-
-	int GetTetriminoPosX(GameBoard inGameBoard);
-	void SetTeriminoPosX(int tpx);
-
 	
+	//inline
+	inline int GetTetriminoPosX(const GameBoard& inGameBoard) { return mTetriminoPosX;};
+	inline void SetTeriminoPosX(int inTetriminoPosX) {mTetriminoPosX = inTetriminoPosX;};
 
-	int GetTetriminoPosY(GameBoard inGaneBoard);
-	void SetTeriminoPosY(int tpy);
+	inline int GetTetriminoPosY(const GameBoard& inGaneBoard) { return mTetriminoPosY;};
+	inline void SetTeriminoPosY(int inTetriminoPosY) { mTetriminoPosY = inTetriminoPosY; };
+
+	inline int GetTeriminoType(const GameBoard& inGaneBoard) { return mTetriminoType; };
 
 	
 
 	void SetRot(int r);
 	
-	int GetTeriminoType();
+	//int GetTeriminoType();
 	void SetTeriminoType(int ttype);
 
 	int GetTeriminoValue(int x, int y);
