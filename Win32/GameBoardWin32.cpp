@@ -27,6 +27,8 @@ GameBoardWin32::~GameBoardWin32()
     delete[] game_board_win32;
 }
 
+
+
 //GameBoard‚Ì•`‰æ–½—ß‚ð‚·‚é
 const void GameBoardWin32::DrawGameBoard()
 {

@@ -6,8 +6,8 @@ class TetriminoWin32
 {
 public:
 	TetriminoWin32(int inTetriminoId,int inTetriminoRotate, COLORREF inTetriminoColor,
-			 const POINT* inPoint,int inNumOfPoints=4);
-	//~TetriminoWin32();
+			       const POINT* inPoint,int inNumOfPoints=4);
+	~TetriminoWin32();
 
 
     const inline int GetTetriminoWidth(){return mTetriminoWidth;}
