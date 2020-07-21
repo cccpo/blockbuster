@@ -41,3 +41,70 @@ const void TetriminoWin32::GetTetriminoBody(POINT* inTetriminoPoints)
     for (int i = 0; i < mTetriminoPoints; i++)
         inTetriminoPoints[i] = mTetriminoBody[i];
 }
+
+const int TetriminoWin32::GetMoveDown(POINT* inPoint)
+{
+    int i = 0;
+    for (int x = 0; x < mTetriminoWidth; x++)
+    {
+        for (int y = 0; y < mTetriminoHeight; y++)
+        {
+            if (IsPointExists(x, y))
+            {
+                inPoint[i].x = x;
+                inPoint[i].y = y;
+                i++;
+                break;
+            }
+        }
+    }
+    return i;
+}
+
+const int TetriminoWin32::GetLeftSide(POINT* inPoint)
+{
+    int i = 0;
+    for (int y = 0; y < mTetriminoHeight; y++)
+    {
+        for (int x = 0; x < mTetriminoHeight; x++)
+        {
+            if (IsPointExists(x, y))
+            {
+                inPoint[i].x = x;
+                inPoint[i].y = y;
+                i++;
+                break;
+            }
+        }
+    }
+    return i;
+}
+
+const int TetriminoWin32::GetRightSide(POINT* inPoint)
+{
+    int i = 0;
+    for (int y = 0; y < mTetriminoHeight; y++)
+    {
+        for (int x = mTetriminoWidth - 1; x >= 0; x--)
+        {
+            if (IsPointExists(x, y))
+            {
+                inPoint[i].x = x;
+                inPoint[i].y = y;
+                i++;
+                break;
+            }
+        }
+    }
+    return i;
+}
+
+const bool TetriminoWin32::IsPointExists(int inPosX, int inPosY)
+{
+    for (int i = 0; i < 4; i++)
+    {
+        if (mTetriminoBody[i].x == inPosX && mTetriminoBody[i].y == inPosY)
+            return true;
+    }
+    return false;
+}

@@ -9,7 +9,7 @@ public:
 			       const POINT* inPoint,int inNumOfPoints=4);
 	~TetriminoWin32();
 
-
+    //Getter
     const inline int GetTetriminoWidth(){return mTetriminoWidth;}
     const inline int GetTetriminoHeight(){return mTetriminoHeight;}
     const inline int GetTetriminoNPoints() {return mTetriminoPoints;}
@@ -19,6 +19,12 @@ public:
 
     const void GetTetriminoBody(POINT* inTetriminoPoints);
 
+   
+    const int GetMoveDown(POINT* inPoint);
+    const int GetLeftSide(POINT* inPoint);
+    const int GetRightSide(POINT* inPoint);
+
+    const bool IsPointExists(int inPosX, int InPosY);
 protected:
     
     POINT* mTetriminoBody;
