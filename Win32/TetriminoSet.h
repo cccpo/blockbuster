@@ -15,8 +15,10 @@ public:
 	TetriminoSet();
 	~TetriminoSet();
 
-	const TetriminoWin32* GetTetrimino(int id, int rotation = 0);
-	const TetriminoWin32* GetRandomTetrimino();
+	TetriminoWin32* GetTetrimino(int id, int rotation = 0);
+
+	inline TetriminoWin32* GetRandomTetrimino() {return GetTetrimino(rand() % Num_Tetriminos, rand() % Rotate_Pattern);
+	};
 
 
 protected:

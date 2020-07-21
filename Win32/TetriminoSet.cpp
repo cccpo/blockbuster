@@ -57,10 +57,6 @@ TetriminoSet::TetriminoSet()
     tetrimino_constituion[3].x = 1;    tetrimino_constituion[3].y = 1;
     tetriminos[6][0] = new TetriminoWin32(6, 0, RGB(255, 0, 0), tetrimino_constituion);
 
-
-
-
-
     MakeTetriminoRotateAllPattern();
 }
 
@@ -72,7 +68,7 @@ TetriminoSet::~TetriminoSet()
                 delete tetriminos[i][j];
 }
 
-const TetriminoWin32* TetriminoSet::GetTetrimino(int inTetriminoId, int inRotation)
+TetriminoWin32* TetriminoSet::GetTetrimino(int inTetriminoId, int inRotation)
 {
     if (inTetriminoId >= Num_Tetriminos || inTetriminoId < 0 ||
         inRotation >= Rotate_Pattern || inRotation < 0)
@@ -95,11 +91,6 @@ void TetriminoSet::MakeTetriminoRotateAllPattern()
                 tetriminos[i][0]->GetTetriminoColor(), tetrimino_constituion);
         }
     }
-}
-
-//テトリミノの形状をランダムに取得する
-const TetriminoWin32* TetriminoSet::GetRandomTetrimino(){
-        return GetTetrimino(rand() % Num_Tetriminos, rand() % Rotate_Pattern);
 }
 
 //テトリミノを回転させる
