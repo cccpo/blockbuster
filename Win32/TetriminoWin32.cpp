@@ -36,7 +36,7 @@ TetriminoWin32::~TetriminoWin32()
 
 
 //Point構造体として構成されたテトリミノを取得する関数
-const void TetriminoWin32::GetTetriminoBody(POINT* inTetriminoPoints)
+void TetriminoWin32::GetTetriminoBody(POINT* inTetriminoPoints) const
 {
     for (int i = 0; i < mTetriminoPoints; i++)
         inTetriminoPoints[i] = mTetriminoBody[i];

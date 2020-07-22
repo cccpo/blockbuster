@@ -10,14 +10,14 @@ public:
 	~TetriminoWin32();
 
     //Getter
-    const inline int GetTetriminoWidth(){return mTetriminoWidth;}
-    const inline int GetTetriminoHeight(){return mTetriminoHeight;}
-    const inline int GetTetriminoNPoints() {return mTetriminoPoints;}
-    const inline int GetTetriminoId() {return mTetriminoId;}
-    const inline int GetTetriminoRotation() {return mTetriminoRotation;}
-    const inline COLORREF GetTetriminoColor() {return color;}
+    inline int GetTetriminoWidth() const{return mTetriminoWidth;}
+    inline int GetTetriminoHeight() const{return mTetriminoHeight;}
+    inline int GetTetriminoNPoints() const {return mTetriminoPoints;}
+    inline int GetTetriminoId() const{return mTetriminoId;}
+    inline int GetTetriminoRotation() const{return mTetriminoRotation;}
+    inline COLORREF GetTetriminoColor() const{return color;}
 
-    const void GetTetriminoBody(POINT* inTetriminoPoints);
+    void GetTetriminoBody(POINT* inTetriminoPoints) const;
 
    
     const int GetMoveDown(POINT* inPoint);
