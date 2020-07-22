@@ -50,7 +50,7 @@ void gPlayGame(DrawEngine& ioDrawEngine) {
 	ioDrawEngine.DrawTetrimino(game_board,block_piece);//テトリミノの描画
 
 	// Todo fix
-	int current_time = 1;
+	int mCurrentTime = 1;
 	int ts = 0;
 
 	int key = 0;
@@ -62,7 +62,7 @@ void gPlayGame(DrawEngine& ioDrawEngine) {
 	//for(int cnt =1;;++cnt){
 			bool update = false;
 
-			if (current_time % FallInterval == 0 || key == VK_DOWN){
+			if (mCurrentTime % FallInterval == 0 || key == VK_DOWN){
 				//テトリミノが落下完了した場合に以下の処理
 				if (!block_piece.IsMoveDown(game_board)) {
 					key = 0;
@@ -89,7 +89,7 @@ void gPlayGame(DrawEngine& ioDrawEngine) {
 				update = true;
 			}
 
-			if (current_time % MoveInterval == 0) {   
+			if (mCurrentTime % MoveInterval == 0) {   
 				//Move Left
 				if (key == VK_LEFT) {
 					if (block_piece.IsMoveLeft(game_board)) {
@@ -111,7 +111,7 @@ void gPlayGame(DrawEngine& ioDrawEngine) {
 			}
 
 			//Rotate
-			if (current_time % RotateInterval == 0) {       
+			if (mCurrentTime % RotateInterval == 0) {       
 				if (key == VK_UP) {
 					int tx = block_piece.GetRot(game_board);
 
@@ -157,7 +157,7 @@ void gPlayGame(DrawEngine& ioDrawEngine) {
 
 			Sleep(10);
 			//std::this_thread::sleep_for(std::chrono::seconds(1));
-			++current_time;
+			++mCurrentTime;
 		}
 
 

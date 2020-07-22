@@ -26,39 +26,39 @@ DrawEngineWin32::~DrawEngineWin32()
 }
 
 //UI•`‰æ
-const void DrawEngineWin32::DrawUI() 
+void DrawEngineWin32::DrawUI() 
 {
 	
-	HBRUSH hBrush = CreateSolidBrush(RGB(70, 70, 70));
+	HBRUSH h_brush = CreateSolidBrush(RGB(225, 200, 150));
 	
 	mRect.top = mHeight;
 	mRect.left = mWidth;
 	mRect.bottom = 0;
 	mRect.right = mWidth + 8;
 
-	FillRect(mHdc, &mRect, hBrush);
-	DeleteObject(hBrush);
+	FillRect(mHdc, &mRect, h_brush);
+	DeleteObject(h_brush);
 }
 
 //ƒeƒLƒXƒg•`‰æ
-const void DrawEngineWin32::DrawText(TCHAR* szText, int x, int y)
+ void DrawEngineWin32::DrawText(TCHAR* szText, int x, int y) const
 {
 	TextOut(mHdc, x, y, szText, lstrlen(szText));
 }
 
 //ƒXƒRƒA•`‰æ
-const void DrawEngineWin32::DrawScore(int score, int x, int y)
+const void DrawEngineWin32::DrawScore(int mScore, int inPosX, int inPosY)
 {
-	TCHAR szBuffer[20];
-	int score_board = wsprintf(szBuffer, TEXT("Score: %6d"), score);
+	TCHAR sz_buffer[20];
+	int score_board = wsprintf(sz_buffer, TEXT("Score: %6d"), mScore);
 
 	SetBkMode(mHdc, OPAQUE);
-	TextOut(mHdc, x, y, szBuffer, score_board);
+	TextOut(mHdc, inPosX, inPosY, sz_buffer, score_board);
 	SetBkMode(mHdc, TRANSPARENT);
 }
 
 //ƒeƒgƒŠƒ~ƒm•`‰æ
-const void DrawEngineWin32::DrawTetrimino(int x, int y, COLORREF color)
+void DrawEngineWin32::DrawTetrimino(int x, int y, COLORREF color)
 {
 	HBRUSH hBrush = CreateSolidBrush(color);
 	mRect.left = x;
@@ -67,4 +67,9 @@ const void DrawEngineWin32::DrawTetrimino(int x, int y, COLORREF color)
 	mRect.bottom = y + 1;
 
 	FillRect(mHdc, &mRect, hBrush);
+
+	MoveToEx(mHdc, x, y + 1, NULL);
+	LineTo(mHdc, x, y);
+	LineTo(mHdc, x + 1, y);
+	DeleteObject(hBrush);
 }

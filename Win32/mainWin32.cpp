@@ -131,26 +131,26 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam) 
 		ReleaseDC(hwnd, hdc);//デバイスコンテキストの開放
 		return 0;
 	
-	////キー入力メッセージ
-	//case WM_KEYDOWN:
-	//	game_win_32->IsKeyPress(wParam);
-	//	return 0;
-	//
-	////時間計測メッセージ
-	//case WM_TIMER:
-	//	game_win_32->UpdateTime();
+	//キー入力メッセージ
+	case WM_KEYDOWN:
+		game_win_32->IsKeyPress(wParam);
+		return 0;
+	
+	//時間計測メッセージ
+	case WM_TIMER:
+		game_win_32->UpdateTime();
 
-	//	return 0;
+		return 0;
 
-	////フォーカスを失うメッセージ
-	//case WM_KILLFOCUS:
-	//	KillTimer(hwnd, gTimerId);
-	//	return 0;
+	//フォーカスを失うメッセージ
+	case WM_KILLFOCUS:
+		KillTimer(hwnd, gTimerId);
+		return 0;
 
-	////フォーカスを取得するメッセージ
-	//case WM_SETFOCUS:
-	//	SetTimer(hwnd, gTimerId, 30, NULL);
-	//	return 0;
+	//フォーカスを取得するメッセージ
+	case WM_SETFOCUS:
+		SetTimer(hwnd, gTimerId, 30, NULL);
+		return 0;
 	
 	//描画を行わせるメッセージ
 	case WM_PAINT:
@@ -160,13 +160,13 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam) 
 		return 0;
 
 	//ウィンドウ破棄メッセージ
-	//case WM_DESTROY:
-	//	delete draw_engine_win32;
-	//	delete game_win_32;
+	case WM_DESTROY:
+		delete draw_engine_win32;
+		delete game_win_32;
 
-	//	KillTimer(hwnd, gTimerId);
-	//	PostQuitMessage(0);
-	//	return 0;
+		KillTimer(hwnd, gTimerId);
+		PostQuitMessage(0);
+		return 0;
 	}
 
 	return DefWindowProc(hwnd, message, wParam, lParam);
