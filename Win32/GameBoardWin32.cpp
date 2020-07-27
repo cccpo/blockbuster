@@ -6,7 +6,7 @@ GameBoardWin32::GameBoardWin32(DrawEngineWin32& draw_engine_win32, int game_boar
     draw_engine_win32(draw_engine_win32), game_board_width(game_board_width), game_board_height(game_board_height),
     mLastTime(0.0),mSpeed(500),mScore(-1)
 {
-    srand(time(0));
+    srand(time(0));//—”‰Šú‰»
     
     game_board_win32 = new COLORREF * [game_board_width];
 
@@ -16,6 +16,7 @@ GameBoardWin32::GameBoardWin32(DrawEngineWin32& draw_engine_win32, int game_boar
         for (int j = 0; j < game_board_height; j++)
             game_board_win32[i][j] = RGB(0, 0, 0);
     }
+    
     // ‰Šú‰»
     current_tetrimino = 0;
     next_tetrimino = tetrimino_set.GetRandomTetrimino();
@@ -47,7 +48,7 @@ void GameBoardWin32::UpdateTime()
     {
         int lines = ClearRows();
         mSpeed = max(mSpeed - 2 * lines, 100);
-        //mScore += 1 + lines * lines * 5;
+        mScore += 1 + lines * lines * 5;
         MakeRandomPiece();
         DrawScore();
     }

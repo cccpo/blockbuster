@@ -6,7 +6,7 @@ class DrawEngineWin32
 {
 public:
 	DrawEngineWin32(HDC mHdc, HWND mHwnd, 
-		int pxPerBlock = 25, int mWidth = 10, int mHeight = 20);
+					int mBlockSize = 25, int mWidth = 10, int mHeight = 20);
 
 	~DrawEngineWin32();
 
@@ -14,8 +14,8 @@ public:
 
 	void DrawUI();
 	void DrawText(TCHAR* szText, int x, int y) const;
+	
 	const void DrawScore(int mScore, int x, int y);
-
 	//const void DrawNextTetrimino(int x, int y, COLORREF color);
 
 	

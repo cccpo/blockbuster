@@ -2,8 +2,9 @@
 
 #include <Windows.h>
 
-#include "DrawEngineWin32.h"
+#include "../board/ScoreManager.h"
 
+#include "DrawEngineWin32.h"
 #include "TetriminoSet.h"
 
 
@@ -51,6 +52,8 @@ protected:
 		TetriminoSet tetrimino_set; 
 		TetriminoWin32* current_tetrimino;    
 		TetriminoWin32* next_tetrimino;
+
+		ScoreManager score_manager;
 
 
 		int game_board_width;

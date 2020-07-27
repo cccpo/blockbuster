@@ -12,7 +12,7 @@ using std::endl;
 
 int mRotIX = 0;
 
-//ToDO　現行は7種類のテトリミノに90度ずつずらした4パターンを準備
+//7種類のテトリミノに90度ずつずらした4パターンを準備
 int trData[][4][4][4] = {
 	{	
 		//Type A
@@ -231,6 +231,8 @@ void BlockPiece::AddTertimino(const GameBoard& ioGameBoard) {
 //*接触判定
 //数値を参照するためにconstを付与できない
 //*
+
+//下に移動する
 bool BlockPiece::IsMoveDown(GameBoard inGameBoard) {
 	for (int x = 0; x < gTetriminoWidth; ++x) {
 		for (int y = gTetriminoHeight; --y >= 0;) {
