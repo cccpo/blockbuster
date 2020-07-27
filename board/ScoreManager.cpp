@@ -27,6 +27,20 @@ void ScoreManager::AddScore(int inDeletePattern) {
 	SetScore(gScore);
 }
 
+int ScoreManager::AddScoreWin32(int inDeletePattern) {
+
+	int score_win32 = 0;
+
+	switch (inDeletePattern) {
+	case 1: score_win32 += 50; break;
+	case 2: score_win32 += 100; break;
+	case 3: score_win32 += 160; break;
+	case 4: score_win32 += 250; break;
+	}
+
+	return score_win32;
+}
+
 //　ハイスコアをゲット
 const int ScoreManager::GetHighScore(){
 	return gHighScore;

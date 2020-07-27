@@ -14,7 +14,9 @@ private:
 	void SetScore(int inScore);//スコアをセット
 
 	void AddScore(int inAddScore);//消去パターンに応じてスコアを加算
-	
+	int AddScoreWin32(int inDeletePattern);
+
+
 	const int GetHighScore();//　ハイスコアをゲット
 	void SetHighScore(int inHiScore);// ハイスコアをセット
 
