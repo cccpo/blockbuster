@@ -37,9 +37,9 @@ protected:
 		
 		void MakeRandomPiece();
 
-		bool IsHitBottom() const;
-		bool IsHitLeft() const;
-		bool IsHitRight() const;
+		const bool IsHitBottom();
+		const bool IsHitLeft();
+		const bool IsHitRight();
 
 		const bool IsCovered(const TetriminoWin32& piece, int x, int y);
 

@@ -2,9 +2,9 @@
 #include <ctime>
 
 
-GameBoardWin32::GameBoardWin32(DrawEngineWin32& draw_engine_win32, int game_board_width, int game_board_height) :
+GameBoardWin32::GameBoardWin32(DrawEngineWin32& draw_engine_win32, int game_board_width, int game_board_height):
     draw_engine_win32(draw_engine_win32), game_board_width(game_board_width), game_board_height(game_board_height),
-    mLastTime(0.0),mSpeed(500),mScore(-1)
+    mCurrentTime(0.0),mLastTime(0.0),mSpeed(500),mScore(0),mPosX(0),mPosY(0)
 {
     srand(time(0));//乱数初期化
     
@@ -49,7 +49,7 @@ void GameBoardWin32::UpdateTime()
     {
         int lines = ClearRows();
 
-        mScore = score_manager.AddScoreWin32(lines);
+        mScore += score_manager.AddScoreWin32(lines);
         mSpeed = max(mSpeed - 2 * lines, 100);
         MakeRandomPiece();
         DrawNextPiece();
@@ -137,12 +137,12 @@ void GameBoardWin32::Clear(const TetriminoWin32& ioTetrimino)
 //ランダムに
 void GameBoardWin32::MakeRandomPiece()
 {
-    current_tetrimino = next_tetrimino;
-    next_tetrimino = tetrimino_set.GetRandomTetrimino();
+    current_tetrimino = next_tetrimino;//次のテトリミノを追加
+    next_tetrimino = tetrimino_set.GetRandomTetrimino();//ランダムにテトリミノを生成
     Place(3, game_board_height - 1, *current_tetrimino);
 }
 
-bool GameBoardWin32::IsHitBottom() const
+const bool GameBoardWin32::IsHitBottom()
 {
     POINT point[4];
     int n = current_tetrimino->GetMoveDown(point);
@@ -157,7 +157,8 @@ bool GameBoardWin32::IsHitBottom() const
     return false;
 }
 
-bool GameBoardWin32::IsHitLeft() const
+
+const bool GameBoardWin32::IsHitLeft()
 {
     POINT point[4];
     int n = current_tetrimino->GetLeftSide(point);
@@ -174,7 +175,7 @@ bool GameBoardWin32::IsHitLeft() const
     return false;
 }
 
-bool GameBoardWin32::IsHitRight() const
+const bool GameBoardWin32::IsHitRight()
 {
     POINT point[4];
     int n = current_tetrimino->GetRightSide(point);
@@ -243,6 +244,7 @@ int GameBoardWin32::ClearRows()
     return rows;
 }
 
+//ゲームオーバーであるかを確認する
 bool GameBoardWin32::IsGameOver()
 {
    
@@ -261,6 +263,7 @@ bool GameBoardWin32::IsGameOver()
         Place(mPosX, mPosY, *current_tetrimino);
     return false;
 }
+
 
 const void GameBoardWin32::DrawScore()
 {
