@@ -11,11 +11,12 @@ public:
 	~DrawEngineWin32();
 
 	void DrawTetrimino(int x, int y, COLORREF color);
+	void DrawNextPiece(TetriminoWin32& ioTetrimino, int pos_x, int pos_y);
 
 	void DrawUI();
-	void DrawText(TCHAR* szText, int x, int y) const;
+	void DrawText(TCHAR* szText, int pos_x, int pos_y) const;
 	
-	const void DrawScore(int mScore, int x, int y);
+	const void DrawScore(int mScore, int pos_x, int pos_y);
 	//const void DrawNextTetrimino(int x, int y, COLORREF color);
 
 	

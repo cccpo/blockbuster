@@ -73,3 +73,22 @@ void DrawEngineWin32::DrawTetrimino(int x, int y, COLORREF color)
 	LineTo(mHdc, x + 1, y);
 	DeleteObject(hBrush);
 }
+
+void DrawEngineWin32::DrawNextPiece(TetriminoWin32& ioTetrimino, int pos_x, int pos_y)
+{
+	TCHAR szBuffer[] = TEXT("Next:");
+	TextOut(mHdc, pos_x, pos_y + 5, szBuffer, lstrlen(szBuffer));
+	COLORREF color = ioTetrimino.GetTetriminoColor();
+
+	
+	for (int i = 0; i < 4; i++)
+	{
+		for (int j = 0; j < 4; j++)
+		{
+			if (ioTetrimino.IsPointExists(i,j))
+				DrawTetrimino(i + pos_x, j + pos_y, color);
+			else
+				DrawTetrimino(i + pos_x, j + pos_y, RGB(0, 0, 0));
+		}
+	}
+}

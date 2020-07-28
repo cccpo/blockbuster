@@ -20,12 +20,13 @@ public:
 
 	bool Rotate();
 
-	bool Move(int cxDistance, int cyDistance);
+	bool Move(int move_to_x, int move_to_y);
 
 	void UpdateTime();
 
 	bool IsGameOver();
 	const void DrawScore();
+	const void DrawNextPiece();
 
 protected:
 		bool Place(int x, int y, const TetriminoWin32& ioTetrimino);

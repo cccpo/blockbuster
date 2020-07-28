@@ -68,7 +68,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdLi
 	if (!RegisterClass(&wc)) return 0;
 
 	hwnd = CreateWindow(szAppName,
-						TEXT("BlcokBuster"),
+						TEXT("BlockBuster"),
 						WS_OVERLAPPEDWINDOW,
 	                    CW_USEDEFAULT, 
                         CW_USEDEFAULT,
@@ -92,14 +92,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdLi
 		TranslateMessage(&message);//キー入力メッセージを文字メッセージに変換
 		DispatchMessage(&message);//メッセージをウィンドウプロシージャへディスパッチする
 	}
-
-	//メッセージボックス生成
-	//MessageBox(NULL,
-	//	TEXT("Create Window"),
-	//	TEXT("Test"),
-	//	MB_OK);
-
-	//return 0;
 
 	return message.wParam;
 
@@ -126,7 +118,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam) 
 		draw_engine_win32 = new DrawEngineWin32(hdc, hwnd, gTetriminoSize);
 		game_win_32 = new GameWin32(*draw_engine_win32);
 
-		SetTimer(hwnd, gTimerId, 30, NULL);
+		SetTimer(hwnd, gTimerId, 60, NULL);
 
 		ReleaseDC(hwnd, hdc);//デバイスコンテキストの開放
 		return 0;

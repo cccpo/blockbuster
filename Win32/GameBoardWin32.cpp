@@ -23,6 +23,7 @@ GameBoardWin32::GameBoardWin32(DrawEngineWin32& draw_engine_win32, int game_boar
     
 }
 
+//
 GameBoardWin32::~GameBoardWin32()
 {
     for (int i = 0; i < game_board_width; i++)
@@ -30,7 +31,7 @@ GameBoardWin32::~GameBoardWin32()
     delete[] game_board_win32;
 }
 
-//GameBoard‚Ì•`‰æ–½—ß‚ð‚·‚é
+//GameBoard‚Ì•`‰æ‚ð•`‰æƒGƒ“ƒWƒ“‚És‚í‚¹‚é
 const void GameBoardWin32::DrawGameBoard()
 {
     for (int i = 0; i < game_board_width; i++)
@@ -47,10 +48,13 @@ void GameBoardWin32::UpdateTime()
     if (current_tetrimino == NULL || !Move(0, -1))
     {
         int lines = ClearRows();
+
+        mScore = score_manager.AddScoreWin32(lines);
         mSpeed = max(mSpeed - 2 * lines, 100);
-        mScore += 1 + lines * lines * 5;
         MakeRandomPiece();
+        DrawNextPiece();
         DrawScore();
+        
     }
 
     mLastTime = timeGetTime();
@@ -263,3 +267,7 @@ const void GameBoardWin32::DrawScore()
     draw_engine_win32.DrawScore(mScore, game_board_width + 1, 13);
 }
 
+const void GameBoardWin32::DrawNextPiece()
+{
+    draw_engine_win32.DrawNextPiece(*next_tetrimino, game_board_width + 1, 14);
+}
