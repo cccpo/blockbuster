@@ -34,6 +34,8 @@ public:
 	bool IsGameOver();
 	const void DrawScore();
 	const void DrawHiScore();
+	const void DrawSpeed();
+	const void DrawLines();
 	const void DrawNextTetrimino();
 
 protected:
@@ -76,5 +78,6 @@ protected:
 		double mCurrentTime;  
 		int mScore;
 		int mHiScore;
+		int mLines;
 };
 

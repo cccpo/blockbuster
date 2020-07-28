@@ -77,12 +77,32 @@ const void DrawEngineWin32::DrawScore(int inScore, int inPosX, int inPosY)
 	SetBkMode(mHdc, TRANSPARENT);
 }
 
+//ÉXÉRÉAï`âÊ
+const void DrawEngineWin32::DrawLines(int inLines, int inPosX, int inPosY)
+{
+	TCHAR sz_buffer[20];
+	int score_board = wsprintf(sz_buffer, TEXT("Line: %6d"), inLines);
+
+	SetBkMode(mHdc, OPAQUE);
+	TextOut(mHdc, inPosX, inPosY, sz_buffer, score_board);
+	SetBkMode(mHdc, TRANSPARENT);
+}
+
 const void DrawEngineWin32::DrawHiScore(int inHiScore, int inPosX, int inPosY) {
 	TCHAR sz_buffer[20];
 	int hiscore_board = wsprintf(sz_buffer, TEXT("HiScore: %6d"), inHiScore);
 
 	SetBkMode(mHdc, OPAQUE);
 	TextOut(mHdc, inPosX, inPosY, sz_buffer, hiscore_board);
+	SetBkMode(mHdc, TRANSPARENT);
+}
+
+const void DrawEngineWin32::DrawSpeed(int inSpeed, int x, int y)
+{
+	TCHAR szBuffer[20];
+	int len = wsprintf(szBuffer, TEXT("Game Level: %6d"), inSpeed);
+	SetBkMode(mHdc, OPAQUE);
+	TextOut(mHdc, x, y + 5, szBuffer, len);
 	SetBkMode(mHdc, TRANSPARENT);
 }
 

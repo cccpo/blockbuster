@@ -21,6 +21,10 @@ public:
 	
 	const void DrawScore(int inScore, int pos_x, int pos_y);
 	const void DrawHiScore(int inHiScore, int pos_x, int pos_y);
+	const void DrawLines(int inLines, int pos_x, int pos_y);
+
+	const void DrawSpeed(int inSpeed, int x, int y) ;
+
 
 protected:
 	HDC mHdc;

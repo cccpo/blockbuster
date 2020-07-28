@@ -4,7 +4,7 @@
 
 GameBoardWin32::GameBoardWin32(DrawEngineWin32& draw_engine_win32, int game_board_width, int game_board_height):
     draw_engine_win32(draw_engine_win32), game_board_width(game_board_width), game_board_height(game_board_height),
-    mCurrentTime(0.0),mLastTime(0.0),mSpeed(500),mScore(0),mPosX(0),mPosY(0)
+    mCurrentTime(0.0),mLastTime(0.0),mSpeed(500),mScore(0),mPosX(0),mPosY(0),mLines(0)
 {
     srand(time(0));//乱数初期化
     
@@ -51,12 +51,16 @@ void GameBoardWin32::UpdateTime()
     {
         int lines = ClearRows();
 
+        mLines += lines;
         mScore += score_manager.AddScoreWin32(lines);
         mSpeed = max(mSpeed - 2 * lines, 100);
         MakeRandomPiece();
         DrawNextTetrimino();
         DrawScore();
+        DrawLines();
+        DrawSpeed();
         DrawHiScore();
+       
         
     }
 
@@ -290,13 +294,25 @@ bool GameBoardWin32::IsHiScore() {
 //スコアを描画
 const void GameBoardWin32::DrawScore()
 {
-    draw_engine_win32.DrawScore(mScore, game_board_width + 9, 13);
+    draw_engine_win32.DrawScore(mScore, game_board_width + 9, 11);
+}
+
+//消したラインの数を表示
+const void GameBoardWin32::DrawLines()
+{
+    draw_engine_win32.DrawLines(mLines, game_board_width + 9, 10);
 }
 
 //ハイスコアを描画
 const void GameBoardWin32::DrawHiScore()
 {
     draw_engine_win32.DrawHiScore(mHiScore, game_board_width-8, 18);
+}
+
+//落下速度レベルを描画
+const void GameBoardWin32::DrawSpeed()
+{
+    draw_engine_win32.DrawSpeed((500 - mSpeed) / 2, game_board_width + 9, 8);
 }
 
 
