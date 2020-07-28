@@ -1,7 +1,7 @@
 #include "DrawEngineWin32.h"
 
 DrawEngineWin32::DrawEngineWin32(HDC mHdc, HWND mHwnd, 
-								 int pxPerBlock, int mWidth, int mHeight) :
+								 int mBlockSize, int mWidth, int mHeight) :
 	mHdc(mHdc), mHwnd(mHwnd), mWidth(mWidth), mHeight(mHeight)
 {
 	//クライアントエリアのサイズを取得
@@ -11,7 +11,7 @@ DrawEngineWin32::DrawEngineWin32(HDC mHdc, HWND mHwnd,
 	SaveDC(mHdc);
 
 	SetMapMode(mHdc, MM_ISOTROPIC);	//マッピングモードの変更
-	SetViewportExtEx(mHdc, pxPerBlock, pxPerBlock, 0);
+	SetViewportExtEx(mHdc, mBlockSize, mBlockSize, 0);
 	SetWindowExtEx(mHdc, 1, -1, 0);
 	SetViewportOrgEx(mHdc, 0, mRect.bottom, 0);
 
@@ -25,25 +25,38 @@ DrawEngineWin32::~DrawEngineWin32()
 	RestoreDC(mHdc, -1);
 }
 
-//UI描画
-void DrawEngineWin32::DrawUI() 
+//右UIエリア描画
+void DrawEngineWin32::DrawUIRightArea() 
 {
-	
 	HBRUSH h_brush = CreateSolidBrush(RGB(225, 200, 150));
 	
 	mRect.top = mHeight;
-	mRect.left = mWidth;
+	mRect.left = mWidth+8;
 	mRect.bottom = 0;
-	mRect.right = mWidth + 8;
+	mRect.right = mWidth + 18;
+
+	FillRect(mHdc, &mRect, h_brush);
+	DeleteObject(h_brush);
+}
+
+//左UIエリア描画
+void DrawEngineWin32::DrawUILeftArea()
+{
+	HBRUSH h_brush = CreateSolidBrush(RGB(225, 200, 150));
+
+	mRect.top = mHeight;
+	mRect.left = mWidth-18;
+	mRect.bottom = 0;
+	mRect.right = mWidth;
 
 	FillRect(mHdc, &mRect, h_brush);
 	DeleteObject(h_brush);
 }
 
 //テキスト描画
- void DrawEngineWin32::DrawText(TCHAR* szText, int x, int y) const
+void DrawEngineWin32::DrawTextOn(TCHAR *text, int pos_x, int pos_y) const
 {
-	TextOut(mHdc, x, y, szText, lstrlen(szText));
+	TextOut(mHdc, pos_x, pos_y, text, lstrlen(text));
 }
 
 //スコア描画
@@ -58,23 +71,24 @@ const void DrawEngineWin32::DrawScore(int mScore, int inPosX, int inPosY)
 }
 
 //テトリミノ描画
-void DrawEngineWin32::DrawTetrimino(int x, int y, COLORREF color)
+void DrawEngineWin32::DrawTetrimino(int pos_x, int pos_y, COLORREF color)
 {
 	HBRUSH hBrush = CreateSolidBrush(color);
-	mRect.left = x;
-	mRect.right = x + 1;
-	mRect.top = y;
-	mRect.bottom = y + 1;
+	mRect.left = pos_x;
+	mRect.right = pos_x + 1;
+	mRect.top = pos_y;
+	mRect.bottom = pos_y + 1;
 
 	FillRect(mHdc, &mRect, hBrush);
 
-	MoveToEx(mHdc, x, y + 1, NULL);
-	LineTo(mHdc, x, y);
-	LineTo(mHdc, x + 1, y);
+	MoveToEx(mHdc, pos_x, pos_y + 1, NULL);
+	LineTo(mHdc, pos_x, pos_y);
+	LineTo(mHdc, pos_x + 1, pos_y);
 	DeleteObject(hBrush);
 }
 
-void DrawEngineWin32::DrawNextPiece(TetriminoWin32& ioTetrimino, int pos_x, int pos_y)
+//次のテトリミノを描画
+void DrawEngineWin32::DrawNextTetrimino(TetriminoWin32& ioTetrimino, int pos_x, int pos_y)
 {
 	TCHAR szBuffer[] = TEXT("Next:");
 	TextOut(mHdc, pos_x, pos_y + 5, szBuffer, lstrlen(szBuffer));

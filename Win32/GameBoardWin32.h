@@ -26,7 +26,7 @@ public:
 
 	bool IsGameOver();
 	const void DrawScore();
-	const void DrawNextPiece();
+	const void DrawNextTetrimino();
 
 protected:
 		bool Place(int x, int y, const TetriminoWin32& ioTetrimino);

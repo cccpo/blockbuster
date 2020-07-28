@@ -12,7 +12,7 @@
 using std::cout;
 
 const int gTetriminoSize = 25;
-const int gScreenWidth= 10;
+const int gScreenWidth= 20;
 const int gScreenHeight = 20;
 
 
@@ -147,7 +147,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam) 
 	//描画を行わせるメッセージ
 	case WM_PAINT:
 		hdc = BeginPaint(hwnd, &ps);
-		game_win_32->Draw();
+		game_win_32->PriorityDraw();
 		EndPaint(hwnd, &ps);
 		return 0;
 

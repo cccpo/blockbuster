@@ -1,7 +1,7 @@
-#pragma once
-
 #include "DrawEngineWin32.h"
 #include "GameBoardWin32.h"
+#include "TetriminoSet.h"
+#include "TetriminoWin32.h"
 
 
 class GameWin32
@@ -11,15 +11,19 @@ public:
 	GameWin32(DrawEngineWin32& draw_engine_win32);
 	~GameWin32();
 
+	void RestartGame();
+
 	void UpdateTime();
 
-	void Draw() const;
+	const void PriorityDraw();
 	
 	bool IsKeyPress(int inInputKey);
 
-	void Pause(bool paused);
+	void Pause(bool inPaused);
 
 	 bool IsGameOver() const;
+	 void DrawGameOver() const;
+	 void DrawPause() const;
 
 protected:
 	DrawEngineWin32& draw_engine_win32;
@@ -27,4 +31,3 @@ protected:
 
 	bool mIsPaused;
 };
-

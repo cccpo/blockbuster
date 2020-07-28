@@ -15,6 +15,15 @@ GameWin32::~GameWin32()
     delete game_board_win32;
 }
 
+//ゲームをリスタートする
+void GameWin32::RestartGame()
+{
+    delete game_board_win32;
+    game_board_win32 = new GameBoardWin32(draw_engine_win32, 10, 20);
+    mIsPaused = false;
+    PriorityDraw();
+}
+
 void GameWin32::UpdateTime() 
 {
     if (mIsPaused)
@@ -34,12 +43,14 @@ void GameWin32::UpdateTime()
     game_board_win32->DrawGameBoard();
 }
 
-void GameWin32::Pause(bool paused) {
+void GameWin32::Pause(bool inPaused) {
    
     if (IsGameOver())
         return;
 
-    mIsPaused = paused;
+    mIsPaused = inPaused;
+    if(inPaused)
+    DrawPause();
 }
 
 // Key入力管理クラス
@@ -70,20 +81,39 @@ bool GameWin32::IsKeyPress(int inKeyPress)
         break;
     case VK_RETURN:
         if (game_board_win32->IsGameOver())
-            /*      restart();*/
+        RestartGame();
     default:
         return false;
-        return true;
     }
 }
 
 
-void GameWin32::Draw() const
+const void GameWin32::PriorityDraw()
 {
-    draw_engine_win32.DrawUI();
+    draw_engine_win32.DrawUIRightArea();
+    draw_engine_win32.DrawUILeftArea();
 
     game_board_win32->DrawGameBoard();
+    game_board_win32->DrawNextTetrimino();
 
+}
+
+void GameWin32::DrawGameOver() const
+{
+    TCHAR buffer[] = TEXT("GAME OVER");
+    TCHAR buffer_2[] = TEXT("Press ENTER to restart");
+
+    draw_engine_win32.DrawTextOn(buffer, 3, 10);
+    draw_engine_win32.DrawTextOn(buffer_2, 2, 9);
+}
+
+void GameWin32::DrawPause() const
+{
+    TCHAR buffer[] = TEXT("PAUSE");
+    TCHAR buffer_2[] = TEXT("Press the PAUSE button again to continue");
+
+    draw_engine_win32.DrawTextOn(buffer, 12, 10);
+    draw_engine_win32.DrawTextOn(buffer_2, 8, 9);
 }
 
 
