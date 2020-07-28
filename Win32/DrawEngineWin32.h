@@ -17,8 +17,10 @@ public:
 	void DrawUILeftArea();
 
 	void DrawTextOn(TCHAR *text, int pos_x, int pos_y) const;
+	void DrawTextOnRed(TCHAR* text, int pos_x, int pos_y) const;
 	
-	const void DrawScore(int mScore, int pos_x, int pos_y);
+	const void DrawScore(int inScore, int pos_x, int pos_y);
+	const void DrawHiScore(int inHiScore, int pos_x, int pos_y);
 
 protected:
 	HDC mHdc;

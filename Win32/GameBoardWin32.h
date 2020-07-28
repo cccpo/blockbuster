@@ -2,6 +2,7 @@
 
 #include <Windows.h>
 
+#include "../Data/Data.h"
 #include "../board/ScoreManager.h"
 
 #include "DrawEngineWin32.h"
@@ -26,6 +27,7 @@ public:
 
 	bool IsGameOver();
 	const void DrawScore();
+	const void DrawHiScore();
 	const void DrawNextTetrimino();
 
 protected:
@@ -55,6 +57,7 @@ protected:
 		TetriminoWin32* next_tetrimino;
 
 		ScoreManager score_manager;
+		Data data;
 
 
 		int game_board_width;
@@ -65,6 +68,7 @@ protected:
 		int mSpeed; 
 		double mLastTime;   
 		double mCurrentTime;  
-		int mScore; 
+		int mScore;
+		int mHiScore;
 };
 

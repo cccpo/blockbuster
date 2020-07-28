@@ -35,7 +35,7 @@ public:
 
 	void DrawScore(ScoreManager inScore);//スコア表示
 
-	void DrawHighScore();
+	void DrawHiScore();
 
 	void DrawRotType();
 

@@ -45,7 +45,7 @@ void gPlayGame(DrawEngine& ioDrawEngine) {
 	ioDrawEngine.DrawStage(game_board);//ゲームボード内部の描画
 
 	ioDrawEngine.DrawScore(score);//スコア表示
-	ioDrawEngine.DrawHighScore();//ハイスコア表示
+	ioDrawEngine.DrawHiScore();//ハイスコア表示
 
 	ioDrawEngine.DrawTetrimino(game_board,block_piece);//テトリミノの描画
 

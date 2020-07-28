@@ -59,14 +59,30 @@ void DrawEngineWin32::DrawTextOn(TCHAR *text, int pos_x, int pos_y) const
 	TextOut(mHdc, pos_x, pos_y, text, lstrlen(text));
 }
 
+void DrawEngineWin32::DrawTextOnRed(TCHAR* text, int pos_x, int pos_y) const
+{
+	SetTextColor(mHdc, RGB(255, 0, 0));
+	TextOut(mHdc, pos_x, pos_y, text, lstrlen(text));
+	SetTextColor(mHdc, RGB(255, 255, 255));
+}
+
 //ÉXÉRÉAï`âÊ
-const void DrawEngineWin32::DrawScore(int mScore, int inPosX, int inPosY)
+const void DrawEngineWin32::DrawScore(int inScore, int inPosX, int inPosY)
 {
 	TCHAR sz_buffer[20];
-	int score_board = wsprintf(sz_buffer, TEXT("Score: %6d"), mScore);
+	int score_board = wsprintf(sz_buffer, TEXT("Score: %6d"), inScore);
 
 	SetBkMode(mHdc, OPAQUE);
 	TextOut(mHdc, inPosX, inPosY, sz_buffer, score_board);
+	SetBkMode(mHdc, TRANSPARENT);
+}
+
+const void DrawEngineWin32::DrawHiScore(int inHiScore, int inPosX, int inPosY) {
+	TCHAR sz_buffer[20];
+	int hiscore_board = wsprintf(sz_buffer, TEXT("HiScore: %6d"), inHiScore);
+
+	SetBkMode(mHdc, OPAQUE);
+	TextOut(mHdc, inPosX, inPosY, sz_buffer, hiscore_board);
 	SetBkMode(mHdc, TRANSPARENT);
 }
 
@@ -91,10 +107,12 @@ void DrawEngineWin32::DrawTetrimino(int pos_x, int pos_y, COLORREF color)
 void DrawEngineWin32::DrawNextTetrimino(TetriminoWin32& ioTetrimino, int pos_x, int pos_y)
 {
 	TCHAR szBuffer[] = TEXT("Next:");
+	SetTextColor(mHdc, RGB(0, 0, 0));
 	TextOut(mHdc, pos_x, pos_y + 5, szBuffer, lstrlen(szBuffer));
-	COLORREF color = ioTetrimino.GetTetriminoColor();
+	SetTextColor(mHdc, RGB(255, 255, 255));
 
-	
+
+	COLORREF color = ioTetrimino.GetTetriminoColor();
 	for (int i = 0; i < 4; i++)
 	{
 		for (int j = 0; j < 4; j++)

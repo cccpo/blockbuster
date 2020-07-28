@@ -165,7 +165,7 @@ void DrawEngine::DrawScore(ScoreManager inScore) {
 }
 
 //ルール表示
-void DrawEngine::DrawHighScore() {
+void DrawEngine::DrawHiScore() {
 	//スコア表示位置の設定
 	int RulePosX = (game_board.GetGameBoardPosX() + GameBoard::mGbWidth + 2) * 3 + 4;
 	int RulePosY = game_board.GetGameBoardPosY();

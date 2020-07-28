@@ -23,7 +23,7 @@ LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdLine, int nCmdShow){
 
-	static TCHAR szAppName[] = TEXT("BlockPiece");
+	static TCHAR szAppName[] = TEXT("BlockBuster");
 	WNDCLASS wc; //WNDCLASS構造体:ウィンドウクラスの属性を表す
 	HWND hwnd; //ウィンドウハンドル
 	MSG message;

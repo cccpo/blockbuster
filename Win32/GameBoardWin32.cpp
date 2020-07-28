@@ -20,6 +20,8 @@ GameBoardWin32::GameBoardWin32(DrawEngineWin32& draw_engine_win32, int game_boar
     // 初期化
     current_tetrimino = 0;
     next_tetrimino = tetrimino_set.GetRandomTetrimino();
+
+    mHiScore = data.HiScoreLoad();
     
 }
 
@@ -54,6 +56,7 @@ void GameBoardWin32::UpdateTime()
         MakeRandomPiece();
         DrawNextTetrimino();
         DrawScore();
+        DrawHiScore();
         
     }
 
@@ -267,11 +270,18 @@ bool GameBoardWin32::IsGameOver()
 //スコアを描画
 const void GameBoardWin32::DrawScore()
 {
-    draw_engine_win32.DrawScore(mScore, game_board_width + 11, 13);
+    draw_engine_win32.DrawScore(mScore, game_board_width + 9, 13);
 }
+
+//ハイスコアを描画
+const void GameBoardWin32::DrawHiScore()
+{
+    draw_engine_win32.DrawHiScore(mHiScore, game_board_width-8, 18);
+}
+
 
 //次のテトリミノを描画
 const void GameBoardWin32::DrawNextTetrimino()
 {
-    draw_engine_win32.DrawNextTetrimino(*next_tetrimino, game_board_width + 11, 14);
+    draw_engine_win32.DrawNextTetrimino(*next_tetrimino, game_board_width + 9, 14);
 }

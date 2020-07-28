@@ -31,7 +31,7 @@ void GameWin32::UpdateTime()
 
     if (game_board_win32->IsGameOver()) {
         mIsPaused = true;
-      
+        DrawGameOver();
         return;
     }
 
@@ -100,15 +100,17 @@ const void GameWin32::PriorityDraw()
 
 void GameWin32::DrawGameOver() const
 {
+    //if(eng)
     TCHAR buffer[] = TEXT("GAME OVER");
-    TCHAR buffer_2[] = TEXT("Press ENTER to restart");
+    TCHAR buffer_2[] = TEXT("Press the ENTER button to restart");
 
-    draw_engine_win32.DrawTextOn(buffer, 3, 10);
-    draw_engine_win32.DrawTextOn(buffer_2, 2, 9);
+    draw_engine_win32.DrawTextOnRed(buffer, 11, 10);
+    draw_engine_win32.DrawTextOnRed(buffer_2, 9, 9);
 }
 
 void GameWin32::DrawPause() const
 {
+    //if(eng)
     TCHAR buffer[] = TEXT("PAUSE");
     TCHAR buffer_2[] = TEXT("Press the PAUSE button again to continue");
 
