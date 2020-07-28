@@ -4,7 +4,7 @@
 
 
 GameWin32::GameWin32(DrawEngineWin32& draw_engine_win32):
-    draw_engine_win32(draw_engine_win32),mIsPaused(false)
+    draw_engine_win32(draw_engine_win32),mIsPaused(false),mIsUpdateHiScore(false)
 {
     game_board_win32 = new GameBoardWin32(draw_engine_win32,10,20);
 
@@ -24,20 +24,28 @@ void GameWin32::RestartGame()
     PriorityDraw();
 }
 
+//時間を進める
 void GameWin32::UpdateTime() 
 {
     if (mIsPaused)
         return;
 
+    //ゲームオーバーでないかを確認する
     if (game_board_win32->IsGameOver()) {
         mIsPaused = true;
+
+        if (game_board_win32->IsHiScore()) {
+            mIsUpdateHiScore = true;
+            DrawHiScore();
+            return;
+        }
+
         DrawGameOver();
         return;
     }
 
    
     game_board_win32->UpdateTime();
-
 
     //描画
     game_board_win32->DrawGameBoard();
@@ -52,6 +60,10 @@ void GameWin32::Pause(bool inPaused) {
     if(inPaused)
     DrawPause();
 }
+
+//bool GameWin32::IsHiScore() const {
+//
+//}
 
 // Key入力管理クラス
 bool GameWin32::IsKeyPress(int inKeyPress)
@@ -98,6 +110,17 @@ const void GameWin32::PriorityDraw()
 
 }
 
+void GameWin32::DrawHiScore() const
+{
+    //if(eng)
+    TCHAR buffer[] = TEXT("HiScore!");
+    TCHAR buffer_3[] = TEXT("Press the ENTER button to restart");
+
+  /*  draw_engine_win32.DrawTextOn(buffer, 11, 10);*/
+    draw_engine_win32.DrawTextOn(buffer, 11, 10);
+    draw_engine_win32.DrawTextOn(buffer_3, 7, 9);
+}
+
 void GameWin32::DrawGameOver() const
 {
     //if(eng)
@@ -112,10 +135,10 @@ void GameWin32::DrawPause() const
 {
     //if(eng)
     TCHAR buffer[] = TEXT("PAUSE");
-    TCHAR buffer_2[] = TEXT("Press the PAUSE button again to continue");
+    TCHAR buffer_2[] = TEXT("Press the PAUSE button");
 
     draw_engine_win32.DrawTextOn(buffer, 12, 10);
-    draw_engine_win32.DrawTextOn(buffer_2, 8, 9);
+    draw_engine_win32.DrawTextOn(buffer_2, 10, 9);
 }
 
 

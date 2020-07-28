@@ -264,8 +264,28 @@ bool GameBoardWin32::IsGameOver()
 
     if (current_tetrimino != 0)
         Place(mPosX, mPosY, *current_tetrimino);
+    //if (mScore > HiScore) {
+    //    data.HiScoreSave(mScore);//HiScoreを更新
+    //    }
     return false;
 }
+
+//ハイスコアであるかを確認する
+bool GameBoardWin32::IsHiScore() {
+    if (mScore > HiScore)
+        HiScore = mScore;
+        data.HiScoreSave(mScore);
+        return true;
+ 
+        return false;
+}
+
+
+//ハイスコアを更新させる
+//void GameBoardWin32::CheckHiScore() {
+//    if (mScore > HiScore)
+//       
+//}
 
 //スコアを描画
 const void GameBoardWin32::DrawScore()

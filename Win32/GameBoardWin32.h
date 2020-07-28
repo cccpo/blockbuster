@@ -17,6 +17,12 @@ public:
 				   int game_board_width = 10, int game_board_height = 20);
 	~GameBoardWin32();
 
+	inline int GetScore() const{ return mScore;};
+	inline int GetHiScore() const { return HiScore; };
+
+	bool IsHiScore();
+
+	/*void CheckHiScore();*/
 	const void DrawGameBoard();
 
 	bool Rotate();

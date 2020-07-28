@@ -21,7 +21,10 @@ public:
 
 	void Pause(bool inPaused);
 
+	 bool IsHiScore() const;
 	 bool IsGameOver() const;
+
+	 void DrawHiScore() const;
 	 void DrawGameOver() const;
 	 void DrawPause() const;
 
@@ -30,4 +33,5 @@ protected:
 	GameBoardWin32* game_board_win32;
 
 	bool mIsPaused;
+	bool mIsUpdateHiScore;
 };
