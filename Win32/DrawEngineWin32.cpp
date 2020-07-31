@@ -66,7 +66,7 @@ void DrawEngineWin32::DrawTextOnRed(TCHAR* text, int pos_x, int pos_y) const
 	SetTextColor(mHdc, RGB(255, 255, 255));
 }
 
-//スコア描画
+//スコア表示
 const void DrawEngineWin32::DrawScore(int inScore, int inPosX, int inPosY)
 {
 	TCHAR sz_buffer[20];
@@ -77,7 +77,7 @@ const void DrawEngineWin32::DrawScore(int inScore, int inPosX, int inPosY)
 	SetBkMode(mHdc, TRANSPARENT);
 }
 
-//スコア描画
+//削除したライン数を表示
 const void DrawEngineWin32::DrawLines(int inLines, int inPosX, int inPosY)
 {
 	TCHAR sz_buffer[20];
@@ -109,18 +109,24 @@ const void DrawEngineWin32::DrawSpeed(int inSpeed, int x, int y)
 //テトリミノ描画
 void DrawEngineWin32::DrawTetrimino(int pos_x, int pos_y, COLORREF color)
 {
-	HBRUSH hBrush = CreateSolidBrush(color);
+	HBRUSH h_brush = CreateSolidBrush(color);
+	//HPEN h_pen = CreatePen(PS_SOLID,5,RGB(255, 255, 255));
+	
+
 	mRect.left = pos_x;
 	mRect.right = pos_x + 1;
 	mRect.top = pos_y;
 	mRect.bottom = pos_y + 1;
 
-	FillRect(mHdc, &mRect, hBrush);
+	//SelectObject(mHdc, h_pen);
+	//Rectangle(mHdc, mRect.left, mRect.top, mRect.right, mRect.bottom);
+	FillRect(mHdc, &mRect, h_brush);
 
 	MoveToEx(mHdc, pos_x, pos_y + 1, NULL);
 	LineTo(mHdc, pos_x, pos_y);
 	LineTo(mHdc, pos_x + 1, pos_y);
-	DeleteObject(hBrush);
+
+	DeleteObject(h_brush);
 }
 
 //次のテトリミノを描画
