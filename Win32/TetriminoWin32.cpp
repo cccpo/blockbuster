@@ -7,20 +7,20 @@ TetriminoWin32::TetriminoWin32(int inTetriminoId,int inTetriminoRotate, COLORREF
 	mTetriminoId(inTetriminoId), mTetriminoRotation(inTetriminoRotate), mTetriminoPoints(inNumOfPoints),
 	color(inTetriminoColor), mTetriminoWidth(0), mTetriminoHeight(0)
 {
-    POINT bottomLeft = inPoint[0];
+    POINT bottom_left = inPoint[0];
 
     for (int i = 1; i < mTetriminoPoints; i++)
     {
-        bottomLeft.x = min(inPoint[i].x, bottomLeft.x);
-        bottomLeft.y = min(inPoint[i].y, bottomLeft.y);
+        bottom_left.x = min(inPoint[i].x, bottom_left.x);
+        bottom_left.y = min(inPoint[i].y, bottom_left.y);
     }
 
     mTetriminoBody = new POINT[mTetriminoPoints];
 
     for (int i = 0; i < mTetriminoPoints; i++)
     {
-        mTetriminoBody[i].x = inPoint[i].x - bottomLeft.x;
-        mTetriminoBody[i].y = inPoint[i].y - bottomLeft.y;
+        mTetriminoBody[i].x = inPoint[i].x - bottom_left.x;
+        mTetriminoBody[i].y = inPoint[i].y - bottom_left.y;
 
         mTetriminoWidth = max((int)mTetriminoBody[i].x + 1, mTetriminoWidth);
         mTetriminoHeight = max((int)mTetriminoBody[i].y + 1, mTetriminoHeight);
@@ -42,6 +42,7 @@ void TetriminoWin32::GetTetriminoBody(POINT* inTetriminoPoints) const
         inTetriminoPoints[i] = mTetriminoBody[i];
 }
 
+//テトリミノの下側を取得
 const int TetriminoWin32::GetMoveDown(POINT* inPoint)
 {
     int i = 0;
@@ -61,6 +62,7 @@ const int TetriminoWin32::GetMoveDown(POINT* inPoint)
     return i;
 }
 
+//テトリミノの左側を取得
 const int TetriminoWin32::GetLeftSide(POINT* inPoint)
 {
     int i = 0;
@@ -80,6 +82,7 @@ const int TetriminoWin32::GetLeftSide(POINT* inPoint)
     return i;
 }
 
+//テトリミノの右側を取得
 const int TetriminoWin32::GetRightSide(POINT* inPoint)
 {
     int i = 0;
