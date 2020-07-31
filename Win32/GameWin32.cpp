@@ -94,6 +94,8 @@ bool GameWin32::IsKeyPress(int inKeyPress)
     default:
         return false;
     }
+
+        return true;
 }
 
 // •`‰æ‘ÎÛ‚ğŒÄ‚Ño‚·

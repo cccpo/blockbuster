@@ -27,7 +27,6 @@ TetriminoWin32::TetriminoWin32(int inTetriminoId,int inTetriminoRotate, COLORREF
     }
 }
 
-//”jŠü
 TetriminoWin32::~TetriminoWin32()
 {
     if (mTetriminoBody)

@@ -27,6 +27,7 @@ void ScoreManager::AddScore(int inDeletePattern) {
 	SetScore(gScore);
 }
 
+//Win32”ÅƒXƒRƒA‰ÁZŠÖ”
 int ScoreManager::AddScoreWin32(int inDeletePattern) {
 
 	int score_win32 = 0;

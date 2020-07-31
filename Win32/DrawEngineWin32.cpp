@@ -99,6 +99,7 @@ const void DrawEngineWin32::DrawHiScore(int inHiScore, int inPosX, int inPosY) {
 	SetBkMode(mHdc, TRANSPARENT);
 }
 
+//　落下速度レベルの表示
 const void DrawEngineWin32::DrawSpeed(int inSpeed, int x, int y)
 {
 	TCHAR szBuffer[20];
@@ -112,7 +113,7 @@ const void DrawEngineWin32::DrawSpeed(int inSpeed, int x, int y)
 void DrawEngineWin32::DrawTetrimino(int pos_x, int pos_y, COLORREF color)
 {
 	HBRUSH h_brush = CreateSolidBrush(color);
-	//HPEN h_pen = CreatePen(PS_SOLID,5,RGB(255, 255, 255));
+	HPEN h_pen = CreatePen(PS_SOLID,1,RGB(255, 255, 255));
 	
 
 	mRect.left = pos_x;
@@ -121,13 +122,17 @@ void DrawEngineWin32::DrawTetrimino(int pos_x, int pos_y, COLORREF color)
 	mRect.bottom = pos_y + 1;
 
 	//SelectObject(mHdc, h_pen);
-	//Rectangle(mHdc, mRect.left, mRect.top, mRect.right, mRect.bottom);
+	
+	
 	FillRect(mHdc, &mRect, h_brush);
+	//Rectangle(mHdc, mRect.left, mRect.top, mRect.right, mRect.bottom);
+
 
 	MoveToEx(mHdc, pos_x, pos_y + 1, NULL);
 	LineTo(mHdc, pos_x, pos_y);
 	LineTo(mHdc, pos_x + 1, pos_y);
 
+	DeleteObject(h_pen);
 	DeleteObject(h_brush);
 }
 
