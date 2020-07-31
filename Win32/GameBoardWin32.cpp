@@ -279,11 +279,11 @@ bool GameBoardWin32::IsGameOver()
 
 //ハイスコアであるかを確認する
 bool GameBoardWin32::IsHiScore() {
-    if (mScore > HiScore)
+    if (mScore > HiScore) {
         HiScore = mScore;
         data.HiScoreSave(mScore);
         return true;
- 
+    }
         return false;
 }
 
