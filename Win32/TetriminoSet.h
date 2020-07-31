@@ -26,5 +26,5 @@ protected:
 	TetriminoWin32* tetriminos[Num_Tetriminos][Rotate_Pattern];
 
 	void MakeTetriminoRotateAllPattern();
-	void RotateTetrimino(POINT* apt, int inNumPoints = 4);
+	void RotateTetrimino(POINT* apt, int inNumPoints = 4);//ƒeƒgƒŠƒ~ƒm‚ð‰ñ“]‚³‚¹‚é
 };

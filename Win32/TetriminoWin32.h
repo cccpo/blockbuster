@@ -20,9 +20,9 @@ public:
     void GetTetriminoBody(POINT* inTetriminoPoints) const;
 
    
-    const int GetMoveDown(POINT* inPoint);
-    const int GetLeftSide(POINT* inPoint);
-    const int GetRightSide(POINT* inPoint);
+    const int GetMoveDown(POINT* inPoint);//テトリミノの下側を取得
+    const int GetLeftSide(POINT* inPoint);//テトリミノの左側を取得
+    const int GetRightSide(POINT* inPoint);//テトリミノの右側を取得
 
     const bool IsPointExists(int inPosX, int InPosY);
 protected:
