@@ -51,6 +51,7 @@ void GameWin32::UpdateTime()
     game_board_win32->DrawGameBoard();
 }
 
+// 一時停止
 void GameWin32::Pause(bool inPaused) {
    
     if (IsGameOver())
@@ -61,11 +62,7 @@ void GameWin32::Pause(bool inPaused) {
     DrawPause();
 }
 
-//bool GameWin32::IsHiScore() const {
-//
-//}
-
-// Key入力管理クラス
+// Key入力検出
 bool GameWin32::IsKeyPress(int inKeyPress)
 {
     if (inKeyPress != VK_PAUSE && inKeyPress != VK_RETURN && mIsPaused)
@@ -99,7 +96,7 @@ bool GameWin32::IsKeyPress(int inKeyPress)
     }
 }
 
-
+// 描画対象を呼び出す
 const void GameWin32::PriorityDraw()
 {
     draw_engine_win32.DrawUIRightArea();

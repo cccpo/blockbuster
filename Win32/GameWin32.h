@@ -11,18 +11,15 @@ public:
 	GameWin32(DrawEngineWin32& draw_engine_win32);
 	~GameWin32();
 
-	void RestartGame();
+	void RestartGame();//ゲームをリスタートする
+	void UpdateTime();//時間を進める
 
-	void UpdateTime();
-
-	const void PriorityDraw();
+	const void PriorityDraw();// 描画対象を呼び出す
 	
-	bool IsKeyPress(int inInputKey);
+	void Pause(bool inPaused);// 一時停止
+	bool IsKeyPress(int inInputKey);// Key入力検出
 
-	void Pause(bool inPaused);
-
-	 bool IsHiScore() const;
-	 bool IsGameOver() const;
+	 bool IsGameOver() const;//ゲームオーバー判定
 
 	 void DrawHiScore() const;
 	 void DrawGameOver() const;
