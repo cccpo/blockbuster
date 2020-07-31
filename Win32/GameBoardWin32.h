@@ -23,26 +23,26 @@ public:
 	bool IsHiScore();
 
 	/*void CheckHiScore();*/
-	const void DrawGameBoard();
+	const void DrawGameBoard();//GameBoardの描画を描画エンジンに行わせる
 
-	bool Rotate();
+	bool Rotate();//回転
 
-	bool Move(int move_to_x, int move_to_y);
+	bool Move(int move_to_x, int move_to_y);// テトリミノを移動
 
 	void UpdateTime();
 
-	bool IsGameOver();
-	const void DrawScore();
-	const void DrawHiScore();
-	const void DrawSpeed();
-	const void DrawLines();
-	const void DrawNextTetrimino();
+	bool IsGameOver();//ゲームオーバーであるかを確認する
+	const void DrawScore();//スコアを描画
+	const void DrawHiScore();//ハイスコアを描画
+	const void DrawSpeed();//落下速度レベルを描画
+	const void DrawLines();//消したラインの数を表示
+	const void DrawNextTetrimino();//次のテトリミノを描画
 
 protected:
-		bool Place(int x, int y, const TetriminoWin32& ioTetrimino);
+		bool Place(int inPosX, int inPosY, const TetriminoWin32& ioTetrimino);
 
 		
-		void Clear(const TetriminoWin32& piece);
+		void ClearTetrimino(const TetriminoWin32& piece);
 
 		
 		void MakeRandomPiece();
@@ -51,7 +51,7 @@ protected:
 		const bool IsHitLeft();
 		const bool IsHitRight();
 
-		const bool IsCovered(const TetriminoWin32& piece, int x, int y);
+		const bool IsCovered(const TetriminoWin32& piece, int inPosX, int inPosY);
 
 		// 揃った行を削除する
 		int ClearRows();
