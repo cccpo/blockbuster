@@ -59,6 +59,7 @@ void DrawEngineWin32::DrawTextOn(TCHAR *text, int pos_x, int pos_y) const
 	TextOut(mHdc, pos_x, pos_y, text, lstrlen(text));
 }
 
+//赤文字テキスト描画
 void DrawEngineWin32::DrawTextOnRed(TCHAR* text, int pos_x, int pos_y) const
 {
 	SetTextColor(mHdc, RGB(255, 0, 0));
@@ -88,6 +89,7 @@ const void DrawEngineWin32::DrawLines(int inLines, int inPosX, int inPosY)
 	SetBkMode(mHdc, TRANSPARENT);
 }
 
+//　ハイスコア表示
 const void DrawEngineWin32::DrawHiScore(int inHiScore, int inPosX, int inPosY) {
 	TCHAR sz_buffer[20];
 	int hiscore_board = wsprintf(sz_buffer, TEXT("HiScore: %6d"), inHiScore);

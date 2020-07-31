@@ -10,18 +10,18 @@ public:
 
 	~DrawEngineWin32();
 
-	void DrawTetrimino(int pos_x, int pos_y, COLORREF color);
-	void DrawNextTetrimino(TetriminoWin32& ioTetrimino, int pos_x, int pos_y);
+	void DrawTetrimino(int pos_x, int pos_y, COLORREF color);//テトリミノ描画
+	void DrawNextTetrimino(TetriminoWin32& ioTetrimino, int pos_x, int pos_y);//次のテトリミノを描画
 
-	void DrawUIRightArea();
-	void DrawUILeftArea();
+	void DrawUIRightArea();//右UIエリア描画
+	void DrawUILeftArea();//左UIエリア描画
 
-	void DrawTextOn(TCHAR *text, int pos_x, int pos_y) const;
-	void DrawTextOnRed(TCHAR* text, int pos_x, int pos_y) const;
+	void DrawTextOn(TCHAR *text, int pos_x, int pos_y) const;//テキスト描画
+	void DrawTextOnRed(TCHAR* text, int pos_x, int pos_y) const;//赤文字テキスト描画
 	
-	const void DrawScore(int inScore, int pos_x, int pos_y);
-	const void DrawHiScore(int inHiScore, int pos_x, int pos_y);
-	const void DrawLines(int inLines, int pos_x, int pos_y);
+	const void DrawScore(int inScore, int pos_x, int pos_y);//スコア表示
+	const void DrawHiScore(int inHiScore, int pos_x, int pos_y);//　ハイスコア表示
+	const void DrawLines(int inLines, int pos_x, int pos_y);//削除したライン数を表示
 
 	const void DrawSpeed(int inSpeed, int x, int y) ;
 
