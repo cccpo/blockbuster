@@ -67,6 +67,7 @@ void GameBoardWin32::UpdateTime()
     mLastTime = timeGetTime();
 }
 
+// 設置
 bool GameBoardWin32::Place(int inPosX, int inPosY, const TetriminoWin32& ioTetrimino)
 {
     if (inPosX + ioTetrimino.GetTetriminoWidth()> game_board_width || 
@@ -101,7 +102,7 @@ bool GameBoardWin32::Rotate()
     int rotation = (current_tetrimino->GetTetriminoRotation() + 1) 
                     % TetriminoSet::Rotate_Pattern;
 
-    Clear(*current_tetrimino);
+    ClearTetrimino(*current_tetrimino);
     current_tetrimino = tetrimino_set.GetTetrimino(current_tetrimino->GetTetriminoId(), rotation);
 
     if (Place(mPosX - disX, mPosY, *current_tetrimino))
@@ -112,6 +113,7 @@ bool GameBoardWin32::Rotate()
     return false;
 }
 
+// テトリミノを移動
 bool GameBoardWin32::Move(int cxDistance, int cyDistance)
 {
     if (mPosX + cxDistance < 0 || mPosY + cyDistance < 0 ||
@@ -123,19 +125,20 @@ bool GameBoardWin32::Move(int cxDistance, int cyDistance)
         return false;
     if (cyDistance < 0 && IsHitBottom())
         return false;
-    Clear(*current_tetrimino);
+    ClearTetrimino(*current_tetrimino);
     return Place(mPosX + cxDistance, mPosY + cyDistance, *current_tetrimino);
 }
 
-void GameBoardWin32::Clear(const TetriminoWin32& ioTetrimino)
+// テトリミノを削除
+void GameBoardWin32::ClearTetrimino(const TetriminoWin32& ioTetrimino)
 {
     POINT point[4];
     ioTetrimino.GetTetriminoBody(point);
-    int x, y;
+    int pos_x, pos_y;
     for (int i = 0; i < 4; i++) {
-        x = mPosX + point[i].x;
-        y = mPosY + point[i].y;
-        if (x > game_board_width - 1 || y > game_board_height - 1)
+        pos_x = mPosX + point[i].x;
+        pos_y = mPosY + point[i].y;
+        if (pos_x > game_board_width - 1 || pos_y > game_board_height - 1)
             continue;
         game_board_win32[mPosX + point[i].x][mPosY + point[i].y] = RGB(0, 0, 0);
     }
@@ -153,12 +156,12 @@ const bool GameBoardWin32::IsHitBottom()
 {
     POINT point[4];
     int n = current_tetrimino->GetMoveDown(point);
-    int x, y;
+    int pos_x, pos_y;
     for (int i = 0; i < n; i++)
     {
-        x = mPosX + point[i].x;
-        y = mPosY + point[i].y;
-        if (y < game_board_height && (y == 0 || game_board_win32[x][y - 1] != RGB(0, 0, 0)))
+        pos_x = mPosX + point[i].x;
+        pos_y = mPosY + point[i].y;
+        if (pos_y < game_board_height && (pos_y == 0 || game_board_win32[pos_x][pos_y - 1] != RGB(0, 0, 0)))
             return true;
     }
     return false;
@@ -169,14 +172,14 @@ const bool GameBoardWin32::IsHitLeft()
 {
     POINT point[4];
     int n = current_tetrimino->GetLeftSide(point);
-    int x, y;
+    int pos_x, pos_y;
     for (int i = 0; i < n; i++)
     {
-        x = mPosX + point[i].x;
-        y = mPosY + point[i].y;
-        if (y > game_board_height - 1)
+        pos_x = mPosX + point[i].x;
+        pos_y = mPosY + point[i].y;
+        if (pos_y > game_board_height - 1)
             continue;
-        if (x == 0 || game_board_win32[x - 1][y] != RGB(0, 0, 0))
+        if (pos_x == 0 || game_board_win32[pos_x - 1][pos_y] != RGB(0, 0, 0))
             return true;
     }
     return false;
@@ -186,14 +189,14 @@ const bool GameBoardWin32::IsHitRight()
 {
     POINT point[4];
     int n = current_tetrimino->GetRightSide(point);
-    int x, y;
+    int pos_x, pos_y;
     for (int i = 0; i < n; i++)
     {
-        x = mPosX + point[i].x;
-        y = mPosY + point[i].y;
-        if (y > game_board_height - 1)
+        pos_x = mPosX + point[i].x;
+        pos_y = mPosY + point[i].y;
+        if (pos_y > game_board_height - 1)
             continue;
-        if (x == game_board_width - 1 || game_board_win32[x + 1][y] != RGB(0, 0, 0))
+        if (pos_x == game_board_width - 1 || game_board_win32[pos_x + 1][pos_y] != RGB(0, 0, 0))
             return true;
     }
     return false;
@@ -203,14 +206,14 @@ const bool GameBoardWin32::IsCovered(const TetriminoWin32& ioTetrimino, int x, i
 {
     POINT point[4];
     ioTetrimino.GetTetriminoBody(point);
-    int tmpX, tmpY;
+    int pos_x, pos_y;
     for (int i = 0; i < 4; i++)
     {
-        tmpX = point[i].x + x;
-        tmpY = point[i].y + y;
-        if (tmpX > game_board_width - 1 || tmpY > game_board_height - 1)
+        pos_x = point[i].x + x;
+        pos_y = point[i].y + y;
+        if (pos_x > game_board_width - 1 || pos_y > game_board_height - 1)
             continue;
-        if (game_board_win32[tmpX][tmpY] != RGB(0, 0, 0))
+        if (game_board_win32[pos_x][pos_y] != RGB(0, 0, 0))
             return true;
     }
     return false;
@@ -256,7 +259,7 @@ bool GameBoardWin32::IsGameOver()
 {
    
     if (current_tetrimino)
-        Clear(*current_tetrimino);
+        ClearTetrimino(*current_tetrimino);
 
     for (int i = 0; i < game_board_width; i++) {
         if (game_board_win32[i][game_board_height - 1]) {
@@ -283,13 +286,6 @@ bool GameBoardWin32::IsHiScore() {
  
         return false;
 }
-
-
-//ハイスコアを更新させる
-//void GameBoardWin32::CheckHiScore() {
-//    if (mScore > HiScore)
-//       
-//}
 
 //スコアを描画
 const void GameBoardWin32::DrawScore()
