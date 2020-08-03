@@ -1,8 +1,5 @@
 #include <windows.h>
 #include <iostream>
-#include "../Game.h"
-
-
 
 #include "GameWin32.h"
 #include "DrawEngineWin32.h"
@@ -11,7 +8,7 @@
 
 using std::cout;
 
-const int gTetriminoSize = 25;
+const int gTetriminoSize = 25;//テトリミノのサイズ
 const int gScreenWidth= 20;
 const int gScreenHeight = 20;
 
