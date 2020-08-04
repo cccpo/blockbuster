@@ -1,14 +1,10 @@
 #pragma once
-
-
 //スコア管理クラス
 class ScoreManager
 {
-private:
-	
-
-
  public:
+	 //ScoreManager();
+	 //~ScoreManager();
 	
 	const int GetScore();////スコアを取得
 	void SetScore(int inScore);//スコアをセット
@@ -20,8 +16,9 @@ private:
 	const int GetHighScore();//　ハイスコアをゲット
 	void SetHighScore(int inHiScore);// ハイスコアをセット
 
+protected:
+	int mScore;
 
-	//Score() {};
-	//~Score() {};
+
 };
 

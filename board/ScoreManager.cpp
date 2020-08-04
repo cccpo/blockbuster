@@ -1,8 +1,14 @@
 #include "ScoreManager.h"
 
-
 static int gHighScore;
 int gScore = 0;
+//ScoreManager() {
+//
+//}
+//
+//~ScoreManager() {
+//
+//}
 
 //ƒXƒRƒA‚ğæ“¾
 const int ScoreManager::GetScore(){

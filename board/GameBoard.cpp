@@ -10,6 +10,14 @@ using std::endl;
 
 static int sBoard[GameBoard::mGbWidth + 2][GameBoard::mGbHeight + 2];
 
+GameBoard::GameBoard() {
+
+}
+
+GameBoard::~GameBoard() {
+
+}
+
 // ゲームボード初期化
 void GameBoard::InitGameBoard() {
 
@@ -67,10 +75,6 @@ int GameBoard::GetGameBoardPosX() {
 // ゲームボードのy座標を返す
 int GameBoard::GetGameBoardPosY(){
     return mGameBoardPosY;
-}
-
-GameBoard::GameBoard() :mGameBoardPosX(1),mGameBoardPosY(2){
-
 }
 
 //　ゲームボードを生成する座標及びを与える

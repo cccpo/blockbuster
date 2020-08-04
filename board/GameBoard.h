@@ -2,8 +2,6 @@
 #include <iostream>
 #include <Windows.h>
 
-
-
 typedef unsigned char byte;
 
 
@@ -11,29 +9,24 @@ class GameBoard
 {
 
 private:
-	
-	
 	int mOuterFrame = 0xff;
-
 	int mEmpty = { 0 };
 	
-
-
 	enum Mask {
 		Intensity = 8, RedMask = 4, GreenMask = 2, BlueMask = 1
 	};
 
 
 public:
-	enum Value {
-		empty=0
-	};
-
 	const static int mGbWidth = 10;
 	const static int mGbHeight = 20;
 
 	int mGameBoardPosX;//ゲームボード位置のx座標
 	int mGameBoardPosY;//ゲームボード位置のy座標
+
+	enum Value {
+		empty=0
+	};
 
 	void InitGameBoard();// ゲームボード初期化
 
@@ -50,8 +43,10 @@ public:
 	GameBoard();
 
 	GameBoard(int inPosX, int inPosY);
+	~GameBoard();
 
-	//~GameBoard();
+protected:
+	int mScore=0;
 };
 
 
