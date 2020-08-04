@@ -15,7 +15,7 @@ GameWin32::~GameWin32()
     delete game_board_win32;
 }
 
-//ゲームをリスタートする
+//ゲームをリスタート
 void GameWin32::RestartGame()
 {
     delete game_board_win32;
@@ -24,16 +24,17 @@ void GameWin32::RestartGame()
     PriorityDraw();
 }
 
-//時間を進める
+//時間を更新
 void GameWin32::UpdateTime() 
 {
     if (mIsPaused)
         return;
 
-    //ゲームオーバーでないかを確認する
+    //ゲームオーバーでないかを確認
     if (game_board_win32->IsGameOver()) {
         mIsPaused = true;
 
+        //ハイスコアであるかを確認
         if (game_board_win32->IsHiScore()) {
             mIsUpdateHiScore = true;
             DrawHiScore();
@@ -44,7 +45,7 @@ void GameWin32::UpdateTime()
         return;
     }
 
-   
+    //時間を更新   
     game_board_win32->UpdateTime();
 
     //描画
@@ -65,7 +66,8 @@ void GameWin32::Pause(bool inPaused) {
 // Key入力検出
 bool GameWin32::IsKeyPress(int inKeyPress)
 {
-    if (inKeyPress != VK_PAUSE && inKeyPress != VK_RETURN && mIsPaused)
+    if (inKeyPress != VK_PAUSE && inKeyPress 
+        != VK_RETURN && mIsPaused)
         return false;
 
     switch (inKeyPress)
@@ -109,6 +111,7 @@ const void GameWin32::PriorityDraw()
 
 }
 
+//
 void GameWin32::DrawHiScore() const
 {
     //if(eng)
